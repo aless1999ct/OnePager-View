@@ -30,7 +30,7 @@ const AprobacionSection = ({
   firmas,
 }: AprobacionSectionProps) => {
   return (
-    <div className="bg-card border-2 border-primary rounded-lg overflow-hidden shadow-lg mt-6">
+    <div className="bg-card border-2 border-primary rounded-lg overflow-visible shadow-lg mt-6">
 
       {/* HEADER */}
       <div className="header-banner text-center py-2">
