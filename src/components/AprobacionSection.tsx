@@ -34,7 +34,7 @@ const AprobacionSection = ({
 
       {/* HEADER */}
       <div className="header-banner text-center py-2">
-        <span className="font-bold text-base">Estado: DENEGADO</span>
+        <span className="font-bold text-base">Estado: Aprobado</span>
       </div>
 
       <div className="p-4 space-y-4">
