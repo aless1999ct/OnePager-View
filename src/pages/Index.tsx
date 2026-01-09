@@ -11,7 +11,6 @@ const Index = () => {
 
   /* ===================== DATA ===================== */
 
-  const [search, setSearch] = useState("");
   const sampleData = {
     nombreEmpresa: "PLÁSTICOS Y PAPELES SAC",
     rec: "20451340167",
@@ -73,91 +72,39 @@ const Index = () => {
       deudaSBS: "243,000,000",
       maximaDeuda: "332,000,000",
     },
-    
-    
-    
   ];
 
-  const perfilCliente = "Dedicada a la comercialización de productos de plástico y papel (80%) y en menor medida abarrotes y artículos para repostería (20%) distribuyen toda la zona.";
+  const perfilCliente =
+    "Dedicada a la comercialización de productos de plástico y papel (80%) y en menor medida abarrotes y artículos para repostería (20%) distribuyen toda la zona.";
 
-  const politicasComerciales = "Compras 50% al crédito (líneas de $280M). Proveedores: PAMOLSA, TaiLoy SA, Schroth. Ventas 100% al contado.";
+  const politicasComerciales =
+    "Compras 50% al crédito (líneas de $280M). Proveedores: PAMOLSA, TaiLoy SA, Schroth. Ventas 100% al contado.";
 
-  // Indicadores Financieros Data (solo los NO tachados en rojo)
   const indicadoresData = {
-  actividad: [
-    {
-      nombre: "Promedio Mensual Ventas",
-      valor2023: "771",
-      valor2024: "649",
-    },
-    {
-      nombre: "Variación de ventas",
-      valor2023: "",
-      valor2024: "-15%",
-    },
-  ],
-
-  rentabilidad: [
-    {
-      nombre: "Margen Bruto",
-      valor2023: "13%",
-      valor2024: "13%",
-    },
-    {
-      nombre: "Margen Operativo",
-      valor2023: "4%",
-      valor2024: "4%",
-    },
-    {
-      nombre: "Margen Neto",
-      valor2023: "2%",
-      valor2024: "2%",
-    },
-  ],
-
-  liquidez: [
-    {
-      nombre: "Capital de Trabajo",
-      valor2023: "1222",
-      valor2024: "1226",
-    },
-    {
-      nombre: "Rotación de Inventarios",
-      valor2023: "116",
-      valor2024: "108",
-    },
-    {
-      nombre: "PPC = Período promedio de Cobranza",
-      valor2023: "0",
-      valor2024: "0",
-    },
-    {
-      nombre: "PPP = Período Promedio de Pago",
-      valor2023: "32",
-      valor2024: "32",
-    },
-    {
-      nombre: "Ciclo Operativo",
-      valor2023: "83",
-      valor2024: "76",
-    },
-  ],
-
-  endeudamiento: [
-    {
-      nombre: "Pasivo Financiero / Promedio Mensual de Ventas",
-      valor2023: "4.13",
-      valor2024: "4.02",
-    },
-  ],
-};
-
-
-  const chartData = [
-    { year: "2023", value: 58451 },
-    { year: "2024", value: 1320827 },
-    { year: "2025", value: 2330110 },
-  ];
+    actividad: [
+      { nombre: "Promedio Mensual Ventas", valor2023: "771", valor2024: "649" },
+      { nombre: "Variación de ventas", valor2023: "", valor2024: "-15%" },
+    ],
+    rentabilidad: [
+      { nombre: "Margen Bruto", valor2023: "13%", valor2024: "13%" },
+      { nombre: "Margen Operativo", valor2023: "4%", valor2024: "4%" },
+      { nombre: "Margen Neto", valor2023: "2%", valor2024: "2%" },
+    ],
+    liquidez: [
+      { nombre: "Capital de Trabajo", valor2023: "1222", valor2024: "1226" },
+      { nombre: "Rotación de Inventarios", valor2023: "116", valor2024: "108" },
+      { nombre: "PPC = Período promedio de Cobranza", valor2023: "0", valor2024: "0" },
+      { nombre: "PPP = Período Promedio de Pago", valor2023: "32", valor2024: "32" },
+      { nombre: "Ciclo Operativo", valor2023: "83", valor2024: "76" },
+    ],
+    endeudamiento: [
+      {
+        nombre: "Pasivo Financiero / Promedio Mensual de Ventas",
+        valor2023: "4.13",
+        valor2024: "4.02",
+      },
+    ],
+  };
 
   const aprobacionData = {
     producto: {
@@ -169,9 +116,9 @@ const Index = () => {
       finalidad: "Compra de Mercancías",
       hipotecas: "S/. 2,700,000",
     },
-    observacion: "La empresa muestra recuperación en ventas 2025, adecuada posición de liquidez con ratios de rotación acordes al sector, endeudamiento moderado y rentabilidad positiva y estable, con lo cual se modeló un flujo de caja teniendo índices de cobertura positivos (1,5x), además se contará con garantía que cubre 2.7x veces el crédito.",
+    observacion:
+      "La empresa muestra recuperación en ventas 2025, adecuada posición de liquidez...",
     condiciones: "No Aplica",
-    condicionesDetalle: "Desembolso condicionado al bloqueo inscrito en RRPP de la Garantía. Canalización de al menos el 20% de sus ventas por cuentas IBK. Se deberá trasladar operaciones de cambio (a dólares)",
     firmas: {
       bancoNegociosFecha: "29/08/2025",
       analistaCreditos: "Carla Bocanegra",
@@ -187,7 +134,7 @@ const Index = () => {
 
   return (
     <>
-      {/* Barra superior (fuera del documento) */}
+      {/* Barra de búsqueda (fuera del documento) */}
       <div className="w-full border-b bg-background px-4 py-3 print:hidden">
         <div className="mx-auto flex max-w-7xl items-center gap-2">
           <input
@@ -198,7 +145,10 @@ const Index = () => {
             className="flex-1 rounded-md border px-4 py-2 text-sm"
           />
           <button className="rounded-md border px-3 py-2">🔍</button>
-          <button onClick={() => setSearch("")} className="rounded-md border px-3 py-2">
+          <button
+            onClick={() => setSearch("")}
+            className="rounded-md border px-3 py-2"
+          >
             🗑️
           </button>
         </div>
@@ -229,8 +179,8 @@ const Index = () => {
             />
 
             <IndicadoresFinancieros
-              cemMensual={43574}
-              cuota={8386}
+              cemMensual={20000}
+              cuota={15000}
               indicadores={indicadoresData}
               lineSeries={[
                 { year: "2023", color: "#2563eb", data: Array(12).fill(250000) },
@@ -246,7 +196,6 @@ const Index = () => {
               firmas={aprobacionData.firmas}
             />
           </article>
-
         </div>
       </main>
     </>
