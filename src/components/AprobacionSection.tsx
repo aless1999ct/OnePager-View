@@ -68,11 +68,12 @@ const AprobacionSection = ({
         </div>
 
         {/* OBSERVACIÓN */}
-        <div className="border-2 border-primary p-3">
-          <p className="text-xs text-foreground leading-relaxed text-center italic">
+        <div className="border-2 border-primary p-3 overflow-visible">
+          <p className="text-xs text-foreground leading-relaxed text-center italic whitespace-pre-line break-words">
             {observacion}
           </p>
         </div>
+
 
         {/* CONDICIONES SIMPLE (RECUPERADO) */}
         <div className="flex items-center gap-2 text-xs">
