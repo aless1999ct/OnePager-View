@@ -11,23 +11,24 @@ const Index = () => {
 
   /* ===================== DATA ===================== */
 
+  const [search, setSearch] = useState("");
   const sampleData = {
-    nombreEmpresa: "Bodegas Vaquitas E.I.R.L.",
-    rec: "20611597569",
+    nombreEmpresa: "PLÁSTICOS Y PAPELES SAC",
+    rec: "20451340167",
     fecha: "02/01/2025",
-    flujoEva: "Flujo Regular Ágil No Campaña",
+    flujoEva: "Flujo Regular Portafolio",
     canal: "Tienda IN",
-    ubicacion: "LIMA, BARRANCO",
-    giro: "Actividades de Asesoramiento / Restaurante",
-    inicio: "09/2023",
-    ibkDesde: "Nuevo Cliente",
+    ubicacion: "Loreto, Iquitos",
+    giro: "Comercio: Plásticos y Papelería",
+    inicio: "12/2000",
+    ibkDesde: "03/2001",
     score: "MEDIO",
     producto: "Capital de Trabajo",
-    montoSolicitado: "S/. 150,000",
-    plazoMeses: "24 meses",
-    garantias: "NO APLICA",
-    rma: "45000",
-    direccion: "AV. LIMA NRO. 904 URB. TEJADA ALTA",
+    montoSolicitado: "1,000,000",
+    plazoMeses: "36 meses",
+    garantias: "27,000,000 - almacén",
+    rma: "--",
+    direccion: "Jr. Aguirre Nro. 1154",
     fuentes: "Reporte Tributario",
   };
 
@@ -53,105 +54,127 @@ const Index = () => {
 
   const accionistasData = [
     {
-      nombre: "Angel Soto Garcia",
-      dni: "42527370",
-      clasificacion: "DUDOSO",
-      edad: "??",
-      participacion: "100%",
-      puesto: "TITULAR",
-      deudaSBS: "139,689.48",
-      maximaDeuda: "139,689.48",
+      nombre: "Aristides Padilla Aguirre",
+      dni: "05289492",
+      clasificacion: "Normal",
+      edad: "73",
+      participacion: "1%",
+      puesto: "RRLL",
+      deudaSBS: "297,000,000",
+      maximaDeuda: "549,000,000",
     },
     {
-      nombre: "Juan Manuel Torrez Loayza",
-      dni: "41226736",
-      clasificacion: "NORMAL",
-      edad: "??",
-      participacion: "100%",
-      puesto: "REPRESENTANTE LEGAL",
-      deudaSBS: "139,680.00",
-      maximaDeuda: "92,411",
+      nombre: "Mary Luz Fernandez de Padilla",
+      dni: "05283539",
+      clasificacion: "Normal",
+      edad: "63",
+      participacion: "99%",
+      puesto: "Administrador",
+      deudaSBS: "243,000,000",
+      maximaDeuda: "332,000,000",
     },
-    {
-      nombre: "J AL CUADRADO S.A.C.",
-      dni: "20605798137",
-      clasificacion: "Vencido",
-      edad: "??",
-      participacion: "100%",
-      puesto: "Empresas del RRLL",
-      deudaSBS: "140.91",
-      maximaDeuda: "140.91",
-    },
-    {
-      nombre: "FULL VIDRIOS Y LAMINAS SAC",
-      dni: "20602274633",
-      clasificacion: "Castigo",
-      edad: "??",
-      participacion: "100%",
-      puesto: "Empresas del RRLL",
-      deudaSBS: "90479.81",
-      maximaDeuda: "90479.81",
-    },
-    {
-      nombre: "EQUIPANDOTEC COMERCIAL S.A.C.",
-      dni: "20603406932",
-      clasificacion: "Castigo",
-      edad: "??",
-      participacion: "100%",
-      puesto: "Empresas del RRLL",
-      deudaSBS: "90004.5",
-      maximaDeuda: "90004.5",
-    },
+    
+    
+    
   ];
 
-  const perfilCliente =
-    "Empresa dedicada al asesoramiento de Ventas y de servicio de Restaurante.";
+  const perfilCliente = "Dedicada a la comercialización de productos de plástico y papel (80%) y en menor medida abarrotes y artículos para repostería (20%) distribuyen toda la zona.";
 
-  const politicasComerciales =
-    "Rubro familiar, rubro alimenticio. Diversión familiar.";
+  const politicasComerciales = "Compras 50% al crédito (líneas de $280M). Proveedores: PAMOLSA, TaiLoy SA, Schroth. Ventas 100% al contado.";
 
+  // Indicadores Financieros Data (solo los NO tachados en rojo)
   const indicadoresData = {
-    actividad: [
-      { nombre: "Promedio Mensual Ventas", valor2023: "226,929", valor2024: "489,494" },
-      { nombre: "Variación de ventas", valor2023: "---", valor2024: "46.5%" },
-    ],
-    rentabilidad: [
-      { nombre: "Margen Bruto", valor2023: "--", valor2024: "--" },
-      { nombre: "Margen Operativo", valor2023: "--", valor2024: "--" },
-      { nombre: "Margen Neto", valor2023: "--", valor2024: "--" },
-    ],
-    liquidez: [
-      { nombre: "Capital de Trabajo", valor2023: "--", valor2024: "--" },
-      { nombre: "Rotación de Inventarios", valor2023: "--", valor2024: "--" },
-      { nombre: "PPC = Período promedio de Cobranza", valor2023: "--", valor2024: "--" },
-      { nombre: "PPP = Período Promedio de Pago", valor2023: "--", valor2024: "--" },
-      { nombre: "Ciclo Operativo", valor2023: "--", valor2024: "--" },
-    ],
-    endeudamiento: [
-      {
-        nombre: "Pasivo Financiero / Promedio Mensual de Ventas",
-        valor2023: "--",
-        valor2024: "--",
-      },
-    ],
-  };
+  actividad: [
+    {
+      nombre: "Promedio Mensual Ventas",
+      valor2023: "771",
+      valor2024: "649",
+    },
+    {
+      nombre: "Variación de ventas",
+      valor2023: "",
+      valor2024: "-15%",
+    },
+  ],
+
+  rentabilidad: [
+    {
+      nombre: "Margen Bruto",
+      valor2023: "13%",
+      valor2024: "13%",
+    },
+    {
+      nombre: "Margen Operativo",
+      valor2023: "4%",
+      valor2024: "4%",
+    },
+    {
+      nombre: "Margen Neto",
+      valor2023: "2%",
+      valor2024: "2%",
+    },
+  ],
+
+  liquidez: [
+    {
+      nombre: "Capital de Trabajo",
+      valor2023: "1222",
+      valor2024: "1226",
+    },
+    {
+      nombre: "Rotación de Inventarios",
+      valor2023: "116",
+      valor2024: "108",
+    },
+    {
+      nombre: "PPC = Período promedio de Cobranza",
+      valor2023: "0",
+      valor2024: "0",
+    },
+    {
+      nombre: "PPP = Período Promedio de Pago",
+      valor2023: "32",
+      valor2024: "32",
+    },
+    {
+      nombre: "Ciclo Operativo",
+      valor2023: "83",
+      valor2024: "76",
+    },
+  ],
+
+  endeudamiento: [
+    {
+      nombre: "Pasivo Financiero / Promedio Mensual de Ventas",
+      valor2023: "4.13",
+      valor2024: "4.02",
+    },
+  ],
+};
+
+
+  const chartData = [
+    { year: "2023", value: 58451 },
+    { year: "2024", value: 1320827 },
+    { year: "2025", value: 2330110 },
+  ];
 
   const aprobacionData = {
     producto: {
-      producto: "No Aplica",
-      monto: "S/ --",
-      cuotaInicial: "--",
-      importeFinanciar: "S/. --",
-      plazo: "No Aplica",
-      finalidad: "No Aplica",
-      hipotecas: "No Aplica",
+      producto: "Capital de Trabajo",
+      monto: "S/ 1,000,000",
+      cuotaInicial: "0",
+      importeFinanciar: "S/. 1,000,000",
+      plazo: "36 meses",
+      finalidad: "Compra de Mercancías",
+      hipotecas: "S/. 2,700,000",
     },
-    observacion:
-      "1. MB según el SSFF de 28% y se coloca MB de tabla por 40%, Cliente 100% formal...",
+    observacion: "La empresa muestra recuperación en ventas 2025, adecuada posición de liquidez con ratios de rotación acordes al sector, endeudamiento moderado y rentabilidad positiva y estable, con lo cual se modeló un flujo de caja teniendo índices de cobertura positivos (1,5x), además se contará con garantía que cubre 2.7x veces el crédito.",
     condiciones: "No Aplica",
+    condicionesDetalle: "Desembolso condicionado al bloqueo inscrito en RRPP de la Garantía. Canalización de al menos el 20% de sus ventas por cuentas IBK. Se deberá trasladar operaciones de cambio (a dólares)",
     firmas: {
-      bancoNegociosFecha: "07/01/2026",
-      analistaCreditos: "Adrian Angeles Mori",
+      bancoNegociosFecha: "29/08/2025",
+      analistaCreditos: "Carla Bocanegra",
       jefeCreditos: "Miguel Godos",
       subgerenteCreditos: "Renato Valencia",
       gerenteDivision: "Jose Luis Chavez",
