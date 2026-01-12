@@ -11,25 +11,33 @@ const Index = () => {
 
   /* ===================== DATA ===================== */
 
-  const sampleData = {
-    nombreEmpresa: "PLÁSTICOS Y PAPELES SAC",
-    rec: "20451340167",
-    fecha: "02/01/2025",
-    flujoEva: "Flujo Regular Portafolio",
-    canal: "Tienda IN",
-    ubicacion: "Loreto, Iquitos",
-    giro: "Comercio: Plásticos y Papelería",
-    inicio: "12/2000",
-    ibkDesde: "03/2001",
-    score: "MEDIO",
-    producto: "Capital de Trabajo",
-    montoSolicitado: "1,000,000",
-    plazoMeses: "36 meses",
-    garantias: "27,000,000 - almacén",
-    rma: "--",
-    direccion: "Jr. Aguirre Nro. 1154",
-    fuentes: "Reporte Tributario",
-  };
+const sampleData = {
+  nombreEmpresa: "PLÁSTICOS Y PAPELES SAC",
+  rec: "20451340167",
+  fecha: "02/01/2025",
+  flujoEva: "Flujo Regular Portafolio",
+  canal: "Tienda IN",
+  ubicacion: "Loreto, Iquitos",
+
+  giro: "Comercio: Plásticos y Papelería",
+  subGiro: "Distribución mayorista",
+
+  inicio: "12/2000",
+  ibkDesde: "03/2001",
+  score: "MEDIO",
+
+  producto: "Capital de Trabajo",
+  montoSolicitado: "1,000,000",
+  plazoMeses: "36 meses",
+
+  sowActual: "35%",
+  sowAlcanzado: "50%",
+
+  garantias: "27,000,000 - almacén",
+  rma: "--",
+  direccion: "Jr. Aguirre Nro. 1154",
+  fuentes: "Reporte Tributario",
+};
 
   const transaccionalidadData = {
     ratio: "---",
