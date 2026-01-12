@@ -2,6 +2,8 @@ import { useMemo } from "react";
 import {
   BarChart,
   Bar,
+  LineChart,
+  Line,
   XAxis,
   YAxis,
   Tooltip,
@@ -48,29 +50,37 @@ const IndicadoresFinancieros = ({
     { year: "2025", data: [694908,570424,751994,673163,706208,643627,676219,654231,587850,644061,0,0] },
   ];
 
-  /* =========================
-     TRIMESTRES
-  ========================= */
-  const quarters = ["Q1", "Q2", "Q3", "Q4"];
+  const months = ["Ene.","Feb.","Mar.","Abr.","May.","Jun.","Jul.","Ago.","Sep.","Oct.","Nov.","Dic."];
 
-  const quarterlyData = useMemo(() => {
-    return quarters.map((q, qi) => {
-      const row: any = { trimestre: q };
-      monthlySeries.forEach(s => {
-        row[s.year] = s.data
-          .slice(qi * 3, qi * 3 + 3)
-          .reduce((a, b) => a + b, 0);
-      });
-      return row;
+  /* =========================
+     DATA ANUAL (TOTAL + PROMEDIO)
+  ========================= */
+  const annualSalesData = useMemo(() => {
+    return monthlySeries.map((s) => {
+      const total = s.data.reduce((a, b) => a + b, 0);
+      const promedio = Math.round(total / s.data.filter(v => v > 0).length);
+      return {
+        anio: s.year,
+        promedio,
+      };
     });
   }, []);
+
+  /* =========================
+     DATA MENSUAL 2025
+  ========================= */
+  const ventasMensuales2025 = monthlySeries
+    .find((s) => s.year === "2025")!
+    .data.map((v, i) => ({
+      mes: months[i],
+      ventas: v,
+    }));
 
   /* =========================
      CEM vs CUOTA
   ========================= */
   const cem = Number(cemMensual);
   const cuotaNum = Number(cuota);
-
   const percent = cem === 0 ? 0 : Math.round((cuotaNum / cem) * 100);
 
   const comparisonText =
@@ -82,16 +92,14 @@ const IndicadoresFinancieros = ({
     { name: "CEM", value: cem },
     { name: "Cuota", value: cuotaNum },
   ];
-  
+
   const rtActualizadoAl = "10/2025";
-  
+
   /* =========================
      RENDER TABLA
   ========================= */
   const renderSection = (titulo: string, data: IndicadorData[]) => {
     if (!data.length) return null;
-
-    
 
     return (
       <>
@@ -160,10 +168,12 @@ const IndicadoresFinancieros = ({
               </tbody>
             </table>
           </div>
+
+          {/* CEM */}
           <div className="border-2 border-primary">
-  <div className="header-banner text-sm text-center">
-    Capacidad de Endeudamiento Máximo
-  </div>
+            <div className="header-banner text-sm text-center">
+              Capacidad de Endeudamiento Máximo
+            </div>
 
             <div className="p-4">
               <ResponsiveContainer width="100%" height={260}>
@@ -177,52 +187,57 @@ const IndicadoresFinancieros = ({
                     type="number"
                     tickFormatter={(v) => `S/. ${v.toLocaleString()}`}
                   />
-                  <YAxis
-                    type="category"
-                    dataKey="name"
-                    axisLine={false}
-                    tickLine={false}
-                  />
+                  <YAxis type="category" dataKey="name" />
                   <Tooltip formatter={(v: number) => `S/. ${v.toLocaleString()}`} />
-                  <Bar
-                    dataKey="value"
-                    fill="#2563eb"
-                    radius={[4, 4, 4, 4]}
-                    barSize={26}
-                  />
+                  <Bar dataKey="value" barSize={26} />
                 </BarChart>
               </ResponsiveContainer>
-          
-              {/* TEXTO INFERIOR (como Excel) */}
+
               <div className="text-xs text-center mt-2 font-medium">
                 {comparisonText}
               </div>
             </div>
-          
-
-          
           </div>
         </div>
 
-        {/* VENTAS POR TRIMESTRE */}
-        <div className="border-2 border-primary p-4">
-          <div className="header-banner text-sm text-center mb-4">
-            Ventas por Trimestre
+        {/* NUEVOS GRÁFICOS */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-2 border-primary p-4">
+
+          {/* BARRAS ANUALES */}
+          <div>
+            <div className="header-banner text-sm text-center mb-2">
+              Ventas Anuales – Promedio
+            </div>
+
+            <ResponsiveContainer width="100%" height={260}>
+              <BarChart data={annualSalesData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="anio" />
+                <YAxis tickFormatter={(v) => `S/. ${v / 1000}k`} />
+                <Tooltip formatter={(v: number) => `S/. ${v.toLocaleString()}`} />
+                <Bar dataKey="promedio" barSize={40} />
+              </BarChart>
+            </ResponsiveContainer>
           </div>
 
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={quarterlyData} barCategoryGap={20}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="trimestre" />
-              <YAxis tickFormatter={(v) => `S/. ${v / 1000}k`} />
-              <Tooltip formatter={(v: number) => `S/. ${v.toLocaleString()}`} />
-              <Legend />
-              <Bar dataKey="2023" fill="#2563eb" barSize={28} />
-              <Bar dataKey="2024" fill="#16a34a" barSize={28} />
-              <Bar dataKey="2025" fill="#dc2626" barSize={28} />
-            </BarChart>
-          </ResponsiveContainer>
-          <div className="text-xs text-left mt-2 text-muted-foreground">
+          {/* LÍNEAS 2025 */}
+          <div>
+            <div className="header-banner text-sm text-center mb-2">
+              Ventas Mensuales – 2025
+            </div>
+
+            <ResponsiveContainer width="100%" height={260}>
+              <LineChart data={ventasMensuales2025}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="mes" />
+                <YAxis tickFormatter={(v) => `S/. ${v / 1000}k`} />
+                <Tooltip formatter={(v: number) => `S/. ${v.toLocaleString()}`} />
+                <Line type="monotone" dataKey="ventas" strokeWidth={2} dot={{ r: 3 }} />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+
+          <div className="text-xs text-left mt-2 text-muted-foreground md:col-span-2">
             RT actualizado al: {rtActualizadoAl}
           </div>
         </div>
