@@ -64,11 +64,25 @@ const AprobacionSection = ({
           <select
             value={estado}
             onChange={(e) => setEstado(e.target.value)}
-            className="border px-2 py-1 text-sm rounded"
+            className="
+              bg-white 
+              text-black 
+              border 
+              px-2 
+              py-1 
+              text-sm 
+              rounded 
+              appearance-none
+            "
           >
-            <option value="Aprobado">Aprobado</option>
-            <option value="Denegado">Denegado</option>
+            <option value="Aprobado" className="text-black">
+              Aprobado
+            </option>
+            <option value="Denegado" className="text-black">
+              Denegado
+            </option>
           </select>
+
         </div>
 
         {/* TABLA DE PRODUCTO */}
