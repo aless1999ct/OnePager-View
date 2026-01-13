@@ -9,7 +9,6 @@ import {
   Tooltip,
   ResponsiveContainer,
   CartesianGrid,
-  Legend,
 } from "recharts";
 
 /* =========================
@@ -53,7 +52,7 @@ const IndicadoresFinancieros = ({
   const months = ["Ene.","Feb.","Mar.","Abr.","May.","Jun.","Jul.","Ago.","Sep.","Oct.","Nov.","Dic."];
 
   /* =========================
-     DATA ANUAL (TOTAL + PROMEDIO)
+     DATA ANUAL
   ========================= */
   const annualSalesData = useMemo(() => {
     return monthlySeries.map((s) => {
@@ -94,6 +93,27 @@ const IndicadoresFinancieros = ({
   ];
 
   const rtActualizadoAl = "10/2025";
+
+  /* =========================
+     AJUSTES SOLICITADOS
+  ========================= */
+
+  const liquidezFiltrada = indicadores.liquidez.filter(
+    (i) => i.nombre !== "Ciclo Operativo"
+  );
+
+  const endeudamientoAjustado: IndicadorData[] = [
+    ...indicadores.endeudamiento.map((i) =>
+      i.nombre === "Pasivo Financiero / Promedio Mensual de Ventas"
+        ? { ...i, nombre: "Pasivo Financiero / Patrimonio" }
+        : i
+    ),
+    {
+      nombre: "Pasivo Total / Patrimonio",
+      valor2023: "--",
+      valor2024: "--",
+    },
+  ];
 
   /* =========================
      RENDER TABLA
@@ -156,15 +176,15 @@ const IndicadoresFinancieros = ({
                 <tr>
                   <th style={{ width: 140 }}></th>
                   <th className="data-label">Ratios</th>
-                  <th className="data-label" style={{ width: 70 }}>2023</th>
-                  <th className="data-label" style={{ width: 70 }}>2024</th>
+                  <th className="data-label" style={{ width: 70 }}>Ev. Ant.</th>
+                  <th className="data-label" style={{ width: 70 }}>Ev. Act.</th>
                 </tr>
               </thead>
               <tbody>
                 {renderSection("Actividad", indicadores.actividad)}
                 {renderSection("Rentabilidad", indicadores.rentabilidad)}
-                {renderSection("Liquidez", indicadores.liquidez)}
-                {renderSection("Endeudamiento", indicadores.endeudamiento)}
+                {renderSection("Liquidez", liquidezFiltrada)}
+                {renderSection("Endeudamiento", endeudamientoAjustado)}
               </tbody>
             </table>
           </div>
@@ -200,10 +220,9 @@ const IndicadoresFinancieros = ({
           </div>
         </div>
 
-        {/* NUEVOS GRÁFICOS */}
+        {/* GRÁFICOS */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-2 border-primary p-4">
 
-          {/* BARRAS ANUALES */}
           <div>
             <div className="header-banner text-sm text-center mb-2">
               Ventas Anuales – Promedio
@@ -220,7 +239,6 @@ const IndicadoresFinancieros = ({
             </ResponsiveContainer>
           </div>
 
-          {/* LÍNEAS 2025 */}
           <div>
             <div className="header-banner text-sm text-center mb-2">
               Ventas Mensuales – 2025
