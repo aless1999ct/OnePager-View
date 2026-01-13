@@ -1,43 +1,69 @@
+import { useState, useMemo } from "react";
+
 interface ProductoAprobacion {
   producto: string;
-  monto: string;
   cuotaInicial: string;
-  importeFinanciar: string;
   plazo: string;
   finalidad: string;
   hipotecas: string;
 }
 
-interface FirmaData {
-  bancoNegociosFecha: string;
-  analistaCreditos: string;
-  jefeCreditos: string;
-  subgerenteCreditos: string;
-  gerenteDivision: string;
-}
-
 interface AprobacionSectionProps {
   producto: ProductoAprobacion;
   observacion: string;
-  condiciones: string; // ← se usa otra vez
-  firmas: FirmaData;
+  condiciones: string;
 }
+
+const rolesMap: Record<string, string[]> = {
+  "Analista de Admisión de Riesgos": [
+    "Carla Bocanegra",
+    "Adrian Mori",
+    "Patricia Matos",
+  ],
+  "Jefe de Admisión de Riesgos": ["Miguel Godos"],
+  "Subgerente de Créditos": ["Renato Valencia"],
+  "Gerente de División": ["Jose Luis Chavez"],
+};
 
 const AprobacionSection = ({
   producto,
   observacion,
   condiciones,
-  firmas,
 }: AprobacionSectionProps) => {
+  const [estado, setEstado] = useState("Aprobado");
+  const [rol, setRol] = useState("");
+  const [nombre, setNombre] = useState("");
+
+  const fechaHoy = useMemo(() => {
+    return new Date().toLocaleDateString("es-PE");
+  }, []);
+
+  const nombresDisponibles = rol ? rolesMap[rol] : [];
+
   return (
     <div className="bg-card border-2 border-primary rounded-lg overflow-visible shadow-lg mt-6">
 
-      {/* HEADER */}
-      <div className="header-banner text-center py-2">
-        <span className="font-bold text-base">Estado: Aprobado</span>
-      </div>
-
       <div className="p-4 space-y-4">
+
+        {/* OBSERVACIÓN (MOVIDA ARRIBA) */}
+        <div className="border-2 border-primary p-3">
+          <p className="text-xs text-foreground leading-relaxed text-center italic whitespace-pre-line break-words">
+            {observacion}
+          </p>
+        </div>
+
+        {/* HEADER ESTADO */}
+        <div className="header-banner flex items-center justify-center gap-2 py-2">
+          <span className="font-bold text-base">Estado:</span>
+          <select
+            value={estado}
+            onChange={(e) => setEstado(e.target.value)}
+            className="border px-2 py-1 text-sm rounded"
+          >
+            <option value="Aprobado">Aprobado</option>
+            <option value="Denegado">Denegado</option>
+          </select>
+        </div>
 
         {/* TABLA DE PRODUCTO */}
         <div className="overflow-x-auto">
@@ -45,9 +71,7 @@ const AprobacionSection = ({
             <thead>
               <tr>
                 <th className="data-label py-1 px-2">Producto</th>
-                <th className="data-label py-1 px-2">Monto (S/)</th>
                 <th className="data-label py-1 px-2">Cuota Inicial</th>
-                <th className="data-label py-1 px-2">Importe a Financiar</th>
                 <th className="data-label py-1 px-2">Plazo</th>
                 <th className="data-label py-1 px-2">Finalidad</th>
                 <th className="data-label py-1 px-2">Hipotecas</th>
@@ -56,9 +80,7 @@ const AprobacionSection = ({
             <tbody>
               <tr>
                 <td className="data-cell text-center">{producto.producto}</td>
-                <td className="data-cell text-center">{producto.monto}</td>
                 <td className="data-cell text-center">{producto.cuotaInicial}</td>
-                <td className="data-cell text-center">{producto.importeFinanciar}</td>
                 <td className="data-cell text-center">{producto.plazo}</td>
                 <td className="data-cell text-center">{producto.finalidad}</td>
                 <td className="data-cell text-center">{producto.hipotecas}</td>
@@ -67,46 +89,64 @@ const AprobacionSection = ({
           </table>
         </div>
 
-        {/* OBSERVACIÓN */}
-        <div className="border-2 border-primary p-3 overflow-visible">
-          <p className="text-xs text-foreground leading-relaxed text-center italic whitespace-pre-line break-words">
-            {observacion}
-          </p>
-        </div>
-
-
-        {/* CONDICIONES SIMPLE (RECUPERADO) */}
+        {/* CONDICIONES */}
         <div className="flex items-center gap-2 text-xs">
           <span className="font-medium">Condiciones:</span>
           <span className="text-muted-foreground">{condiciones}</span>
         </div>
 
-        {/* LÍNEA VERDE */}
+        {/* LÍNEA */}
         <div className="border-t-2 border-primary"></div>
 
-        {/* FIRMAS — TAL CUAL ESTABAN */}
+        {/* FIRMAS DINÁMICAS */}
         <div className="flex justify-end">
           <table className="text-xs">
             <tbody>
               <tr>
-                <td className="font-bold pr-4 py-0.5">Banco de Negocios Fecha</td>
-                <td className="py-0.5">{firmas.bancoNegociosFecha}</td>
+                <td className="font-bold pr-4 py-1">
+                  Banco de Negocios – Fecha
+                </td>
+                <td className="py-1">{fechaHoy}</td>
               </tr>
+
               <tr>
-                <td className="font-bold pr-4 py-0.5">Analista de Créditos:</td>
-                <td className="py-0.5">{firmas.analistaCreditos}</td>
+                <td className="font-bold pr-4 py-1">Cargo</td>
+                <td className="py-1">
+                  <select
+                    value={rol}
+                    onChange={(e) => {
+                      setRol(e.target.value);
+                      setNombre("");
+                    }}
+                    className="border px-2 py-1 text-xs rounded w-full"
+                  >
+                    <option value="">Seleccionar</option>
+                    {Object.keys(rolesMap).map((r) => (
+                      <option key={r} value={r}>
+                        {r}
+                      </option>
+                    ))}
+                  </select>
+                </td>
               </tr>
+
               <tr>
-                <td className="font-bold pr-4 py-0.5">Jefe de Créditos:</td>
-                <td className="py-0.5">{firmas.jefeCreditos}</td>
-              </tr>
-              <tr>
-                <td className="font-bold pr-4 py-0.5">Subgerente de Créditos</td>
-                <td className="py-0.5">{firmas.subgerenteCreditos}</td>
-              </tr>
-              <tr>
-                <td className="font-bold pr-4 py-0.5">Gerente de División</td>
-                <td className="py-0.5">{firmas.gerenteDivision}</td>
+                <td className="font-bold pr-4 py-1">Nombre</td>
+                <td className="py-1">
+                  <select
+                    value={nombre}
+                    onChange={(e) => setNombre(e.target.value)}
+                    disabled={!rol}
+                    className="border px-2 py-1 text-xs rounded w-full disabled:bg-gray-100"
+                  >
+                    <option value="">Seleccionar</option>
+                    {nombresDisponibles.map((n) => (
+                      <option key={n} value={n}>
+                        {n}
+                      </option>
+                    ))}
+                  </select>
+                </td>
               </tr>
             </tbody>
           </table>
