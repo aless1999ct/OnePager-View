@@ -85,7 +85,7 @@ const CompanyDataCard = ({ data }: CompanyDataCardProps) => {
           <DataField label="Garantías" value={data.garantias} className="col-span-2" />
           <DataField label="RMA" value={data.rma} className="col-span-1" />
           <DataField label="SoW Actual" value={data.sowActual} className="col-span-1" />
-          <DataField label="SoW Alcanzado" value={data.sowAlcanzado} className="col-span-1" />
+          <DataField label="SoW Max" value={data.sowAlcanzado} className="col-span-1" />
         </div>
 
         {/* ================= FILA 3 ================= */}
