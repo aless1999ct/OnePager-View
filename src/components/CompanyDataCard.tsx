@@ -5,18 +5,13 @@ interface DataFieldProps {
 }
 
 const DataField = ({ label, value, className = "" }: DataFieldProps) => (
-  <div className={`flex flex-col border border-primary ${className}`}>
-    
-    {/* LABEL — VERDE */}
+  <div className={`border border-primary flex flex-col ${className}`}>
     <div className="bg-[#28af60] text-white text-[11px] uppercase tracking-wide text-center py-1">
       {label}
     </div>
-
-    {/* VALUE — BLANCO */}
-    <div className="bg-white text-black text-sm font-medium text-center px-3 py-2 min-h-[40px] flex items-center justify-center">
+    <div className="bg-white text-black text-sm font-medium text-center px-2 py-2 min-h-[38px] flex items-center justify-center">
       {value}
     </div>
-
   </div>
 );
 
@@ -24,26 +19,25 @@ interface CompanyDataCardProps {
   data: {
     nombreEmpresa: string;
     rec: string;
-    fecha: string;
-    flujoEva: string;
-    canal: string;
+
     ubicacion: string;
     giro: string;
+    subGiro: string;
     inicio: string;
     ibkDesde: string;
     score: string;
+
     producto: string;
     montoSolicitado: string;
-    plazoMeses: string;
     montoAprobado: string;
+    plazoMeses: string;
     garantias: string;
     rma: string;
+    sowActual: string;
+    sowAlcanzado: string;
+
     direccion: string;
     fuentes: string;
-     sowActual: string;
-  sowAlcanzado: string;
-    subGiro: string;
-
   };
 }
 
@@ -53,59 +47,60 @@ const CompanyDataCard = ({ data }: CompanyDataCardProps) => {
 
       {/* HEADER */}
       <div className="border-b-2 border-primary px-4 py-2">
-        <span className="text-primary font-bold text-lg">
+        <div className="text-primary font-bold text-lg">
           {data.nombreEmpresa}
-        </span>
+        </div>
+        <div className="text-xs text-muted-foreground">
+          RUC: {data.rec}
+        </div>
       </div>
 
-      <div className="p-4 space-y-4 text-xs">
+      {/* BODY */}
+      <div className="p-4 space-y-3 text-xs">
 
-        {/* INFO GENERAL */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <DataField label="RUC" value={data.rec} />
-          <DataField label="Fecha" value={data.fecha} />
-          <DataField label="Score" value={data.score} />
+        {/* ================= FILA 1 ================= */}
+        <div className="grid grid-cols-12 gap-0">
+          <DataField label="Ubicación" value={data.ubicacion} className="col-span-2" />
+          <DataField label="Giro" value={data.giro} className="col-span-3" />
+          <DataField label="Sub Giro" value={data.subGiro} className="col-span-2" />
+          <DataField label="Inicio" value={data.inicio} className="col-span-1" />
+          <DataField label="IBK Desde" value={data.ibkDesde} className="col-span-2" />
+          <DataField label="Score" value={data.score} className="col-span-2" />
         </div>
 
-        {/* GIRO */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <DataField label="Giro" value={data.giro} />
-          <DataField label="Sub Giro" value={data.subGiro} />
-        </div>
-
-        {/* PRODUCTO + SOW */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-          <DataField label="Producto" value={data.producto} />
+        {/* ================= FILA 2 ================= */}
+        <div className="grid grid-cols-12 gap-0">
+          <DataField label="Producto" value={data.producto} className="col-span-2" />
           <DataField
             label="Monto IBK Solicitado"
             value={`S/. ${data.montoSolicitado}`}
+            className="col-span-2"
           />
-          <DataField label="Plazo" value={data.plazoMeses} />
-          <DataField label="SoW Actual" value={data.sowActual} />
-          <DataField label="SoW Alcanzado" value={data.sowAlcanzado} />
+          <DataField
+            label="Monto Aprobado"
+            value={`S/. ${data.montoAprobado}`}
+            className="col-span-2"
+          />
+          <DataField label="Plazo" value={data.plazoMeses} className="col-span-1" />
+          <DataField label="Garantías" value={data.garantias} className="col-span-2" />
+          <DataField label="RMA" value={data.rma} className="col-span-1" />
+          <DataField label="SoW Actual" value={data.sowActual} className="col-span-1" />
+          <DataField label="SoW Alcanzado" value={data.sowAlcanzado} className="col-span-1" />
         </div>
 
-        {/* RELACIÓN */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <DataField label="Inicio de Operaciones" value={data.inicio} />
-          <DataField label="IBK Desde" value={data.ibkDesde} />
-          <DataField label="Canal" value={data.canal} />
+        {/* ================= FILA 3 ================= */}
+        <div className="grid grid-cols-12 gap-0">
+          <DataField
+            label="Ubicación / Dirección"
+            value={data.direccion}
+            className="col-span-9"
+          />
+          <DataField
+            label="Fuentes"
+            value={data.fuentes}
+            className="col-span-3"
+          />
         </div>
-
-        {/* UBICACIÓN */}
-        <DataField
-          label="Ubicación / Dirección"
-          value={`${data.ubicacion} — ${data.direccion}`}
-        />
-
-        {/* GARANTÍAS */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <DataField label="Garantías" value={data.garantias} />
-          <DataField label="RMA" value={data.rma} />
-        </div>
-
-        {/* FUENTES */}
-        <DataField label="Fuentes" value={data.fuentes} />
 
       </div>
     </div>
