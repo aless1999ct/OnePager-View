@@ -21,7 +21,7 @@ const rolesMap: Record<string, string[]> = {
     "Patricia Matos",
   ],
   "Jefe de Admisión de Riesgos": ["Miguel Godos"],
-  "Subgerente de Créditos": ["Renato Valencia"],
+  "Subgerente de Admisión de Riesgos": ["Renato Valencia"],
   "Gerente de División": ["Jose Luis Chavez"],
 };
 
