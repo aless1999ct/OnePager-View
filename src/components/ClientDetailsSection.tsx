@@ -144,7 +144,7 @@ const ClientDetailsSection = ({
           </div>
         </div>
 
-      {/* =========================
+{/* =========================
     CRÉDITOS ANTERIORES
 ========================= */}
 <div>
@@ -155,7 +155,8 @@ const ClientDetailsSection = ({
         Créditos Anteriores
       </div>
       <div className="flex justify-end pr-2">
-        <Semaforo estado={semaforoEstado} />
+        {/* Semáforo FIJO en ámbar */}
+        <Semaforo estado="ambar" />
       </div>
     </div>
   </div>
@@ -173,50 +174,33 @@ const ClientDetailsSection = ({
         </tr>
       </thead>
       <tbody>
-        {creditos.map((credito, index) => {
-          const estado = calcularSemaforo(credito.ratio24);
-
-          const statusText =
-            estado === "verde"
-              ? "AL DÍA"
-              : estado === "ambar"
-              ? "ALERTA"
-              : "ATRASADO";
-
-          const statusColor =
-            estado === "verde"
-              ? "text-green-600 font-semibold"
-              : estado === "ambar"
-              ? "text-yellow-600 font-semibold"
-              : "text-red-600 font-semibold";
-
-          return (
-            <tr key={index}>
-              <td className="data-cell text-center">
-                {credito.sujetoCredito}
-              </td>
-              <td className="data-cell text-center">
-                {credito.producto}
-              </td>
-              <td className="data-cell text-center">
-                {credito.montoOriginal} / {credito.saldoActual}
-              </td>
-              <td className="data-cell text-center">
-                {credito.plazoInicial} / {credito.ratio24}
-              </td>
-              <td className="data-cell text-center">
-                {credito.promedioDiasAtraso}
-              </td>
-              <td className={`data-cell text-center ${statusColor}`}>
-                {statusText}
-              </td>
-            </tr>
-          );
-        })}
+        {creditos.map((credito, index) => (
+          <tr key={index}>
+            <td className="data-cell text-center">
+              {credito.sujetoCredito}
+            </td>
+            <td className="data-cell text-center">
+              {credito.producto}
+            </td>
+            <td className="data-cell text-center">
+              {credito.montoOriginal} / {credito.saldoActual}
+            </td>
+            <td className="data-cell text-center">
+              {credito.plazoInicial} / {credito.ratio24}
+            </td>
+            <td className="data-cell text-center">
+              {credito.promedioDiasAtraso}
+            </td>
+            <td className="data-cell text-center text-muted-foreground font-semibold">
+              --
+            </td>
+          </tr>
+        ))}
       </tbody>
     </table>
   </div>
 </div>
+
 
          
         {/* =========================
