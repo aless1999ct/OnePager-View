@@ -31,25 +31,31 @@ const AprobacionSection = ({
   condiciones,
 }: AprobacionSectionProps) => {
   const [estado, setEstado] = useState("Aprobado");
-  const [rol, setRol] = useState("");
-  const [nombre, setNombre] = useState("");
+  const [comentario, setComentario] = useState(observacion);
 
-  const fechaHoy = useMemo(() => {
-    return new Date().toLocaleDateString("es-PE");
-  }, []);
+  const [rol, setRol] = useState("__placeholder__");
+  const [nombre, setNombre] = useState("__placeholder__");
 
-  const nombresDisponibles = rol ? rolesMap[rol] : [];
+  const fechaHoy = useMemo(
+    () => new Date().toLocaleDateString("es-PE"),
+    []
+  );
+
+  const nombresDisponibles =
+    rol !== "__placeholder__" ? rolesMap[rol] : [];
 
   return (
     <div className="bg-card border-2 border-primary rounded-lg overflow-visible shadow-lg mt-6">
-
       <div className="p-4 space-y-4">
 
-        {/* OBSERVACIÓN (MOVIDA ARRIBA) */}
+        {/* COMENTARIO EDITABLE */}
         <div className="border-2 border-primary p-3">
-          <p className="text-xs text-foreground leading-relaxed text-center italic whitespace-pre-line break-words">
-            {observacion}
-          </p>
+          <textarea
+            value={comentario}
+            onChange={(e) => setComentario(e.target.value)}
+            rows={4}
+            className="w-full text-xs text-center italic leading-relaxed bg-transparent outline-none resize-none"
+          />
         </div>
 
         {/* HEADER ESTADO */}
@@ -116,11 +122,13 @@ const AprobacionSection = ({
                     value={rol}
                     onChange={(e) => {
                       setRol(e.target.value);
-                      setNombre("");
+                      setNombre("__placeholder__");
                     }}
                     className="border px-2 py-1 text-xs rounded w-full"
                   >
-                    <option value="">Seleccionar</option>
+                    <option value="__placeholder__" disabled>
+                      Seleccionar cargo
+                    </option>
                     {Object.keys(rolesMap).map((r) => (
                       <option key={r} value={r}>
                         {r}
@@ -136,10 +144,12 @@ const AprobacionSection = ({
                   <select
                     value={nombre}
                     onChange={(e) => setNombre(e.target.value)}
-                    disabled={!rol}
+                    disabled={rol === "__placeholder__"}
                     className="border px-2 py-1 text-xs rounded w-full disabled:bg-gray-100"
                   >
-                    <option value="">Seleccionar</option>
+                    <option value="__placeholder__" disabled>
+                      Seleccionar nombre
+                    </option>
                     {nombresDisponibles.map((n) => (
                       <option key={n} value={n}>
                         {n}
