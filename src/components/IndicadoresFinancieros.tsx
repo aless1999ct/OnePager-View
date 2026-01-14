@@ -168,6 +168,9 @@ const IndicadoresFinancieros = ({
     );
   };
 
+  const evaluacionAnterior = "09/08/2025";
+
+
   return (
     <div className="bg-card border-2 border-primary rounded-lg shadow-lg mt-6 overflow-hidden">
 
@@ -186,6 +189,7 @@ const IndicadoresFinancieros = ({
             <div className="header-banner text-sm text-center">
               Ratios Financieros
             </div>
+          
             <table className="w-full text-xs">
               <thead>
                 <tr>
@@ -202,6 +206,10 @@ const IndicadoresFinancieros = ({
                 {renderSection("Endeudamiento", endeudamientoAjustado)}
               </tbody>
             </table>
+          
+            <div className="text-[11px] text-muted-foreground px-2 py-1">
+              Evaluación Anterior: {evaluacionAnterior}
+            </div>
           </div>
 
           {/* CEM */}
