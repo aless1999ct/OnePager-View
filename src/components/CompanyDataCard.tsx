@@ -95,7 +95,7 @@ const CompanyDataCard = ({ data }: CompanyDataCardProps) => {
           <DataField
             label="MONTO IBK SOLICI."
             value={data.montoSolicitado}
-            className="col-span-2"
+            className="col-span-3"
           />
         
           <DataField
@@ -113,7 +113,7 @@ const CompanyDataCard = ({ data }: CompanyDataCardProps) => {
           <DataField
             label="Garantías"
             value={data.garantias}
-            className="col-span-3"
+            className="col-span-2"
           />
         
           <DataField
@@ -134,6 +134,7 @@ const CompanyDataCard = ({ data }: CompanyDataCardProps) => {
             className="col-span-1"
           />
         </div>
+
 
 
         {/* ================= FILA 3 ================= */}
