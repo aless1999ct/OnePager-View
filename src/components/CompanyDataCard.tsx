@@ -100,7 +100,7 @@ const CompanyDataCard = ({ data }: CompanyDataCardProps) => {
         </div>
 
         {/* ================= FILA 2 ================= */}
-        <div className="grid grid-cols-13 gap-0">
+        <div className="grid grid-cols-12 gap-0">
           <DataField
             label="Producto"
             value={data.producto}
@@ -128,7 +128,7 @@ const CompanyDataCard = ({ data }: CompanyDataCardProps) => {
           <DataField
             label="Garantías"
             value={data.garantias}
-            className="col-span-2"
+            className="col-span-1"
           />
         
           <DataField
