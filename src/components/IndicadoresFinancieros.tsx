@@ -236,7 +236,7 @@ const IndicadoresFinancieros = ({
 
           <div>
             <div className="header-banner text-sm text-center mb-2">
-              Ventas Anuales – Promedio
+              Ventas Totlaes
             </div>
             <ResponsiveContainer width="100%" height={260}>
               <BarChart data={annualSalesData}>
@@ -251,7 +251,7 @@ const IndicadoresFinancieros = ({
 
           <div>
             <div className="header-banner text-sm text-center mb-2">
-              Ventas Mensuales – 2025
+              Ventas Declaradas - 2025
             </div>
             <ResponsiveContainer width="100%" height={260}>
               <LineChart data={ventasMensuales2025}>
