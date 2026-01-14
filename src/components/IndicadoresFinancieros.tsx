@@ -237,7 +237,7 @@ const IndicadoresFinancieros = ({
 
           <div>
             <div className="header-banner text-sm text-center mb-2">
-              Ventas Totlaes
+              Ventas Totales
             </div>
             <ResponsiveContainer width="100%" height={260}>
               <BarChart data={annualSalesData}>
