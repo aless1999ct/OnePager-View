@@ -35,7 +35,8 @@ interface IndicadoresFinancierosProps {
    DATA DETALLE CEM (TOOLTIP)
 ========================= */
 const cemDetalle = [
-  { concepto: "Ventas (+)", importe: 433097, part: "100%" },
+  { concepto: "Ventas RT (+)", importe: 433097, part: "100%" },
+  { concepto: "Ventas INF (+)", importe: 0, part: "0%" },
   { concepto: "Costo de Ventas (-)", importe: 264189, part: "61%" },
   { concepto: "Utilidad Bruta (=)", importe: 168908, part: "39%" },
   { concepto: "Gastos Administrativos (-)", importe: 110778, part: "26%" },
