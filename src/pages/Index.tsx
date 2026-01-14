@@ -27,13 +27,14 @@ const sampleData = {
   score: "MEDIO",
 
   producto: "Capital de Trabajo",
-  montoSolicitado: "1,000,000",
+  montoSolicitado: "1 M",
+  montoAprobado: "1 M",
   plazoMeses: "36 meses",
 
   sowActual: "35%",
   sowAlcanzado: "50%",
 
-  garantias: "27,000,000 - almacén",
+  garantias: "27 M - almacén",
   rma: "--",
   direccion: "Jr. Aguirre Nro. 1154",
   fuentes: "Reporte Tributario",
@@ -67,8 +68,8 @@ const sampleData = {
       edad: "73",
       participacion: "1%",
       puesto: "RRLL",
-      deudaSBS: "297,000,000",
-      maximaDeuda: "549,000,000",
+      deudaSBS: "297 K",
+      maximaDeuda: "549 K",
     },
     {
       nombre: "Mary Luz Fernandez de Padilla",
@@ -77,8 +78,8 @@ const sampleData = {
       edad: "63",
       participacion: "99%",
       puesto: "Administrador",
-      deudaSBS: "243,000,000",
-      maximaDeuda: "332,000,000",
+      deudaSBS: "243 K ",
+      maximaDeuda: "332 K",
     },
   ];
 
