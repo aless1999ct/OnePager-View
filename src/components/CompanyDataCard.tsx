@@ -101,7 +101,7 @@ const CompanyDataCard = ({ data }: CompanyDataCardProps) => {
                 Cliente
               </div>
               <div className="text-sm font-medium">
-                Portafolio
+                Bank
               </div>
             </div>
 
