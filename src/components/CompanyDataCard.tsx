@@ -48,26 +48,41 @@ const CompanyDataCard = ({ data }: CompanyDataCardProps) => {
   return (
     <div className="bg-card border-2 border-primary rounded-lg shadow-lg overflow-hidden">
 
-      {/* HEADER */}
-      <div className="border-b-2 border-primary px-4 py-2 flex justify-between items-start">
-        <div>
-          <div className="text-primary font-bold text-lg">
-            {data.nombreEmpresa}
-          </div>
-          <div className="text-xs text-muted-foreground">
-            RUC: {data.rec}
-          </div>
-        </div>
+     {/* HEADER */}
+      <div className="border-b-2 border-primary px-4 py-2">
+        <div className="flex flex-wrap items-center justify-between gap-6">
 
-        <div className="text-xs text-right">
+          {/* Empresa */}
           <div>
-            <span className="font-medium">FLUJO:</span>{" "}
-            {data.flujo}
+            <div className="text-lg font-bold">
+              {data.nombreEmpresa}
+            </div>
+            <div className="text-xs text-muted-foreground">
+              RUC: {data.rec}
+            </div>
           </div>
-          <div>
-            <span className="font-medium">CANAL:</span>{" "}
-            {data.canal}
+
+          {/* Flujo y Canal */}
+          <div className="flex gap-6">
+            <div className="text-center">
+              <div className="text-[11px] text-muted-foreground uppercase">
+                Flujo
+              </div>
+              <div className="text-sm font-medium">
+                {data.flujoEva}
+              </div>
+            </div>
+
+            <div className="text-center">
+              <div className="text-[11px] text-muted-foreground uppercase">
+                Canal
+              </div>
+              <div className="text-sm font-medium">
+                {data.canal}
+              </div>
+            </div>
           </div>
+
         </div>
       </div>
 
