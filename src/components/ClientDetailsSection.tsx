@@ -52,7 +52,7 @@ const Semaforo = ({ estado }: { estado: "verde" | "ambar" | "rojo" }) => {
       ? "bg-yellow-400"
       : "bg-red-500";
 
-  return <span className={`w-3 h-3 rounded-full ${color}`} />;
+  return <span className={`w-6 h-6 rounded-full ${color}`} />;
 };
 
 const calcularSemaforo = (ratio: string): "verde" | "ambar" | "rojo" => {
