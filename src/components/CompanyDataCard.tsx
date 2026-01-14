@@ -20,7 +20,7 @@ interface CompanyDataCardProps {
     nombreEmpresa: string;
     rec: string;
 
-    flujo: string;
+    flujoEva: string;
     canal: string;
 
     ubicacion: string;
@@ -48,7 +48,7 @@ const CompanyDataCard = ({ data }: CompanyDataCardProps) => {
   return (
     <div className="bg-card border-2 border-primary rounded-lg shadow-lg overflow-hidden">
 
-     {/* HEADER */}
+      {/* HEADER */}
       <div className="border-b-2 border-primary px-4 py-2">
         <div className="flex flex-wrap items-center justify-between gap-6">
 
@@ -62,8 +62,18 @@ const CompanyDataCard = ({ data }: CompanyDataCardProps) => {
             </div>
           </div>
 
-          {/* Flujo y Canal */}
+          {/* Cliente / Flujo / Canal */}
           <div className="flex gap-6">
+
+            <div className="text-center">
+              <div className="text-[11px] text-muted-foreground uppercase">
+                Cliente
+              </div>
+              <div className="text-sm font-medium">
+                Portafolio
+              </div>
+            </div>
+
             <div className="text-center">
               <div className="text-[11px] text-muted-foreground uppercase">
                 Flujo
@@ -81,8 +91,8 @@ const CompanyDataCard = ({ data }: CompanyDataCardProps) => {
                 {data.canal}
               </div>
             </div>
-          </div>
 
+          </div>
         </div>
       </div>
 
@@ -100,57 +110,16 @@ const CompanyDataCard = ({ data }: CompanyDataCardProps) => {
         </div>
 
         {/* ================= FILA 2 ================= */}
-        <div className="grid grid-cols-12 gap-0">
-          <DataField
-            label="Producto"
-            value={data.producto}
-            className="col-span-1"
-          />
-        
-          <DataField
-            label="MONTO SOLICITADO"
-            value={data.montoSolicitado}
-            className="col-span-2"
-          />
-        
-          <DataField
-            label="MONTO APROBADO"
-            value={data.montoAprobado}
-            className="col-span-2"
-          />
-        
-          <DataField
-            label="Plazo"
-            value={data.plazoMeses}
-            className="col-span-1"
-          />
-        
-          <DataField
-            label="Garantías"
-            value={data.garantias}
-            className="col-span-1"
-          />
-        
-          <DataField
-            label="RMA"
-            value={data.rma}
-            className="col-span-1"
-          />
-        
-          <DataField
-            label="SoW Actual"
-            value={data.sowActual}
-            className="col-span-2"
-          />
-        
-          <DataField
-            label="SOW ALCANZADO"
-            value={data.sowAlcanzado}
-            className="col-span-2"
-          />
+        <div className="grid grid-cols-12 gap-0 items-center">
+          <DataField label="Producto" value={data.producto} className="col-span-1" />
+          <DataField label="MONTO SOLICITADO" value={data.montoSolicitado} className="col-span-2" />
+          <DataField label="MONTO APROBADO" value={data.montoAprobado} className="col-span-2" />
+          <DataField label="Plazo" value={data.plazoMeses} className="col-span-1" />
+          <DataField label="Garantías" value={data.garantias} className="col-span-1" />
+          <DataField label="RMA" value={data.rma} className="col-span-1" />
+          <DataField label="SoW Actual" value={data.sowActual} className="col-span-2" />
+          <DataField label="SOW ALCANZADO" value={data.sowAlcanzado} className="col-span-2" />
         </div>
-
-
 
         {/* ================= FILA 3 ================= */}
         <div className="grid grid-cols-12 gap-0">
