@@ -116,7 +116,7 @@ const ClientDetailsSection = ({
             <table className="w-full text-xs table-fixed border-t border-primary">
               <thead>
                 <tr>
-                  <th className="data-label text-center">Flujo</th>
+                  <th className="data-label text-center">Flujo IziPay</th>
                   <th className="data-label text-center">Venta</th>
                   <th className="data-label text-center">Ratio</th>
                   <th className="data-label text-center">
