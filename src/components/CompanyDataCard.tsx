@@ -86,34 +86,55 @@ const CompanyDataCard = ({ data }: CompanyDataCardProps) => {
 
         {/* ================= FILA 2 ================= */}
         <div className="grid grid-cols-12 gap-0">
-          <DataField label="Producto" value={data.producto} className="col-span-2" />
-
+          <DataField
+            label="Producto"
+            value={data.producto}
+            className="col-span-2"
+          />
+        
           <DataField
             label="MONTO IBK SOLICI."
             value={data.montoSolicitado}
-            className="col-span-1"
+            className="col-span-2"
           />
-
+        
           <DataField
             label="MONTO APRO."
             value={data.montoAprobado}
             className="col-span-1"
           />
-
-          <DataField label="Plazo" value={data.plazoMeses} className="col-span-1" />
-
-          <DataField label="Garantías" value={data.garantias} className="col-span-3" />
-
-          <DataField label="RMA" value={data.rma} className="col-span-1" />
-
-          <DataField label="SoW Actual" value={data.sowActual} className="col-span-1" />
-
+        
+          <DataField
+            label="Plazo"
+            value={data.plazoMeses}
+            className="col-span-1"
+          />
+        
+          <DataField
+            label="Garantías"
+            value={data.garantias}
+            className="col-span-3"
+          />
+        
+          <DataField
+            label="RMA"
+            value={data.rma}
+            className="col-span-1"
+          />
+        
+          <DataField
+            label="SoW Actual"
+            value={data.sowActual}
+            className="col-span-1"
+          />
+        
           <DataField
             label="SOW ALCANZADO"
             value={data.sowAlcanzado}
-            className="col-span-2"
+            className="col-span-1"
           />
         </div>
+
 
         {/* ================= FILA 3 ================= */}
         <div className="grid grid-cols-12 gap-0">
