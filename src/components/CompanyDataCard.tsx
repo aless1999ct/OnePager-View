@@ -100,23 +100,23 @@ const CompanyDataCard = ({ data }: CompanyDataCardProps) => {
         </div>
 
         {/* ================= FILA 2 ================= */}
-        <div className="grid grid-cols-12 gap-0">
+        <div className="grid grid-cols-13 gap-0">
           <DataField
             label="Producto"
             value={data.producto}
-            className="col-span-2"
+            className="col-span-1"
           />
         
           <DataField
-            label="MONTO IBK SOLICI."
+            label="MONTO SOLICITADO"
             value={data.montoSolicitado}
             className="col-span-2"
           />
         
           <DataField
-            label="MONTO APRO."
+            label="MONTO APROBADO"
             value={data.montoAprobado}
-            className="col-span-1"
+            className="col-span-2"
           />
         
           <DataField
@@ -140,7 +140,7 @@ const CompanyDataCard = ({ data }: CompanyDataCardProps) => {
           <DataField
             label="SoW Actual"
             value={data.sowActual}
-            className="col-span-1"
+            className="col-span-2"
           />
         
           <DataField
