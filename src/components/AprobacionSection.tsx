@@ -14,16 +14,11 @@ interface AprobacionSectionProps {
   condiciones: string;
 }
 
-const rolesMap: Record<string, string[]> = {
-  "Analista de Admisión de Riesgos": [
-    "Carla Bocanegra",
-    "Adrian Mori",
-    "Patricia Matos",
-  ],
-  "Jefe de Admisión de Riesgos": ["Miguel Godos"],
-  "Subgerente de Admisión de Riesgos": ["Renato Valencia"],
-  "Gerente de División": ["Jose Luis Chavez"],
-};
+const analistas = [
+  "Carla Bocanegra",
+  "Adrian Mori",
+  "Patricia Matos",
+];
 
 const AprobacionSection = ({
   producto,
@@ -32,24 +27,23 @@ const AprobacionSection = ({
 }: AprobacionSectionProps) => {
   const [estado, setEstado] = useState("Aprobado");
   const [comentario, setComentario] = useState(observacion);
-
-  const [rol, setRol] = useState("__placeholder__");
-  const [nombre, setNombre] = useState("__placeholder__");
+  const [analista, setAnalista] = useState("__placeholder__");
 
   const fechaHoy = useMemo(
     () => new Date().toLocaleDateString("es-PE"),
     []
   );
 
-  const nombresDisponibles =
-    rol !== "__placeholder__" ? rolesMap[rol] : [];
-
   return (
     <div className="bg-card border-2 border-primary rounded-lg overflow-visible shadow-lg mt-6">
       <div className="p-4 space-y-4">
 
-        {/* COMENTARIO EDITABLE */}
-        <div className="border-2 border-primary p-3">
+        {/* COMENTARIO */}
+        <div className="border-2 border-primary p-3 space-y-2">
+          <div className="text-xs font-bold text-center uppercase text-primary">
+            Comentario del analista
+          </div>
+
           <textarea
             value={comentario}
             onChange={(e) => setComentario(e.target.value)}
@@ -64,25 +58,11 @@ const AprobacionSection = ({
           <select
             value={estado}
             onChange={(e) => setEstado(e.target.value)}
-            className="
-              bg-white 
-              text-black 
-              border 
-              px-2 
-              py-1 
-              text-sm 
-              rounded 
-              appearance-none
-            "
+            className="bg-white text-black border px-2 py-1 text-sm rounded appearance-none"
           >
-            <option value="Aprobado" className="text-black">
-              Aprobado
-            </option>
-            <option value="Denegado" className="text-black">
-              Denegado
-            </option>
+            <option value="Aprobado">Aprobado</option>
+            <option value="Denegado">Denegado</option>
           </select>
-
         </div>
 
         {/* TABLA DE PRODUCTO */}
@@ -118,7 +98,7 @@ const AprobacionSection = ({
         {/* LÍNEA */}
         <div className="border-t-2 border-primary"></div>
 
-        {/* FIRMAS DINÁMICAS */}
+        {/* FIRMAS */}
         <div className="flex justify-end">
           <table className="text-xs">
             <tbody>
@@ -130,22 +110,21 @@ const AprobacionSection = ({
               </tr>
 
               <tr>
-                <td className="font-bold pr-4 py-1">Cargo</td>
+                <td className="font-bold pr-4 py-1">
+                  Analista de Admisión de Riesgos
+                </td>
                 <td className="py-1">
                   <select
-                    value={rol}
-                    onChange={(e) => {
-                      setRol(e.target.value);
-                      setNombre("__placeholder__");
-                    }}
+                    value={analista}
+                    onChange={(e) => setAnalista(e.target.value)}
                     className="border px-2 py-1 text-xs rounded w-full"
                   >
                     <option value="__placeholder__" disabled>
-                      Seleccionar cargo
+                      Seleccionar analista
                     </option>
-                    {Object.keys(rolesMap).map((r) => (
-                      <option key={r} value={r}>
-                        {r}
+                    {analistas.map((a) => (
+                      <option key={a} value={a}>
+                        {a}
                       </option>
                     ))}
                   </select>
@@ -153,24 +132,17 @@ const AprobacionSection = ({
               </tr>
 
               <tr>
-                <td className="font-bold pr-4 py-1">Nombre</td>
-                <td className="py-1">
-                  <select
-                    value={nombre}
-                    onChange={(e) => setNombre(e.target.value)}
-                    disabled={rol === "__placeholder__"}
-                    className="border px-2 py-1 text-xs rounded w-full disabled:bg-gray-100"
-                  >
-                    <option value="__placeholder__" disabled>
-                      Seleccionar nombre
-                    </option>
-                    {nombresDisponibles.map((n) => (
-                      <option key={n} value={n}>
-                        {n}
-                      </option>
-                    ))}
-                  </select>
+                <td className="font-bold pr-4 py-1">
+                  Jefe de Admisión de Riesgos
                 </td>
+                <td className="py-1">Miguel Godos</td>
+              </tr>
+
+              <tr>
+                <td className="font-bold pr-4 py-1">
+                  Subgerente de Admisión de Riesgos
+                </td>
+                <td className="py-1">Renato Valencia</td>
               </tr>
             </tbody>
           </table>
