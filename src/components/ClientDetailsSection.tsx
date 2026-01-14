@@ -144,65 +144,65 @@ const ClientDetailsSection = ({
           </div>
         </div>
 
-{/* =========================
-    CRÉDITOS ANTERIORES
-========================= */}
-<div>
-  <div className="relative mb-2">
-    <div className="grid grid-cols-3 items-center">
-      <div />
-      <div className="header-banner text-sm text-center">
-        Créditos Anteriores
-      </div>
-      <div className="flex justify-end pr-2">
-        {/* Semáforo FIJO en ámbar */}
-        <Semaforo estado="ambar" />
-      </div>
-    </div>
-  </div>
+        {/* =========================
+            CRÉDITOS ANTERIORES
+        ========================= */}
+        <div>
+          {/* HEADER CON SEMÁFORO INTEGRADO */}
+          <div className="border-2 border-primary border-b-0">
+            <div className="header-banner text-sm flex items-center justify-between px-3">
+              {/* Espaciador para centrar visualmente */}
+              <span className="w-6" />
 
-  <div className="overflow-x-auto border-2 border-primary">
-    <table className="w-full text-xs">
-      <thead>
-        <tr>
-          <th className="data-label">Sujeto de Crédito</th>
-          <th className="data-label">Producto</th>
-          <th className="data-label">Monto a Deber</th>
-          <th className="data-label">Cuotas por Pagar</th>
-          <th className="data-label">Prom. Días Atraso</th>
-          <th className="data-label">Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        {creditos.map((credito, index) => (
-          <tr key={index}>
-            <td className="data-cell text-center">
-              {credito.sujetoCredito}
-            </td>
-            <td className="data-cell text-center">
-              {credito.producto}
-            </td>
-            <td className="data-cell text-center">
-              {credito.montoOriginal} / {credito.saldoActual}
-            </td>
-            <td className="data-cell text-center">
-              {credito.plazoInicial} / {credito.ratio24}
-            </td>
-            <td className="data-cell text-center">
-              {credito.promedioDiasAtraso}
-            </td>
-            <td className="data-cell text-center text-muted-foreground font-semibold">
-              --
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-</div>
+              <span className="font-bold">
+                Créditos Anteriores
+              </span>
 
+              <Semaforo estado="ambar" />
+            </div>
+          </div>
 
-         
+          {/* TABLA */}
+          <div className="overflow-x-auto border-2 border-primary border-t-0">
+            <table className="w-full text-xs">
+              <thead>
+                <tr>
+                  <th className="data-label">Sujeto de Crédito</th>
+                  <th className="data-label">Producto</th>
+                  <th className="data-label">Monto a Deber</th>
+                  <th className="data-label">Cuotas por Pagar</th>
+                  <th className="data-label">Prom. Días Atraso</th>
+                  <th className="data-label">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {creditos.map((credito, index) => (
+                  <tr key={index}>
+                    <td className="data-cell text-center">
+                      {credito.sujetoCredito}
+                    </td>
+                    <td className="data-cell text-center">
+                      {credito.producto}
+                    </td>
+                    <td className="data-cell text-center">
+                      {credito.montoOriginal} / {credito.saldoActual}
+                    </td>
+                    <td className="data-cell text-center">
+                      {credito.plazoInicial} / {credito.ratio24}
+                    </td>
+                    <td className="data-cell text-center">
+                      {credito.promedioDiasAtraso}
+                    </td>
+                    <td className="data-cell text-center text-muted-foreground font-semibold">
+                      --
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
         {/* =========================
             RELACIONADOS
         ========================= */}
