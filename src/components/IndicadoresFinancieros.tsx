@@ -52,11 +52,13 @@ const cemDetalle = [
 ========================= */
 const CemTooltip = ({ active, payload }: any) => {
   if (!active || !payload?.length) return null;
-  if (payload[0].payload.name !== "CEM") return null;
+
+  const isCem = payload[0].payload.name === "CEM";
+  if (!isCem) return null;
 
   return (
     <div className="bg-white border shadow-lg p-2 text-xs">
-      <table>
+      <table className="border-collapse">
         <thead>
           <tr className="font-bold">
             <td className="pr-3">Concepto</td>
@@ -97,39 +99,17 @@ const IndicadoresFinancieros = ({
 
   const months = ["Ene.","Feb.","Mar.","Abr.","May.","Jun.","Jul.","Ago.","Sep.","Oct.","Nov.","Dic."];
 
-  /* =========================
-     VENTAS ANUALES (TOTAL + PROMEDIO)
-  ========================= */
   const annualSalesData = useMemo(() => {
     return monthlySeries.map((s) => {
-      const valid = s.data.filter(v => v > 0);
-      const total = valid.reduce((a, b) => a + b, 0);
-      const promedio = Math.round(total / valid.length);
-
-      return {
-        anio: s.year,
-        total,
-        promedio,
-      };
+      const total = s.data.reduce((a, b) => a + b, 0);
+      const promedio = Math.round(total / s.data.filter(v => v > 0).length);
+      return { anio: s.year, promedio };
     });
   }, []);
 
-  /* =========================
-     VENTAS MENSUALES 2025 (HASTA ÚLTIMO MES > 0)
-  ========================= */
-  const ventasMensuales2025 = useMemo(() => {
-    const data2025 = monthlySeries.find(s => s.year === "2025")!.data;
-
-    const lastIndex = data2025
-      .map((v, i) => (v > 0 ? i : -1))
-      .filter(i => i !== -1)
-      .pop() ?? 0;
-
-    return data2025.slice(0, lastIndex + 1).map((v, i) => ({
-      mes: months[i],
-      ventas: v,
-    }));
-  }, []);
+  const ventasMensuales2025 = monthlySeries
+    .find((s) => s.year === "2025")!
+    .data.map((v, i) => ({ mes: months[i], ventas: v }));
 
   const cem = Number(cemMensual);
   const cuotaNum = Number(cuota);
@@ -145,6 +125,8 @@ const IndicadoresFinancieros = ({
     { name: "Cuota", value: cuotaNum },
   ];
 
+  const rtActualizadoAl = "10/2025";
+
   const liquidezFiltrada = indicadores.liquidez.filter(
     (i) => i.nombre !== "Ciclo Operativo"
   );
@@ -155,10 +137,39 @@ const IndicadoresFinancieros = ({
         ? { ...i, nombre: "Pasivo Financiero / Patrimonio" }
         : i
     ),
-    { nombre: "Pasivo Total / Patrimonio", valor2023: "--", valor2024: "--" },
+    {
+      nombre: "Pasivo Total / Patrimonio",
+      valor2023: "--",
+      valor2024: "--",
+    },
   ];
 
+  const renderSection = (titulo: string, data: IndicadorData[]) => {
+    if (!data.length) return null;
+
+    return (
+      <>
+        <tr>
+          <td rowSpan={data.length} className="data-label font-bold text-center">
+            {titulo}
+          </td>
+          <td className="data-cell text-left">{data[0].nombre}</td>
+          <td className="data-cell text-center">{data[0].valor2023}</td>
+          <td className="data-cell text-center">{data[0].valor2024}</td>
+        </tr>
+        {data.slice(1).map((d, i) => (
+          <tr key={i}>
+            <td className="data-cell text-left">{d.nombre}</td>
+            <td className="data-cell text-center">{d.valor2023}</td>
+            <td className="data-cell text-center">{d.valor2024}</td>
+          </tr>
+        ))}
+      </>
+    );
+  };
+
   const evaluacionAnterior = "09/08/2025";
+
 
   return (
     <div className="bg-card border-2 border-primary rounded-lg shadow-lg mt-6 overflow-hidden">
@@ -173,12 +184,12 @@ const IndicadoresFinancieros = ({
 
         <div className="grid grid-cols-1 lg:grid-cols-[2.6fr_1.4fr] gap-6">
 
-          {/* RATIOS */}
+          {/* TABLA */}
           <div className="border-2 border-primary">
             <div className="header-banner text-sm text-center">
               Ratios Financieros
             </div>
-
+          
             <table className="w-full text-xs">
               <thead>
                 <tr>
@@ -189,14 +200,13 @@ const IndicadoresFinancieros = ({
                 </tr>
               </thead>
               <tbody>
-                {["Actividad","Rentabilidad","Liquidez","Endeudamiento"].map((t, i) => null)}
                 {renderSection("Actividad", indicadores.actividad)}
                 {renderSection("Rentabilidad", indicadores.rentabilidad)}
                 {renderSection("Liquidez", liquidezFiltrada)}
                 {renderSection("Endeudamiento", endeudamientoAjustado)}
               </tbody>
             </table>
-
+          
             <div className="text-[11px] text-muted-foreground px-2 py-1">
               Evaluación Anterior: {evaluacionAnterior}
             </div>
@@ -210,7 +220,11 @@ const IndicadoresFinancieros = ({
 
             <div className="p-4">
               <ResponsiveContainer width="100%" height={260}>
-                <BarChart data={cemCuotaData} layout="vertical">
+                <BarChart
+                  data={cemCuotaData}
+                  layout="vertical"
+                  margin={{ top: 40, bottom: 40, left: 20, right: 20 }}
+                >
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis type="number" tickFormatter={(v) => `S/. ${v.toLocaleString()}`} />
                   <YAxis type="category" dataKey="name" />
@@ -226,36 +240,28 @@ const IndicadoresFinancieros = ({
           </div>
         </div>
 
-        {/* GRÁFICOS */}
+        {/* OTROS GRÁFICOS */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-2 border-primary p-4">
 
-          {/* VENTAS TOTALES */}
           <div>
             <div className="header-banner text-sm text-center mb-2">
               Ventas Totales
             </div>
-
             <ResponsiveContainer width="100%" height={260}>
               <BarChart data={annualSalesData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="anio" />
-                <YAxis tickFormatter={(v) => `S/. ${v / 1000000}MM`} />
-                <Tooltip
-                  formatter={(_, __, p) =>
-                    [`Promedio mensual: S/. ${p.payload.promedio.toLocaleString()}`, ""]
-                  }
-                />
-                <Bar dataKey="total" barSize={40} />
+                <YAxis tickFormatter={(v) => `S/. ${v / 1000}k`} />
+                <Tooltip formatter={(v: number) => `S/. ${v.toLocaleString()}`} />
+                <Bar dataKey="promedio" barSize={40} />
               </BarChart>
             </ResponsiveContainer>
           </div>
 
-          {/* VENTAS DECLARADAS */}
           <div>
             <div className="header-banner text-sm text-center mb-2">
-              Ventas Declaradas – 2025
+              Ventas Declaradas - 2025
             </div>
-
             <ResponsiveContainer width="100%" height={260}>
               <LineChart data={ventasMensuales2025}>
                 <CartesianGrid strokeDasharray="3 3" />
@@ -267,6 +273,9 @@ const IndicadoresFinancieros = ({
             </ResponsiveContainer>
           </div>
 
+          <div className="text-xs text-muted-foreground md:col-span-2">
+            RT actualizado al: {rtActualizadoAl}
+          </div>
         </div>
       </div>
     </div>
