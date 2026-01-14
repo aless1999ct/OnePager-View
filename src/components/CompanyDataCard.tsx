@@ -6,14 +6,45 @@ interface DataFieldProps {
 
 const DataField = ({ label, value, className = "" }: DataFieldProps) => (
   <div className={`border border-primary flex flex-col ${className}`}>
-    <div className="bg-[#28af60] text-white text-[11px] uppercase tracking-wide text-center py-1 px-1">
+
+    {/* LABEL */}
+    <div className="
+      bg-[#28af60]
+      text-white
+      text-[11px]
+      uppercase
+      tracking-wide
+      text-center
+      px-1
+      flex
+      items-center
+      justify-center
+      min-h-[28px]
+      leading-tight
+    ">
       {label}
     </div>
-    <div className="bg-white text-black text-sm font-medium text-center px-1 py-2 min-h-[38px] flex items-center justify-center">
+
+    {/* VALUE */}
+    <div className="
+      bg-white
+      text-black
+      text-sm
+      font-medium
+      text-center
+      px-1
+      flex
+      items-center
+      justify-center
+      min-h-[42px]
+      leading-tight
+    ">
       {value}
     </div>
+
   </div>
 );
+
 
 interface CompanyDataCardProps {
   data: {
