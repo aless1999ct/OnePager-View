@@ -85,11 +85,15 @@ const CemTooltip = ({ active, payload }: any) => {
 ========================= */
 const TotalTooltip = ({ active, payload }: any) => {
   if (!active || !payload?.length) return null;
+  const p = payload[0].payload;
 
   return (
     <div className="bg-white border shadow p-2 text-xs">
-      <b>Promedio anual:</b>
-      <div>S/. {payload[0].payload.promedio.toLocaleString()}</div>
+      <div><b>Total real:</b> S/. {p.real.toLocaleString()}</div>
+      {p.proyeccion > 0 && (
+        <div><b>Proyección:</b> S/. {p.proyeccion.toLocaleString()}</div>
+      )}
+      <div><b>Promedio mensual:</b> S/. {p.promedio.toLocaleString()}</div>
     </div>
   );
 };
@@ -111,12 +115,26 @@ const IndicadoresFinancieros = ({
 
   const months = ["Ene.","Feb.","Mar.","Abr.","May.","Jun.","Jul.","Ago.","Sep.","Oct.","Nov.","Dic."];
 
+  /* ===== Ventas Totales + Proyección 2025 ===== */
   const annualSalesData = useMemo(() => {
     return monthlySeries.map((s) => {
       const valid = s.data.filter(v => v > 0);
-      const total = valid.reduce((a, b) => a + b, 0);
-      const promedio = Math.round(total / valid.length);
-      return { anio: s.year, total, promedio };
+      const real = valid.reduce((a, b) => a + b, 0);
+      const promedio = Math.round(real / valid.length);
+
+      let proyeccion = 0;
+      if (s.year === "2025") {
+        const promedioMensual = real / 10;
+        proyeccion = Math.round(promedioMensual * 2);
+      }
+
+      return {
+        anio: s.year,
+        real,
+        proyeccion,
+        total: real + proyeccion,
+        promedio,
+      };
     });
   }, []);
 
@@ -217,10 +235,12 @@ const IndicadoresFinancieros = ({
         {/* ===== GRÁFICOS ===== */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-2 border-primary p-4">
 
+          {/* Ventas Totales */}
           <div>
             <div className="header-banner text-sm text-center mb-2">
               Ventas Totales
             </div>
+
             <ResponsiveContainer width="100%" height={260}>
               <BarChart data={annualSalesData}>
                 <CartesianGrid strokeDasharray="3 3" />
@@ -233,7 +253,8 @@ const IndicadoresFinancieros = ({
                   }
                 />
                 <Tooltip content={<TotalTooltip />} />
-                <Bar dataKey="total" barSize={40} />
+                <Bar dataKey="real" stackId="a" fill="#000000" barSize={40} />
+                <Bar dataKey="proyeccion" stackId="a" fill="#9CA3AF" />
               </BarChart>
             </ResponsiveContainer>
 
@@ -242,10 +263,12 @@ const IndicadoresFinancieros = ({
             </div>
           </div>
 
+          {/* Ventas Declaradas */}
           <div>
             <div className="header-banner text-sm text-center mb-2">
               Ventas Declaradas - 2025
             </div>
+
             <ResponsiveContainer width="100%" height={260}>
               <LineChart data={ventasMensuales2025}>
                 <CartesianGrid strokeDasharray="3 3" />
