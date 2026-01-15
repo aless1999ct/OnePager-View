@@ -32,6 +32,57 @@ interface IndicadoresFinancierosProps {
 }
 
 /* =========================
+   DATA DETALLE CEM (TOOLTIP)
+========================= */
+const cemDetalle = [
+  { concepto: "Ventas RT (+)", importe: 433097, part: "100%" },
+  { concepto: "Ventas INF (+)", importe: 0, part: "0%" },
+  { concepto: "Costo de Ventas (-)", importe: 264189, part: "61%" },
+  { concepto: "Utilidad Bruta (=)", importe: 168908, part: "39%" },
+  { concepto: "Gastos Administrativos (-)", importe: 110778, part: "26%" },
+  { concepto: "Utilidad Operativa (=)", importe: 58130, part: "13%" },
+  { concepto: "Gastos Financieros (-)", importe: 41720, part: "10%" },
+  { concepto: "Utilidad Neta (=)", importe: 16410, part: "4%" },
+  { concepto: "Gastos Familiares (-)", importe: 4102, part: "1%" },
+  { concepto: "CEM (=)", importe: 12307, part: "3%" },
+];
+
+/* =========================
+   TOOLTIP CUSTOM CEM
+========================= */
+const CemTooltip = ({ active, payload }: any) => {
+  if (!active || !payload?.length) return null;
+
+  const isCem = payload[0].payload.name === "CEM";
+  if (!isCem) return null;
+
+  return (
+    <div className="bg-white border shadow-lg p-2 text-xs">
+      <table className="border-collapse">
+        <thead>
+          <tr className="font-bold">
+            <td className="pr-3">Concepto</td>
+            <td className="pr-3 text-right">Importe</td>
+            <td className="text-right">%</td>
+          </tr>
+        </thead>
+        <tbody>
+          {cemDetalle.map((r, i) => (
+            <tr key={i}>
+              <td className="pr-3">{r.concepto}</td>
+              <td className="pr-3 text-right">
+                S/. {r.importe.toLocaleString()}
+              </td>
+              <td className="text-right">{r.part}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+/* =========================
    TOOLTIP VENTAS TOTALES
 ========================= */
 const TotalTooltip = ({ active, payload }: any) => {
@@ -64,22 +115,18 @@ const IndicadoresFinancieros = ({
 
   const months = ["Ene.","Feb.","Mar.","Abr.","May.","Jun.","Jul.","Ago.","Sep.","Oct.","Nov.","Dic."];
 
-  /* ===== Ventas Totales (TOTAL + PROMEDIO tooltip) ===== */
+  /* ===== Ventas Totales ===== */
   const annualSalesData = useMemo(() => {
     return monthlySeries.map((s) => {
       const valid = s.data.filter(v => v > 0);
       const total = valid.reduce((a, b) => a + b, 0);
       const promedio = Math.round(total / valid.length);
 
-      return {
-        anio: s.year,
-        total,
-        promedio,
-      };
+      return { anio: s.year, total, promedio };
     });
   }, []);
 
-  /* ===== Ventas 2025 sin meses en 0 ===== */
+  /* ===== Ventas 2025 sin meses 0 ===== */
   const ventasMensuales2025 = monthlySeries
     .find((s) => s.year === "2025")!
     .data
@@ -101,7 +148,7 @@ const IndicadoresFinancieros = ({
     { name: "Cuota", value: cuotaNum },
   ];
 
-  /* ===== Ratios ajustados ===== */
+  /* ===== Ratios ===== */
   const liquidezFiltrada = indicadores.liquidez.filter(
     (i) => i.nombre !== "Ciclo Operativo"
   );
@@ -112,11 +159,7 @@ const IndicadoresFinancieros = ({
         ? { ...i, nombre: "Pasivo Financiero / Patrimonio" }
         : i
     ),
-    {
-      nombre: "Pasivo Total / Patrimonio",
-      valor2023: "--",
-      valor2024: "--",
-    },
+    { nombre: "Pasivo Total / Patrimonio", valor2023: "--", valor2024: "--" },
   ];
 
   const renderSection = (titulo: string, data: IndicadorData[]) => {
@@ -147,7 +190,6 @@ const IndicadoresFinancieros = ({
 
   return (
     <div className="bg-card border-2 border-primary rounded-lg shadow-lg mt-6 overflow-hidden">
-
       <div className="border-b-2 border-primary px-4 py-2">
         <span className="text-primary font-bold text-lg">
           Indicadores Financieros
@@ -156,7 +198,7 @@ const IndicadoresFinancieros = ({
 
       <div className="p-4 space-y-6">
 
-        {/* ================= CEM PRIMERO ================= */}
+        {/* ===== CEM PRIMERO ===== */}
         <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_2.6fr] gap-6">
 
           <div className="border-2 border-primary">
@@ -170,7 +212,7 @@ const IndicadoresFinancieros = ({
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis type="number" tickFormatter={(v) => `S/. ${v.toLocaleString()}`} />
                   <YAxis type="category" dataKey="name" />
-                  <Tooltip />
+                  <Tooltip content={<CemTooltip />} />
                   <Bar dataKey="value" barSize={26} />
                 </BarChart>
               </ResponsiveContainer>
@@ -181,7 +223,7 @@ const IndicadoresFinancieros = ({
             </div>
           </div>
 
-          {/* ================= RATIOS ================= */}
+          {/* ===== RATIOS ===== */}
           <div className="border-2 border-primary">
             <div className="header-banner text-sm text-center">
               Ratios Financieros
@@ -209,7 +251,7 @@ const IndicadoresFinancieros = ({
           </div>
         </div>
 
-        {/* ================= OTROS GRÁFICOS ================= */}
+        {/* ===== OTROS GRÁFICOS ===== */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-2 border-primary p-4">
 
           <div>
