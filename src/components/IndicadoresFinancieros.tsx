@@ -148,7 +148,6 @@ const IndicadoresFinancieros = ({
   return (
     <div className="bg-card border-2 border-primary rounded-lg shadow-lg mt-6 overflow-hidden">
 
-      {/* ===== HEADER CLÁSICO ===== */}
       <div className="border-b-2 border-primary px-4 py-2">
         <span className="text-primary font-bold text-lg">
           Indicadores Financieros
@@ -214,27 +213,39 @@ const IndicadoresFinancieros = ({
           </div>
         </div>
 
-        {/* GRÁFICOS */}
+        {/* ===== GRÁFICOS ===== */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-2 border-primary p-4">
-          <ResponsiveContainer width="100%" height={260}>
-            <BarChart data={annualSalesData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="anio" />
-              <YAxis tickFormatter={(v) => `S/. ${v / 1000}k`} />
-              <Tooltip content={<TotalTooltip />} />
-              <Bar dataKey="total" barSize={40} />
-            </BarChart>
-          </ResponsiveContainer>
 
-          <ResponsiveContainer width="100%" height={260}>
-            <LineChart data={ventasMensuales2025}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="mes" />
-              <YAxis tickFormatter={(v) => `S/. ${v / 1000}k`} />
-              <Tooltip formatter={(v: number) => `S/. ${v.toLocaleString()}`} />
-              <Line type="monotone" dataKey="ventas" strokeWidth={2} dot={{ r: 3 }} />
-            </LineChart>
-          </ResponsiveContainer>
+          <div>
+            <div className="header-banner text-sm text-center mb-2">
+              Ventas Totales
+            </div>
+            <ResponsiveContainer width="100%" height={260}>
+              <BarChart data={annualSalesData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="anio" />
+                <YAxis tickFormatter={(v) => `S/. ${v / 1000}k`} />
+                <Tooltip content={<TotalTooltip />} />
+                <Bar dataKey="total" barSize={40} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+
+          <div>
+            <div className="header-banner text-sm text-center mb-2">
+              Ventas Declaradas - 2025
+            </div>
+            <ResponsiveContainer width="100%" height={260}>
+              <LineChart data={ventasMensuales2025}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="mes" />
+                <YAxis tickFormatter={(v) => `S/. ${v / 1000}k`} />
+                <Tooltip formatter={(v: number) => `S/. ${v.toLocaleString()}`} />
+                <Line type="monotone" dataKey="ventas" strokeWidth={2} dot={{ r: 3 }} />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+
         </div>
       </div>
     </div>
