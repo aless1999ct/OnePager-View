@@ -199,7 +199,7 @@ const IndicadoresFinancieros = ({
               <BarChart data={annualSalesData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="anio" />
-                <YAxis width={70} tickFormatter={(v) => `S/. ${v / 1_000_000} NM`} />
+                <YAxis width={70} tickFormatter={(v) => `S/. ${(v / 1_000_000).toFixed(1)} NM`} />
                 <Tooltip
                   formatter={(_, __, p) =>
                     [`Promedio mensual: S/. ${p.payload.promedio.toLocaleString()}`, ""]
@@ -220,7 +220,7 @@ const IndicadoresFinancieros = ({
               <LineChart data={ventasMensuales2025}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="mes" />
-                <YAxis width={70} tickFormatter={(v) => `S/. ${v / 1000}k`} />
+                <YAxis width={70} tickFormatter={(v) => `S/. ${(v / 1000).toFixed(0)}k`} />
                 <Tooltip formatter={(v: number) => `S/. ${v.toLocaleString()}`} />
                 <Line type="monotone" dataKey="ventas" strokeWidth={2} dot={{ r: 3 }} />
               </LineChart>
