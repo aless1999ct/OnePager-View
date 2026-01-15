@@ -144,6 +144,7 @@ const IndicadoresFinancieros = ({
   ];
 
   const evaluacionAnterior = "09/08/2025";
+  const rtActualizadoAl = "10/2025";
 
   return (
     <div className="bg-card border-2 border-primary rounded-lg shadow-lg mt-6 overflow-hidden">
@@ -224,11 +225,21 @@ const IndicadoresFinancieros = ({
               <BarChart data={annualSalesData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="anio" />
-                <YAxis tickFormatter={(v) => `S/. ${v / 1000}k`} />
+                <YAxis
+                  tickFormatter={(v) =>
+                    v >= 1_000_000
+                      ? `S/. ${(v / 1_000_000).toFixed(1)}MM`
+                      : `S/. ${(v / 1_000).toFixed(0)}k`
+                  }
+                />
                 <Tooltip content={<TotalTooltip />} />
                 <Bar dataKey="total" barSize={40} />
               </BarChart>
             </ResponsiveContainer>
+
+            <div className="text-[11px] text-muted-foreground mt-1 text-center">
+              RT actualizado al: {rtActualizadoAl}
+            </div>
           </div>
 
           <div>
