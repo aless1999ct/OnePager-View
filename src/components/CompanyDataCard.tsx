@@ -5,7 +5,7 @@ interface DataFieldProps {
 }
 
 const DataField = ({ label, value, className = "" }: DataFieldProps) => (
-  <div className={`border border-[#2469A0] flex flex-col ${className}`}>
+  <div className={`border border-[#2469A0] flex flex-col ${className} pdf-block`}>
 
     {/* LABEL */}
     <div
@@ -22,6 +22,7 @@ const DataField = ({ label, value, className = "" }: DataFieldProps) => (
         justify-center
         min-h-[28px]
         leading-tight
+        print:min-h-[24px]
       "
     >
       {label}
@@ -41,6 +42,7 @@ const DataField = ({ label, value, className = "" }: DataFieldProps) => (
         justify-center
         min-h-[42px]
         leading-tight
+        print:min-h-[36px]
       "
     >
       {value}
@@ -80,10 +82,10 @@ interface CompanyDataCardProps {
 
 const CompanyDataCard = ({ data }: CompanyDataCardProps) => {
   return (
-    <div className="bg-card border-2 border-primary rounded-lg shadow-lg overflow-hidden">
+    <div className="bg-card border-2 border-primary rounded-lg shadow-lg overflow-hidden pdf-block">
 
       {/* HEADER */}
-      <div className="border-b-2 border-primary px-4 py-2">
+      <div className="border-b-2 border-primary px-4 py-2 pdf-block">
         <div className="flex flex-wrap items-center justify-between gap-6">
 
           {/* Empresa */}
@@ -134,7 +136,7 @@ const CompanyDataCard = ({ data }: CompanyDataCardProps) => {
       <div className="p-4 space-y-3 text-xs">
 
         {/* ================= FILA 1 ================= */}
-        <div className="grid grid-cols-12 gap-0">
+        <div className="grid grid-cols-12 print:grid-cols-12 gap-0 pdf-block">
           <DataField label="Ubicación" value={data.ubicacion} className="col-span-2" />
           <DataField label="Giro" value={data.giro} className="col-span-3" />
           <DataField label="Sub Giro" value={data.subGiro} className="col-span-2" />
@@ -144,7 +146,7 @@ const CompanyDataCard = ({ data }: CompanyDataCardProps) => {
         </div>
 
         {/* ================= FILA 2 ================= */}
-        <div className="grid grid-cols-12 gap-0 items-center">
+        <div className="grid grid-cols-12 print:grid-cols-12 gap-0 items-center pdf-block">
           <DataField label="Producto" value={data.producto} className="col-span-1" />
           <DataField label="MONTO SOLICITADO" value={data.montoSolicitado} className="col-span-2" />
           <DataField label="MONTO APROBADO" value={data.montoAprobado} className="col-span-2" />
@@ -156,7 +158,7 @@ const CompanyDataCard = ({ data }: CompanyDataCardProps) => {
         </div>
 
         {/* ================= FILA 3 ================= */}
-        <div className="grid grid-cols-12 gap-0">
+        <div className="grid grid-cols-12 print:grid-cols-12 gap-0 pdf-block">
           <DataField
             label="Ubicación / Dirección"
             value={data.direccion}
