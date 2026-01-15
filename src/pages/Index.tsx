@@ -11,34 +11,34 @@ const Index = () => {
 
   /* ===================== DATA ===================== */
 
-const sampleData = {
-  nombreEmpresa: "PLÁSTICOS Y PAPELES SAC",
-  rec: "20451340167",
-  fecha: "02/01/2025",
-  flujoEva: "Flujo Regular Portafolio",
-  canal: "Tienda IN",
-  ubicacion: "Loreto, Iquitos",
+  const sampleData = {
+    nombreEmpresa: "PLÁSTICOS Y PAPELES SAC",
+    rec: "20451340167",
+    fecha: "02/01/2025",
+    flujoEva: "Flujo Regular Portafolio",
+    canal: "Tienda IN",
+    ubicacion: "Loreto, Iquitos",
 
-  giro: "Comercio: Plásticos y Papelería",
-  subGiro: "Distribución mayorista",
+    giro: "Comercio: Plásticos y Papelería",
+    subGiro: "Distribución mayorista",
 
-  inicio: "12/2000",
-  ibkDesde: "03/2001",
-  score: "MEDIO",
+    inicio: "12/2000",
+    ibkDesde: "03/2001",
+    score: "MEDIO",
 
-  producto: "Capital de Trabajo",
-  montoSolicitado: "1 NM",
-  montoAprobado: "1 NM",
-  plazoMeses: "36 meses",
+    producto: "Capital de Trabajo",
+    montoSolicitado: "1 NM",
+    montoAprobado: "1 NM",
+    plazoMeses: "36 meses",
 
-  sowActual: "35%",
-  sowAlcanzado: "50%",
+    sowActual: "35%",
+    sowAlcanzado: "50%",
 
-  garantias: "27 NM - almacén",
-  rma: "--",
-  direccion: "Jr. Aguirre Nro. 1154",
-  fuentes: "Reporte Tributario",
-};
+    garantias: "27 NM - almacén",
+    rma: "--",
+    direccion: "Jr. Aguirre Nro. 1154",
+    fuentes: "Reporte Tributario",
+  };
 
   const transaccionalidadData = {
     ratio: "---",
@@ -164,8 +164,8 @@ const sampleData = {
       </div>
 
       {/* CONTENEDOR DOCUMENTAL */}
-      <main className="bg-neutral-100 py-10">
-        <div className="mx-auto max-w-[1200px] px-6">
+      <main className="bg-neutral-100 py-10 print:py-0">
+        <div className="mx-auto max-w-[1200px] px-6 print:px-0 pdf-root">
 
           {/* Acciones */}
           <div className="mb-6 flex justify-end print:hidden">
@@ -176,7 +176,7 @@ const sampleData = {
           </div>
 
           {/* ONE PAGER */}
-          <article className="one-pager space-y-8 bg-white p-8 shadow-sm">
+          <article className="one-pager space-y-8 print:space-y-4 bg-white p-8 print:p-4 shadow-sm pdf-page">
             <CompanyDataCard data={sampleData} />
 
             <ClientDetailsSection
