@@ -42,17 +42,62 @@ const formatCurrencyAxis = (value: number) => {
 };
 
 /* =========================
+   DATA DETALLE CEM (TOOLTIP)
+========================= */
+const cemDetalle = [
+  { concepto: "Ventas RT (+)", importe: 433097, part: "100%" },
+  { concepto: "Ventas INF (+)", importe: 0, part: "0%" },
+  { concepto: "Costo de Ventas (-)", importe: 264189, part: "61%" },
+  { concepto: "Utilidad Bruta (=)", importe: 168908, part: "39%" },
+  { concepto: "Gastos Administrativos (-)", importe: 110778, part: "26%" },
+  { concepto: "Utilidad Operativa (=)", importe: 58130, part: "13%" },
+  { concepto: "Gastos Financieros (-)", importe: 41720, part: "10%" },
+  { concepto: "Utilidad Neta (=)", importe: 16410, part: "4%" },
+  { concepto: "Gastos Familiares (-)", importe: 4102, part: "1%" },
+  { concepto: "CEM (=)", importe: 12307, part: "3%" },
+];
+
+/* =========================
+   TOOLTIP CEM
+========================= */
+const CemTooltip = ({ active, payload }: any) => {
+  if (!active || !payload?.length) return null;
+  if (payload[0].payload.name !== "CEM") return null;
+
+  return (
+    <div className="bg-white border shadow-lg p-2 text-xs">
+      <table>
+        <thead>
+          <tr className="font-bold">
+            <td className="pr-3">Concepto</td>
+            <td className="pr-3 text-right">Importe</td>
+            <td className="text-right">%</td>
+          </tr>
+        </thead>
+        <tbody>
+          {cemDetalle.map((r, i) => (
+            <tr key={i}>
+              <td className="pr-3">{r.concepto}</td>
+              <td className="pr-3 text-right">S/. {r.importe.toLocaleString()}</td>
+              <td className="text-right">{r.part}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+/* =========================
    TOOLTIP VENTAS TOTALES
 ========================= */
 const TotalTooltip = ({ active, payload }: any) => {
   if (!active || !payload?.length) return null;
 
-  const { promedio } = payload[0].payload;
-
   return (
     <div className="bg-white border shadow p-2 text-xs">
       <div className="font-bold">Promedio anual</div>
-      <div>S/. {promedio.toLocaleString()}</div>
+      <div>S/. {payload[0].payload.promedio.toLocaleString()}</div>
     </div>
   );
 };
@@ -84,64 +129,113 @@ const IndicadoresFinancieros = ({
     });
   }, []);
 
-  /* ===== Ventas 2025 (sin ceros) ===== */
+  /* ===== Ventas 2025 sin ceros ===== */
   const ventasMensuales2025 = monthlySeries
-    .find((s) => s.year === "2025")!
-    .data
-    .map((v, i) => ({ mes: months[i], ventas: v }))
+    .find(s => s.year === "2025")!
+    .data.map((v, i) => ({ mes: months[i], ventas: v }))
     .filter(v => v.ventas > 0);
+
+  /* ===== CEM ===== */
+  const cem = Number(cemMensual);
+  const cuotaNum = Number(cuota);
+  const percent = cem === 0 ? 0 : Math.round((cuotaNum / cem) * 100);
+
+  const cemCuotaData = [
+    { name: "CEM", value: cem },
+    { name: "Cuota", value: cuotaNum },
+  ];
+
+  const liquidezFiltrada = indicadores.liquidez.filter(
+    i => i.nombre !== "Ciclo Operativo"
+  );
+
+  const endeudamientoAjustado = [
+    ...indicadores.endeudamiento,
+    { nombre: "Pasivo Total / Patrimonio", valor2023: "--", valor2024: "--" },
+  ];
 
   return (
     <div className="bg-card border-2 border-primary rounded-lg shadow-lg mt-6 overflow-hidden">
+
       <div className="p-4 space-y-6">
 
-        {/* ===== OTROS GRÁFICOS ===== */}
+        {/* ===== CEM + RATIOS ===== */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_2.6fr] gap-6">
+
+          {/* CEM */}
+          <div className="border-2 border-primary">
+            <div className="header-banner text-sm text-center">
+              Capacidad de Endeudamiento Máximo
+            </div>
+            <div className="p-4">
+              <ResponsiveContainer width="100%" height={260}>
+                <BarChart data={cemCuotaData} layout="vertical">
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis type="number" />
+                  <YAxis type="category" dataKey="name" />
+                  <Tooltip content={<CemTooltip />} />
+                  <Bar dataKey="value" barSize={26} />
+                </BarChart>
+              </ResponsiveContainer>
+              <div className="text-xs text-center mt-2 font-medium">
+                CUOTA ES {percent}% DEL CEM
+              </div>
+            </div>
+          </div>
+
+          {/* RATIOS */}
+          <div className="border-2 border-primary">
+            <div className="header-banner text-sm text-center">
+              Ratios Financieros
+            </div>
+            <table className="w-full text-xs">
+              <tbody>
+                {[["Actividad", indicadores.actividad],
+                  ["Liquidez", liquidezFiltrada],
+                  ["Endeudamiento", endeudamientoAjustado]
+                ].map(([t, d]: any, i) => (
+                  d.map((r: any, j: number) => (
+                    <tr key={`${i}-${j}`}>
+                      {j === 0 && (
+                        <td rowSpan={d.length} className="data-label text-center font-bold">
+                          {t}
+                        </td>
+                      )}
+                      <td className="data-cell">{r.nombre}</td>
+                      <td className="data-cell text-center">{r.valor2023}</td>
+                      <td className="data-cell text-center">{r.valor2024}</td>
+                    </tr>
+                  ))
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* ===== GRÁFICOS ===== */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-2 border-primary p-4">
 
-          {/* ===== VENTAS TOTALES ===== */}
-          <div>
-            <div className="header-banner text-sm text-center mb-2">
-              Ventas Totales
-            </div>
+          {/* Ventas Totales */}
+          <ResponsiveContainer width="100%" height={260}>
+            <BarChart data={annualSalesData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="anio" />
+              <YAxis domain={["auto", "auto"]} tickFormatter={formatCurrencyAxis} />
+              <Tooltip content={<TotalTooltip />} />
+              <Bar dataKey="total" barSize={40} />
+            </BarChart>
+          </ResponsiveContainer>
 
-            <ResponsiveContainer width="100%" height={260}>
-              <BarChart data={annualSalesData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="anio" />
-                <YAxis
-                  domain={["auto", "auto"]}
-                  tickFormatter={formatCurrencyAxis}
-                />
-                <Tooltip content={<TotalTooltip />} />
-                <Bar dataKey="total" barSize={40} />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-
-          {/* ===== VENTAS DECLARADAS ===== */}
-          <div>
-            <div className="header-banner text-sm text-center mb-2">
-              Ventas Declaradas - 2025
-            </div>
-
-            <ResponsiveContainer width="100%" height={260}>
-              <LineChart data={ventasMensuales2025}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="mes" />
-                <YAxis
-                  domain={["auto", "auto"]}
-                  tickFormatter={formatCurrencyAxis}
-                />
-                <Tooltip formatter={(v: number) => `S/. ${v.toLocaleString()}`} />
-                <Line
-                  type="monotone"
-                  dataKey="ventas"
-                  strokeWidth={2}
-                  dot={{ r: 3 }}
-                />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
+          {/* Ventas 2025 */}
+          <ResponsiveContainer width="100%" height={260}>
+            <LineChart data={ventasMensuales2025}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="mes" />
+              <YAxis domain={["auto", "auto"]} tickFormatter={formatCurrencyAxis} />
+              <Tooltip formatter={(v: number) => `S/. ${v.toLocaleString()}`} />
+              <Line type="monotone" dataKey="ventas" strokeWidth={2} dot={{ r: 3 }} />
+            </LineChart>
+          </ResponsiveContainer>
 
         </div>
       </div>
