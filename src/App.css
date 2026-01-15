@@ -40,3 +40,46 @@
 .read-the-docs {
   color: #888;
 }
+/* =========================
+   ESTILOS EXCLUSIVOS PARA PDF
+   NO AFECTAN VISTAS NORMALES
+========================= */
+@media print {
+
+  /* Tamaño real de una hoja */
+  @page {
+    size: A4;
+    margin: 10mm;
+  }
+
+  /* Ajuste global SOLO al imprimir */
+  body {
+    margin: 0;
+    padding: 0;
+    zoom: 0.9;
+  }
+
+  /* Contenedor general del PDF */
+  .pdf-root {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Página única */
+  .pdf-page {
+    width: 210mm;
+    height: 297mm;
+    padding: 10mm;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  /* Evita que bloques (tablas, cards) se partan */
+  .pdf-block {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+}
+
+
