@@ -9,7 +9,7 @@ const DataField = ({ label, value, className = "" }: DataFieldProps) => (
 
     {/* LABEL */}
     <div className="
-      bg-[#28af60]
+      bg-[#2469A0]
       text-white
       text-[11px]
       uppercase
