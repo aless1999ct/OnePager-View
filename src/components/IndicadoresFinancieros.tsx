@@ -55,7 +55,7 @@ const CemTooltip = ({ active, payload }: any) => {
   if (payload[0].payload.name !== "CEM") return null;
 
   return (
-    <div className="bg-white border shadow-lg p-2 text-xs">
+    <div className="bg-white border shadow-lg p-2 text-xs print:hidden">
       <table>
         <thead>
           <tr className="font-bold">
@@ -88,7 +88,7 @@ const TotalTooltip = ({ active, payload }: any) => {
   const p = payload[0].payload;
 
   return (
-    <div className="bg-white border shadow p-2 text-xs">
+    <div className="bg-white border shadow p-2 text-xs print:hidden">
       <div><b>Total real:</b> S/. {p.real.toLocaleString()}</div>
       {p.proyeccion > 0 && (
         <div><b>Proyección:</b> S/. {p.proyeccion.toLocaleString()}</div>
@@ -115,7 +115,6 @@ const IndicadoresFinancieros = ({
 
   const months = ["Ene.","Feb.","Mar.","Abr.","May.","Jun.","Jul.","Ago.","Sep.","Oct.","Nov.","Dic."];
 
-  /* ===== Ventas Totales + Proyección 2025 ===== */
   const annualSalesData = useMemo(() => {
     return monthlySeries.map((s) => {
       const valid = s.data.filter(v => v > 0);
@@ -165,9 +164,9 @@ const IndicadoresFinancieros = ({
   const rtActualizadoAl = "10/2025";
 
   return (
-    <div className="bg-card border-2 border-primary rounded-lg shadow-lg mt-6 overflow-hidden">
+    <div className="bg-card border-2 border-primary rounded-lg shadow-lg mt-6 overflow-hidden pdf-block">
 
-      <div className="border-b-2 border-primary px-4 py-2">
+      <div className="border-b-2 border-primary px-4 py-2 pdf-block">
         <span className="text-primary font-bold text-lg">
           Indicadores Financieros
         </span>
@@ -175,21 +174,21 @@ const IndicadoresFinancieros = ({
 
       <div className="p-4 space-y-6">
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_2.6fr] gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_2.6fr] print:grid-cols-2 gap-6 pdf-block">
 
           {/* CEM */}
-          <div className="border-2 border-primary">
+          <div className="border-2 border-primary pdf-block">
             <div className="header-banner text-sm text-center">
               Capacidad de Endeudamiento Máximo
             </div>
             <div className="p-4">
-              <ResponsiveContainer width="100%" height={260}>
+              <ResponsiveContainer width="100%" height={200}>
                 <BarChart data={cemCuotaData} layout="vertical">
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis type="number" />
                   <YAxis type="category" dataKey="name" />
                   <Tooltip content={<CemTooltip />} />
-                  <Bar dataKey="value" barSize={26} />
+                  <Bar dataKey="value" barSize={22} />
                 </BarChart>
               </ResponsiveContainer>
               <div className="text-xs text-center mt-2 font-medium">
@@ -199,7 +198,7 @@ const IndicadoresFinancieros = ({
           </div>
 
           {/* RATIOS */}
-          <div className="border-2 border-primary">
+          <div className="border-2 border-primary pdf-block">
             <div className="header-banner text-sm text-center">
               Ratios Financieros
             </div>
@@ -233,15 +232,15 @@ const IndicadoresFinancieros = ({
         </div>
 
         {/* ===== GRÁFICOS ===== */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-2 border-primary p-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-6 border-2 border-primary p-4 pdf-block">
 
           {/* Ventas Totales */}
-          <div>
+          <div className="pdf-block">
             <div className="header-banner text-sm text-center mb-2">
               Ventas Totales
             </div>
 
-            <ResponsiveContainer width="100%" height={260}>
+            <ResponsiveContainer width="100%" height={200}>
               <BarChart data={annualSalesData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="anio" />
@@ -253,8 +252,8 @@ const IndicadoresFinancieros = ({
                   }
                 />
                 <Tooltip content={<TotalTooltip />} />
-                <Bar dataKey="real" stackId="a" fill="#000000" barSize={40} />
-                <Bar dataKey="proyeccion" stackId="a" fill="#9CA3AF" />
+                <Bar dataKey="real" stackId="a" barSize={32} />
+                <Bar dataKey="proyeccion" stackId="a" />
               </BarChart>
             </ResponsiveContainer>
 
@@ -264,18 +263,18 @@ const IndicadoresFinancieros = ({
           </div>
 
           {/* Ventas Declaradas */}
-          <div>
+          <div className="pdf-block">
             <div className="header-banner text-sm text-center mb-2">
               Ventas Declaradas - 2025
             </div>
 
-            <ResponsiveContainer width="100%" height={260}>
+            <ResponsiveContainer width="100%" height={200}>
               <LineChart data={ventasMensuales2025}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="mes" />
                 <YAxis tickFormatter={(v) => `S/. ${v / 1000}k`} />
                 <Tooltip formatter={(v: number) => `S/. ${v.toLocaleString()}`} />
-                <Line type="monotone" dataKey="ventas" strokeWidth={2} dot={{ r: 3 }} />
+                <Line type="monotone" dataKey="ventas" strokeWidth={2} dot={{ r: 2 }} />
               </LineChart>
             </ResponsiveContainer>
           </div>
