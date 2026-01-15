@@ -82,15 +82,15 @@ const ClientDetailsSection = ({
     : "verde";
 
   return (
-    <div className="bg-card border-2 border-primary rounded-lg shadow-lg mt-6 overflow-hidden">
+    <div className="bg-card border-2 border-primary rounded-lg shadow-lg mt-6 overflow-hidden pdf-block">
       <div className="p-4 space-y-8">
 
         {/* =========================
             RESUMEN
         ========================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-3 print:grid-cols-2 gap-6 items-stretch pdf-block">
 
-          <div className="border-2 border-primary flex flex-col">
+          <div className="border-2 border-primary flex flex-col pdf-block">
             <div className="header-banner text-xs text-center">
               Perfil del Cliente
             </div>
@@ -99,7 +99,7 @@ const ClientDetailsSection = ({
             </div>
           </div>
 
-          <div className="border-2 border-primary flex flex-col">
+          <div className="border-2 border-primary flex flex-col pdf-block">
             <div className="header-banner text-xs text-center">
               Políticas Comerciales
             </div>
@@ -108,7 +108,7 @@ const ClientDetailsSection = ({
             </div>
           </div>
 
-          <div className="border-2 border-primary flex flex-col">
+          <div className="border-2 border-primary flex flex-col pdf-block">
             <div className="header-banner text-xs text-center">
               Transaccionalidad
             </div>
@@ -147,23 +147,20 @@ const ClientDetailsSection = ({
         {/* =========================
             CRÉDITOS ANTERIORES
         ========================= */}
-        <div>
+        <div className="pdf-block">
           {/* HEADER CON SEMÁFORO INTEGRADO */}
           <div className="border-2 border-primary border-b-0">
             <div className="header-banner text-sm flex items-center justify-between px-3">
-              {/* Espaciador para centrar visualmente */}
               <span className="w-6" />
-
               <span className="font-bold">
                 Créditos Anteriores
               </span>
-
               <Semaforo estado="ambar" />
             </div>
           </div>
 
           {/* TABLA */}
-          <div className="overflow-x-auto border-2 border-primary border-t-0">
+          <div className="overflow-x-auto print:overflow-visible border-2 border-primary border-t-0 pdf-block">
             <table className="w-full text-xs">
               <thead>
                 <tr>
@@ -206,12 +203,12 @@ const ClientDetailsSection = ({
         {/* =========================
             RELACIONADOS
         ========================= */}
-        <div>
+        <div className="pdf-block">
           <div className="header-banner text-sm mb-2">
             Relacionados Bancarizados
           </div>
 
-          <div className="overflow-x-auto border-2 border-primary">
+          <div className="overflow-x-auto print:overflow-visible border-2 border-primary pdf-block">
             <table className="w-full text-xs">
               <thead>
                 <tr>
@@ -235,7 +232,7 @@ const ClientDetailsSection = ({
                     <td className="data-cell text-center">{a.participacion}</td>
                     <td className="data-cell text-center">
                       <input
-                        className="w-full border px-1 py-0.5 text-xs"
+                        className="w-full border px-1 py-0.5 text-xs print:border-0 print:bg-transparent"
                         value={puestos[i]}
                         onChange={(e) => {
                           const copy = [...puestos];
