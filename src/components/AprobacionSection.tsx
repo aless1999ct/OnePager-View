@@ -35,11 +35,11 @@ const AprobacionSection = ({
   );
 
   return (
-    <div className="bg-card border-2 border-primary rounded-lg overflow-visible shadow-lg mt-6">
+    <div className="bg-card border-2 border-primary rounded-lg overflow-visible shadow-lg mt-6 pdf-block">
       <div className="p-4 space-y-4">
 
         {/* COMENTARIO */}
-        <div className="border-2 border-primary p-3 space-y-2">
+        <div className="border-2 border-primary p-3 space-y-2 pdf-block">
           <div className="text-xs font-bold text-center uppercase text-primary">
             Comentario del analista
           </div>
@@ -48,17 +48,17 @@ const AprobacionSection = ({
             value={comentario}
             onChange={(e) => setComentario(e.target.value)}
             rows={4}
-            className="w-full text-xs text-center italic leading-relaxed bg-transparent outline-none resize-none"
+            className="w-full text-xs text-center italic leading-relaxed bg-transparent outline-none resize-none print:resize-none"
           />
         </div>
 
         {/* HEADER ESTADO */}
-        <div className="header-banner flex items-center justify-center gap-2 py-2">
+        <div className="header-banner flex items-center justify-center gap-2 py-2 pdf-block">
           <span className="font-bold text-base">Estado:</span>
           <select
             value={estado}
             onChange={(e) => setEstado(e.target.value)}
-            className="bg-white text-black border px-2 py-1 text-sm rounded appearance-none"
+            className="bg-white text-black border px-2 py-1 text-sm rounded appearance-none print:appearance-none"
           >
             <option value="Aprobado">Aprobado</option>
             <option value="Denegado">Denegado</option>
@@ -66,7 +66,7 @@ const AprobacionSection = ({
         </div>
 
         {/* TABLA DE PRODUCTO */}
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto print:overflow-visible pdf-block">
           <table className="w-full border-2 border-primary text-xs">
             <thead>
               <tr>
@@ -90,7 +90,7 @@ const AprobacionSection = ({
         </div>
 
         {/* CONDICIONES */}
-        <div className="flex items-center gap-2 text-xs">
+        <div className="flex items-center gap-2 text-xs pdf-block">
           <span className="font-medium">Condiciones:</span>
           <span className="text-muted-foreground">{condiciones}</span>
         </div>
@@ -99,7 +99,7 @@ const AprobacionSection = ({
         <div className="border-t-2 border-primary"></div>
 
         {/* FIRMAS */}
-        <div className="flex justify-end">
+        <div className="flex justify-end pdf-block">
           <table className="text-xs">
             <tbody>
               <tr>
@@ -117,7 +117,7 @@ const AprobacionSection = ({
                   <select
                     value={analista}
                     onChange={(e) => setAnalista(e.target.value)}
-                    className="border px-2 py-1 text-xs rounded w-full"
+                    className="border px-2 py-1 text-xs rounded w-full print:appearance-none"
                   >
                     <option value="__placeholder__" disabled>
                       Seleccionar analista
