@@ -32,7 +32,7 @@ interface IndicadoresFinancierosProps {
 }
 
 /* =========================
-   DATA DETALLE CEM (TOOLTIP)
+   DATA DETALLE CEM
 ========================= */
 const cemDetalle = [
   { concepto: "Ventas RT (+)", importe: 433097, part: "100%" },
@@ -48,17 +48,15 @@ const cemDetalle = [
 ];
 
 /* =========================
-   TOOLTIP CUSTOM CEM
+   TOOLTIP CEM
 ========================= */
 const CemTooltip = ({ active, payload }: any) => {
   if (!active || !payload?.length) return null;
-
-  const isCem = payload[0].payload.name === "CEM";
-  if (!isCem) return null;
+  if (payload[0].payload.name !== "CEM") return null;
 
   return (
     <div className="bg-white border shadow-lg p-2 text-xs">
-      <table className="border-collapse">
+      <table>
         <thead>
           <tr className="font-bold">
             <td className="pr-3">Concepto</td>
@@ -99,17 +97,37 @@ const IndicadoresFinancieros = ({
 
   const months = ["Ene.","Feb.","Mar.","Abr.","May.","Jun.","Jul.","Ago.","Sep.","Oct.","Nov.","Dic."];
 
+  /* =========================
+     VENTAS TOTALES (TOTAL + PROMEDIO)
+  ========================= */
   const annualSalesData = useMemo(() => {
     return monthlySeries.map((s) => {
-      const total = s.data.reduce((a, b) => a + b, 0);
-      const promedio = Math.round(total / s.data.filter(v => v > 0).length);
-      return { anio: s.year, promedio };
+      const valid = s.data.filter(v => v > 0);
+      const total = valid.reduce((a, b) => a + b, 0);
+      const promedio = Math.round(total / valid.length);
+
+      return {
+        anio: s.year,
+        total,
+        promedio,
+      };
     });
   }, []);
 
-  const ventasMensuales2025 = monthlySeries
-    .find((s) => s.year === "2025")!
-    .data.map((v, i) => ({ mes: months[i], ventas: v }));
+  /* =========================
+     VENTAS 2025 HASTA ÚLTIMO MES CON DATOS
+  ========================= */
+  const ventasMensuales2025 = useMemo(() => {
+    const data2025 = monthlySeries.find(s => s.year === "2025")!.data;
+
+    const lastIndex =
+      data2025.map((v, i) => (v > 0 ? i : -1)).filter(i => i !== -1).pop() ?? 0;
+
+    return data2025.slice(0, lastIndex + 1).map((v, i) => ({
+      mes: months[i],
+      ventas: v,
+    }));
+  }, []);
 
   const cem = Number(cemMensual);
   const cuotaNum = Number(cuota);
@@ -137,11 +155,7 @@ const IndicadoresFinancieros = ({
         ? { ...i, nombre: "Pasivo Financiero / Patrimonio" }
         : i
     ),
-    {
-      nombre: "Pasivo Total / Patrimonio",
-      valor2023: "--",
-      valor2024: "--",
-    },
+    { nombre: "Pasivo Total / Patrimonio", valor2023: "--", valor2024: "--" },
   ];
 
   const renderSection = (titulo: string, data: IndicadorData[]) => {
@@ -168,100 +182,40 @@ const IndicadoresFinancieros = ({
     );
   };
 
-  const evaluacionAnterior = "09/08/2025";
-
-
   return (
     <div className="bg-card border-2 border-primary rounded-lg shadow-lg mt-6 overflow-hidden">
-
-      <div className="border-b-2 border-primary px-4 py-2">
-        <span className="text-primary font-bold text-lg">
-          Indicadores Financieros
-        </span>
-      </div>
-
       <div className="p-4 space-y-6">
 
-        <div className="grid grid-cols-1 lg:grid-cols-[2.6fr_1.4fr] gap-6">
-
-          {/* TABLA */}
-          <div className="border-2 border-primary">
-            <div className="header-banner text-sm text-center">
-              Ratios Financieros
-            </div>
-          
-            <table className="w-full text-xs">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th className="data-label">Ratios</th>
-                  <th className="data-label">Ev. Ant.</th>
-                  <th className="data-label">Ev. Act.</th>
-                </tr>
-              </thead>
-              <tbody>
-                {renderSection("Actividad", indicadores.actividad)}
-                {renderSection("Rentabilidad", indicadores.rentabilidad)}
-                {renderSection("Liquidez", liquidezFiltrada)}
-                {renderSection("Endeudamiento", endeudamientoAjustado)}
-              </tbody>
-            </table>
-          
-            <div className="text-[11px] text-muted-foreground px-2 py-1">
-              Evaluación Anterior: {evaluacionAnterior}
-            </div>
-          </div>
-
-          {/* CEM */}
-          <div className="border-2 border-primary">
-            <div className="header-banner text-sm text-center">
-              Capacidad de Endeudamiento Máximo
-            </div>
-
-            <div className="p-4">
-              <ResponsiveContainer width="100%" height={260}>
-                <BarChart
-                  data={cemCuotaData}
-                  layout="vertical"
-                  margin={{ top: 40, bottom: 40, left: 20, right: 20 }}
-                >
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis type="number" tickFormatter={(v) => `S/. ${v.toLocaleString()}`} />
-                  <YAxis type="category" dataKey="name" />
-                  <Tooltip content={<CemTooltip />} />
-                  <Bar dataKey="value" barSize={26} />
-                </BarChart>
-              </ResponsiveContainer>
-
-              <div className="text-xs text-center mt-2 font-medium">
-                {comparisonText}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* OTROS GRÁFICOS */}
+        {/* VENTAS */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-2 border-primary p-4">
 
+          {/* VENTAS TOTALES */}
           <div>
             <div className="header-banner text-sm text-center mb-2">
               Ventas Totales
             </div>
+
             <ResponsiveContainer width="100%" height={260}>
               <BarChart data={annualSalesData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="anio" />
-                <YAxis tickFormatter={(v) => `S/. ${v / 1000}k`} />
-                <Tooltip formatter={(v: number) => `S/. ${v.toLocaleString()}`} />
-                <Bar dataKey="promedio" barSize={40} />
+                <YAxis tickFormatter={(v) => `S/. ${v / 1_000_000} MM`} />
+                <Tooltip
+                  formatter={(_, __, p) =>
+                    [`Promedio mensual: S/. ${p.payload.promedio.toLocaleString()}`, ""]
+                  }
+                />
+                <Bar dataKey="total" barSize={40} />
               </BarChart>
             </ResponsiveContainer>
           </div>
 
+          {/* VENTAS DECLARADAS */}
           <div>
             <div className="header-banner text-sm text-center mb-2">
-              Ventas Declaradas - 2025
+              Ventas Declaradas – 2025
             </div>
+
             <ResponsiveContainer width="100%" height={260}>
               <LineChart data={ventasMensuales2025}>
                 <CartesianGrid strokeDasharray="3 3" />
