@@ -88,7 +88,7 @@ const ClientDetailsSection = ({
         {/* =========================
             RESUMEN
         ========================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 print:grid-cols-2 gap-6 items-stretch pdf-block">
+        <div className="grid grid-cols-1 lg:grid-cols-3 print:grid-cols-3 gap-6 items-stretch pdf-block">
 
           <div className="border-2 border-primary flex flex-col pdf-block">
             <div className="header-banner text-xs text-center">
