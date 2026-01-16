@@ -140,9 +140,9 @@ const CompanyDataCard = ({ data }: CompanyDataCardProps) => {
           <DataField label="Ubicación" value={data.ubicacion} className="col-span-2" />
           <DataField label="Giro" value={data.giro} className="col-span-4" />
           {/*<DataField label="Sub Giro" value={data.subGiro} className="col-span-2" />*/}
-          <DataField label="Inicio" value={data.inicio} className="col-span-1" />
+          <DataField label="Inicio" value={data.inicio} className="col-span-2" />
           <DataField label="IBK Desde" value={data.ibkDesde} className="col-span-2" />
-          <DataField label="Score" value={data.score} className="col-span-3" />
+          <DataField label="Score" value={data.score} className="col-span-2" />
         </div>
 
         {/* ================= FILA 2 ================= */}
