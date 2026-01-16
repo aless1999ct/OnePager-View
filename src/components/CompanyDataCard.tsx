@@ -5,12 +5,12 @@ interface DataFieldProps {
 }
 
 const DataField = ({ label, value, className = "" }: DataFieldProps) => (
-  <div className={`border border-[#2469A0] flex flex-col ${className} pdf-block`}>
+  <div className={`border border-[#28af60] flex flex-col ${className} pdf-block`}>
 
     {/* LABEL */}
     <div
       className="
-        bg-[#2469A0]
+        bg-[#28af60]
         text-white
         text-[11px]
         uppercase
