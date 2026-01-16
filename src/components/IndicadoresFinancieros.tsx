@@ -204,6 +204,15 @@ const IndicadoresFinancieros = ({
             </div>
 
             <table className="w-full text-xs">
+              <table className="w-full text-xs">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th></th>
+                    <th className="data-label text-center">Ev. Ant.</th>
+                    <th className="data-label text-center">Ev. Act.</th>
+                  </tr>
+                </thead>
               <tbody>
                 {[["Actividad", indicadores.actividad],
                   ["Liquidez", liquidezFiltrada],
@@ -249,7 +258,7 @@ const IndicadoresFinancieros = ({
                   tick={{ frontSize: 11}}
                   tickFormatter={(v) =>
                     v >= 1_000_000
-                      ? `S/. ${(v / 1_000_000).toFixed(1)}NM`
+                      ? `S/. ${(v / 1_000_000).toFixed(1)}MM`
                       : `S/. ${(v / 1_000).toFixed(0)}k`
                   }
                 />
