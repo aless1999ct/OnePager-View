@@ -27,14 +27,14 @@ const Index = () => {
     score: "MEDIO",
 
     producto: "Capital de Trabajo",
-    montoSolicitado: "1 NM",
-    montoAprobado: "1 NM",
+    montoSolicitado: "1 MM",
+    montoAprobado: "1 MM",
     plazoMeses: "36 meses",
 
     sowActual: "35%",
     sowAlcanzado: "50%",
 
-    garantias: "27 NM - almacén",
+    garantias: "27 MM - almacén",
     rma: "--",
     direccion: "Jr. Aguirre Nro. 1154",
     fuentes: "Reporte Tributario",
@@ -118,12 +118,12 @@ const Index = () => {
   const aprobacionData = {
     producto: {
       producto: "Capital de Trabajo",
-      monto: "S/ 1 NM",
+      monto: "S/ 1 MM",
       cuotaInicial: "0",
-      importeFinanciar: "S/. 1 NM",
+      importeFinanciar: "S/. 1 MM",
       plazo: "36 meses",
       finalidad: "Compra de Mercancías",
-      hipotecas: "S/. 2,7 NM",
+      hipotecas: "S/. 2,7 MM",
     },
     observacion:
       "La empresa muestra recuperación en ventas 2025, adecuada posición de liquidez...",
