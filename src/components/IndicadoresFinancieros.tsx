@@ -188,7 +188,7 @@ const IndicadoresFinancieros = ({
                   <XAxis type="number" />
                   <YAxis type="category" dataKey="name" />
                   <Tooltip content={<CemTooltip />} />
-                  <Bar dataKey="value" barSize={22} />
+                  <Bar dataKey="value" barSize={22} fill="#28af60" />
                 </BarChart>
               </ResponsiveContainer>
               <div className="text-xs text-center mt-2 font-medium">
@@ -252,8 +252,8 @@ const IndicadoresFinancieros = ({
                   }
                 />
                 <Tooltip content={<TotalTooltip />} />
-                <Bar dataKey="real" stackId="a" barSize={32} />
-                <Bar dataKey="proyeccion" stackId="a" />
+                <Bar dataKey="real" stackId="a" barSize={32} fill="#28af60" />
+                <Bar dataKey="proyeccion" stackId="a" fill="#0836a6" />
               </BarChart>
             </ResponsiveContainer>
 
