@@ -245,7 +245,8 @@ const IndicadoresFinancieros = ({
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="anio" />
                 <YAxis
-                  width={70}
+                  width={90}
+                  tick={{ frontSize: 11}}
                   tickFormatter={(v) =>
                     v >= 1_000_000
                       ? `S/. ${(v / 1_000_000).toFixed(1)}NM`
