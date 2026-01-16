@@ -15,7 +15,7 @@ const Index = () => {
     nombreEmpresa: "PLÁSTICOS Y PAPELES SAC",
     rec: "20451340167",
     fecha: "02/01/2025",
-    flujoEva: "Flujo Regular Portafolio",
+    flujoEva: "Regular",
     canal: "Tienda IN",
     ubicacion: "Loreto, Iquitos",
 
