@@ -204,7 +204,6 @@ const IndicadoresFinancieros = ({
             </div>
 
             <table className="w-full text-xs">
-              <table className="w-full text-xs">
                 <thead>
                   <tr>
                     <th></th>
