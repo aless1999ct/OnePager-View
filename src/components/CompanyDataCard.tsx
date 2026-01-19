@@ -97,38 +97,39 @@ const CompanyDataCard = ({ data }: CompanyDataCardProps) => {
               RUC: {data.rec}
             </div>
           </div>
-
           {/* Cliente / Flujo / Canal */}
-          <div className="flex gap-6">
-
+          <div className="flex gap-8 items-center">
+          
             <div className="text-center">
-              <div className="text-[11px] text-muted-foreground uppercase">
+              <div className="text-[11px] text-muted-foreground uppercase tracking-wide">
                 Cliente
               </div>
-              <div className="text-sm font-medium">
+              <div className="text-lg font-bold leading-tight">
                 Bank
               </div>
             </div>
-
+          
             <div className="text-center">
-              <div className="text-[11px] text-muted-foreground uppercase">
+              <div className="text-[11px] text-muted-foreground uppercase tracking-wide">
                 Flujo
               </div>
-              <div className="text-sm font-medium">
+              <div className="text-lg font-bold leading-tight">
                 {data.flujoEva}
               </div>
             </div>
-
+          
             <div className="text-center">
-              <div className="text-[11px] text-muted-foreground uppercase">
+              <div className="text-[11px] text-muted-foreground uppercase tracking-wide">
                 Canal
               </div>
-              <div className="text-sm font-medium">
+              <div className="text-lg font-bold leading-tight">
                 {data.canal}
               </div>
             </div>
-
+          
           </div>
+
+          
         </div>
       </div>
 
