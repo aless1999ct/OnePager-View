@@ -177,25 +177,39 @@ const IndicadoresFinancieros = ({
         <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_2.6fr] print:grid-cols-2 gap-6 pdf-block">
 
           {/* CEM */}
-          <div className="border-2 border-primary pdf-block">
-            <div className="header-banner text-sm text-center">
-              Capacidad de Endeudamiento Máximo
-            </div>
-            <div className="p-4">
-              <ResponsiveContainer width="100%" height={200}>
-                <BarChart data={cemCuotaData} layout="vertical">
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis type="number" />
-                  <YAxis type="category" dataKey="name" />
-                  <Tooltip content={<CemTooltip />} />
-                  <Bar dataKey="value" barSize={22} fill="#28af60" />
-                </BarChart>
-              </ResponsiveContainer>
-              <div className="text-xs text-center mt-2 font-medium">
-                CUOTA ES {percent}% DEL CEM
-              </div>
+        <div className="border-2 border-primary pdf-block">
+          <div className="header-banner text-sm text-center">
+            Capacidad de Endeudamiento Máximo
+          </div>
+        
+          <div className="p-3">
+            <table className="w-full text-xs border-collapse">
+              <thead>
+                <tr className="font-bold border-b border-primary">
+                  <td className="pr-2">Concepto</td>
+                  <td className="pr-2 text-right">Importe</td>
+                  <td className="text-right">%</td>
+                </tr>
+              </thead>
+              <tbody>
+                {cemDetalle.map((r, i) => (
+                  <tr key={i} className="border-b last:border-b-0">
+                    <td className="pr-2">{r.concepto}</td>
+                    <td className="pr-2 text-right">
+                      S/. {r.importe.toLocaleString()}
+                    </td>
+                    <td className="text-right">{r.part}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+        
+            <div className="text-xs text-center mt-3 font-medium">
+              CUOTA ES {percent}% DEL CEM
             </div>
           </div>
+        </div>
+
 
           {/* RATIOS */}
           <div className="border-2 border-primary pdf-block">
