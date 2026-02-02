@@ -218,7 +218,7 @@ const ClientDetailsSection = ({
                   <th className="data-label">Clas.</th>
                   <th className="data-label">Edad</th>
                   <th className="data-label">Participación %</th>
-                  <th className="data-label">Puesto</th>
+                  <th className="data-label">Cargo</th>
                   <th className="data-label">Deuda SBS</th>
                   <th className="data-label">Máx. Deuda</th>
                 </tr>
