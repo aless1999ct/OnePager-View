@@ -148,15 +148,13 @@ const ClientDetailsSection = ({
             CRÉDITOS ANTERIORES
         ========================= */}
         <div className="pdf-block">
-          {/* HEADER CON SEMÁFORO INTEGRADO */}
-          <div className="border-2 border-primary border-b-0">
-            <div className="header-banner text-sm flex items-center justify-between px-3">
-              <span className="w-6" />
-              <span className="font-bold">
-                Créditos Anteriores
-              </span>
-              <Semaforo estado="ambar" />
-            </div>
+          
+          <div className="header-banner text-sm flex items-center justify-center px-3">
+           <span className="font-bold">
+             Créditos Anteriores
+           </span>
+         </div>
+
           </div>
 
           {/* TABLA */}
@@ -190,9 +188,10 @@ const ClientDetailsSection = ({
                     <td className="data-cell text-center">
                       {credito.promedioDiasAtraso}
                     </td>
-                    <td className="data-cell text-center text-muted-foreground font-semibold">
-                      --
-                    </td>
+                    <td className="data-cell text-center flex justify-center">
+                       <Semaforo estado={calcularSemaforo(credito.ratio24)} />
+                     </td>
+
                   </tr>
                 ))}
               </tbody>
