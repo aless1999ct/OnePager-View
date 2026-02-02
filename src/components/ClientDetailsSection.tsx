@@ -143,23 +143,25 @@ const ClientDetailsSection = ({
             </table>
           </div>
         </div>
+         {/* =========================
+             CRÉDITOS ANTERIORES
+         ========================= */}
+         <div className="pdf-block">
+         
+           <div className="border-2 border-primary border-b-0">
+             <div className="header-banner text-sm flex items-center justify-center px-3">
+               <span className="font-bold">
+                 Créditos Anteriores
+               </span>
+             </div>
+           </div>
+         
+           {/* TABLA */}
+           <div className="overflow-x-auto print:overflow-visible border-2 border-primary border-t-0 pdf-block">
 
-        {/* =========================
-            CRÉDITOS ANTERIORES
-        ========================= */}
-        <div className="pdf-block">
-          
-          <div className="header-banner text-sm flex items-center justify-center px-3">
-           <span className="font-bold">
-             Créditos Anteriores
-           </span>
-         </div>
 
-          </div>
-
-          {/* TABLA */}
-          <div className="overflow-x-auto print:overflow-visible border-2 border-primary border-t-0 pdf-block">
-            <table className="w-full text-xs">
+         
+         <table className="w-full text-xs">
               <thead>
                 <tr>
                   <th className="data-label">Sujeto de Crédito</th>
