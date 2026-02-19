@@ -48,57 +48,6 @@ const cemDetalle = [
 ];
 
 /* =========================
-   TOOLTIP CUSTOM CEM
-========================= */
-const CemTooltip = ({ active, payload }: any) => {
-  if (!active || !payload?.length) return null;
-  if (payload[0].payload.name !== "CEM") return null;
-
-  return (
-    <div className="bg-white border shadow-lg p-2 text-xs print:hidden">
-      <table>
-        <thead>
-          <tr className="font-bold">
-            <td className="pr-3">Concepto</td>
-            <td className="pr-3 text-right">Importe</td>
-            <td className="text-right">%</td>
-          </tr>
-        </thead>
-        <tbody>
-          {cemDetalle.map((r, i) => (
-            <tr key={i}>
-              <td className="pr-3">{r.concepto}</td>
-              <td className="pr-3 text-right">
-                S/. {r.importe.toLocaleString()}
-              </td>
-              <td className="text-right">{r.part}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-};
-
-/* =========================
-   TOOLTIP VENTAS TOTALES
-========================= */
-const TotalTooltip = ({ active, payload }: any) => {
-  if (!active || !payload?.length) return null;
-  const p = payload[0].payload;
-
-  return (
-    <div className="bg-white border shadow p-2 text-xs print:hidden">
-      <div><b>Total real:</b> S/. {p.real.toLocaleString()}</div>
-      {p.proyeccion > 0 && (
-        <div><b>Proyección:</b> S/. {p.proyeccion.toLocaleString()}</div>
-      )}
-      <div><b>Promedio mensual:</b> S/. {p.promedio.toLocaleString()}</div>
-    </div>
-  );
-};
-
-/* =========================
    COMPONENTE
 ========================= */
 const IndicadoresFinancieros = ({
@@ -146,11 +95,6 @@ const IndicadoresFinancieros = ({
   const cuotaNum = Number(cuota);
   const percent = cem === 0 ? 0 : Math.round((cuotaNum / cem) * 100);
 
-  const cemCuotaData = [
-    { name: "CEM", value: cem },
-    { name: "Cuota", value: cuotaNum },
-  ];
-
   const liquidezFiltrada = indicadores.liquidez.filter(
     i => i.nombre !== "Ciclo Operativo"
   );
@@ -164,68 +108,67 @@ const IndicadoresFinancieros = ({
   const rtActualizadoAl = "10/2025";
 
   return (
-    <div className="bg-card border-2 border-primary rounded-lg shadow-lg mt-6 overflow-hidden pdf-block">
+    <div className="bg-card border border-primary rounded-md shadow mt-4 pdf-block">
 
-      <div className="border-b-2 border-primary px-4 py-2 pdf-block">
-        <span className="text-primary font-bold text-lg">
+      <div className="border-b border-primary px-3 py-1.5 pdf-block">
+        <span className="text-primary font-bold text-[16px]">
           Indicadores Financieros
         </span>
       </div>
 
-      <div className="p-4 space-y-6">
+      <div className="p-3 space-y-4">
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_2.6fr] print:grid-cols-2 gap-6 pdf-block">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_2.6fr] print:grid-cols-2 gap-4 pdf-block">
 
           {/* CEM */}
-        <div className="border-2 border-primary pdf-block">
-          <div className="header-banner text-sm text-center">
-            Capacidad de Endeudamiento Máximo
-          </div>
-        
-          <div className="p-3">
-            <table className="w-full text-xs border-collapse">
-              <thead>
-                <tr className="font-bold border-b border-primary">
-                  <td className="pr-2">Concepto</td>
-                  <td className="pr-2 text-right">Importe</td>
-                  <td className="text-right">%</td>
-                </tr>
-              </thead>
-              <tbody>
-                {cemDetalle.map((r, i) => (
-                  <tr key={i} className="border-b last:border-b-0">
-                    <td className="pr-2">{r.concepto}</td>
-                    <td className="pr-2 text-right">
-                      S/. {r.importe.toLocaleString()}
-                    </td>
-                    <td className="text-right">{r.part}</td>
+          <div className="border border-primary pdf-block">
+            <div className="header-banner text-[12px] text-center py-1">
+              Capacidad de Endeudamiento Máximo
+            </div>
+
+            <div className="p-2">
+              <table className="w-full text-[11px] border-collapse">
+                <thead>
+                  <tr className="font-semibold border-b border-primary">
+                    <td className="pr-2">Concepto</td>
+                    <td className="pr-2 text-right">Importe</td>
+                    <td className="text-right">%</td>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-        
-            <div className="text-xs text-center mt-3 font-medium">
-              CUOTA ES {percent}% DEL CEM
+                </thead>
+                <tbody>
+                  {cemDetalle.map((r, i) => (
+                    <tr key={i} className="border-b last:border-b-0">
+                      <td className="pr-2 py-0.5">{r.concepto}</td>
+                      <td className="pr-2 text-right py-0.5">
+                        S/. {r.importe.toLocaleString()}
+                      </td>
+                      <td className="text-right py-0.5">{r.part}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+
+              <div className="text-[11px] text-center mt-2 font-medium">
+                CUOTA ES {percent}% DEL CEM
+              </div>
             </div>
           </div>
-        </div>
-
 
           {/* RATIOS */}
-          <div className="border-2 border-primary pdf-block">
-            <div className="header-banner text-sm text-center">
+          <div className="border border-primary pdf-block">
+            <div className="header-banner text-[12px] text-center py-1">
               Ratios Financieros
             </div>
 
-            <table className="w-full text-xs">
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th></th>
-                    <th className="data-label text-center">Ev. Ant.</th>
-                    <th className="data-label text-center">Ev. Act.</th>
-                  </tr>
-                </thead>
+            <table className="w-full text-[11px]">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th className="data-label text-center">Ev. Ant.</th>
+                  <th className="data-label text-center">Ev. Act.</th>
+                </tr>
+              </thead>
               <tbody>
                 {[["Actividad", indicadores.actividad],
                   ["Liquidez", liquidezFiltrada],
@@ -234,69 +177,69 @@ const IndicadoresFinancieros = ({
                   data.map((r: any, j: number) => (
                     <tr key={`${i}-${j}`}>
                       {j === 0 && (
-                        <td rowSpan={data.length} className="data-label text-center font-bold">
+                        <td rowSpan={data.length} className="data-label text-center font-semibold">
                           {titulo}
                         </td>
                       )}
-                      <td className="data-cell">{r.nombre}</td>
-                      <td className="data-cell text-center">{r.valor2023}</td>
-                      <td className="data-cell text-center">{r.valor2024}</td>
+                      <td className="data-cell py-0.5">{r.nombre}</td>
+                      <td className="data-cell text-center py-0.5">{r.valor2023}</td>
+                      <td className="data-cell text-center py-0.5">{r.valor2024}</td>
                     </tr>
                   ))
                 )}
               </tbody>
             </table>
 
-            <div className="text-[11px] text-muted-foreground px-2 py-1">
+            <div className="text-[10px] text-muted-foreground px-2 py-1">
               Evaluación Anterior: {evaluacionAnterior}
             </div>
           </div>
         </div>
 
-        {/* ===== GRÁFICOS ===== */}
-        <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-6 border-2 border-primary p-4 pdf-block">
+        {/* GRÁFICOS */}
+        <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-4 border border-primary p-3 pdf-block">
 
           {/* Ventas Totales */}
           <div className="pdf-block">
-            <div className="header-banner text-sm text-center mb-2">
+            <div className="header-banner text-[12px] text-center mb-1">
               Ventas Totales
             </div>
 
-            <ResponsiveContainer width="100%" height={200}>
+            <ResponsiveContainer width="100%" height={170}>
               <BarChart data={annualSalesData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="anio" />
                 <YAxis
-                  width={90}
-                  tick={{ frontSize: 11}}
+                  width={80}
+                  tick={{ fontSize: 10 }}
                   tickFormatter={(v) =>
                     v >= 1_000_000
                       ? `S/. ${(v / 1_000_000).toFixed(1)}MM`
                       : `S/. ${(v / 1_000).toFixed(0)}k`
                   }
                 />
-                <Tooltip content={<TotalTooltip />} />
-                <Bar dataKey="real" stackId="a" barSize={32} fill="#28af60" />
+                <Tooltip />
+                <Bar dataKey="real" stackId="a" barSize={26} fill="#28af60" />
                 <Bar dataKey="proyeccion" stackId="a" fill="#0836a6" />
               </BarChart>
             </ResponsiveContainer>
 
-            <div className="text-[11px] text-muted-foreground mt-1 text-center">
+            <div className="text-[10px] text-muted-foreground mt-1 text-center">
               RT actualizado al: {rtActualizadoAl}
             </div>
           </div>
 
           {/* Ventas Declaradas */}
           <div className="pdf-block">
-            <div className="header-banner text-sm text-center mb-2">
+            <div className="header-banner text-[12px] text-center mb-1">
               Ventas Declaradas - 2025
             </div>
 
-            <ResponsiveContainer width="100%" height={200}>
+            <ResponsiveContainer width="100%" height={170}>
               <LineChart data={ventasMensuales2025}>
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="mes" />
-                <YAxis tickFormatter={(v) => `S/. ${v / 1000}k`} />
+                <XAxis dataKey="mes" tick={{ fontSize: 10 }} />
+                <YAxis tick={{ fontSize: 10 }} tickFormatter={(v) => `S/. ${v / 1000}k`} />
                 <Tooltip formatter={(v: number) => `S/. ${v.toLocaleString()}`} />
                 <Line type="monotone" dataKey="ventas" strokeWidth={2} dot={{ r: 2 }} />
               </LineChart>
