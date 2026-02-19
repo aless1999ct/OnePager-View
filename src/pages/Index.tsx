@@ -37,7 +37,7 @@ const Index = () => {
     garantias: "27 MM - almacén",
     rma: "--",
     direccion: "Jr. Aguirre Nro. 1154",
-    fuentes: "Reporte Tributario",
+    fuentes: "Alquilado",
   };
 
   const transaccionalidadData = {
