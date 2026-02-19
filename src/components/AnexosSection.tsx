@@ -35,6 +35,21 @@ const AnexosSection = () => {
     { name: "INTERBANK", value: 21.7, color: "#eab308" },
     { name: "SCOTIABANK", value: 4.0, color: "#f97316" },
   ];
+
+    const flujoIzipayData = [
+    { mes: "Enero", ibk: 100, otros: 50 },
+    { mes: "Febrero", ibk: 70, otros: 70 },
+    { mes: "Marzo", ibk: 50, otros: 30 },
+    { mes: "Abril", ibk: 80, otros: 30 },
+    { mes: "Mayo", ibk: 210, otros: 120 },
+    { mes: "Junio", ibk: 60, otros: 310 },
+    { mes: "Julio", ibk: 230, otros: 100 },
+    { mes: "Agosto", ibk: 80, otros: 60 },
+    { mes: "Septiembre", ibk: 20, otros: 45 },
+    { mes: "Octubre", ibk: 55, otros: 40 },
+    { mes: "Noviembre", ibk: 85, otros: 85 },
+    { mes: "Diciembre", ibk: 50, otros: 75 },
+  ];
   
   return (
     <div className="bg-card border border-primary rounded-md shadow mt-8 pdf-block print:break-before-page">
@@ -339,6 +354,46 @@ const AnexosSection = () => {
 
         </div>
 
+        {/* ================= FLUJO IZIPAY ================= */}
+        <h2 className="text-primary font-semibold text-[14px]">
+          Flujo izipay
+        </h2>
+        
+        <div className="border border-primary p-4">
+        
+          <div className="text-[12px] font-semibold text-center mb-3">
+            Flujo Izipay Ultimos 12 meses
+          </div>
+        
+          <ResponsiveContainer width="100%" height={260}>
+            <LineChart data={flujoIzipayData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="mes" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+        
+              <Line
+                type="monotone"
+                dataKey="ibk"
+                stroke="#2563eb"
+                strokeWidth={3}
+                dot={{ r: 4 }}
+                name="IBK"
+              />
+        
+              <Line
+                type="monotone"
+                dataKey="otros"
+                stroke="#ea580c"
+                strokeWidth={3}
+                dot={{ r: 4 }}
+                name="Otros Bancos"
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        
+        </div>
       
       </div>
     </div>
