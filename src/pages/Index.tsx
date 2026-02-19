@@ -2,6 +2,7 @@ import CompanyDataCard from "@/components/CompanyDataCard";
 import ClientDetailsSection from "@/components/ClientDetailsSection";
 import IndicadoresFinancieros from "@/components/IndicadoresFinancieros";
 import AprobacionSection from "@/components/AprobacionSection";
+import AnexosSection from "@/components/AnexosSection";
 import { Button } from "@/components/ui/button";
 import { FileDown } from "lucide-react";
 import { useState } from "react";
@@ -204,6 +205,9 @@ const Index = () => {
               condiciones={aprobacionData.condiciones}
               firmas={aprobacionData.firmas}
             />
+
+            <AnexosSection />
+            
           </article>
         </div>
       </main>
