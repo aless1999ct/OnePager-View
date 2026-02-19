@@ -165,7 +165,7 @@ const CompanyDataCard = ({ data }: CompanyDataCardProps) => {
             className="col-span-9"
           />
           <DataField
-            label="Fuentes"
+            label="Predio"
             value={data.fuentes}
             className="col-span-3"
           />
