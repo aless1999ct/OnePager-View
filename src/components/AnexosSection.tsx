@@ -397,7 +397,52 @@ const AnexosSection = () => {
           </ResponsiveContainer>
         
         </div>
-      
+
+        {/* ================= DEUDAS TRIBUTARIAS ================= */}
+        <h2 className="text-primary font-semibold text-[14px]">
+          Deudas Tributarias ?
+        </h2>
+        
+        <div className="border border-primary">
+          <table className="w-full text-[11px]">
+            <thead>
+              <tr>
+                <th className="data-label py-1 text-center">Tipos</th>
+                <th className="data-label py-1 text-center">Desde</th>
+                <th className="data-label py-1 text-center">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="data-cell py-1">Coactiva</td>
+                <td className="data-cell py-1 text-center"></td>
+                <td className="data-cell py-1 text-center"></td>
+              </tr>
+              <tr>
+                <td className="data-cell py-1">Omisiones Recurrentes</td>
+                <td className="data-cell py-1 text-center"></td>
+                <td className="data-cell py-1 text-center"></td>
+              </tr>
+              <tr>
+                <td className="data-cell py-1">Multas</td>
+                <td className="data-cell py-1 text-center"></td>
+                <td className="data-cell py-1 text-center"></td>
+              </tr>
+              <tr>
+                <td className="data-cell py-1">Protestos</td>
+                <td className="data-cell py-1 text-center"></td>
+                <td className="data-cell py-1 text-center"></td>
+              </tr>
+              <tr>
+                <td className="data-cell py-1">Deudas Laborales</td>
+                <td className="data-cell py-1 text-center"></td>
+                <td className="data-cell py-1 text-center"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        
       </div>
     </div>
   );
