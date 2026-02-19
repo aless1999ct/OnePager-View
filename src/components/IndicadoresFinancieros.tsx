@@ -121,7 +121,7 @@ const IndicadoresFinancieros = ({
         <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_2.6fr] print:grid-cols-2 gap-4">
   
           {/* CEM */}
-          <div className="border border-primary pdf-block">
+          <div className="border border-primary">
             <div className="header-banner text-[12px] text-center py-1">
               Capacidad de Endeudamiento Máximo
             </div>
@@ -155,7 +155,7 @@ const IndicadoresFinancieros = ({
           </div>
   
           {/* RATIOS */}
-          <div className="border border-primary pdf-block">
+          <div className="border border-primary">
             <div className="header-banner text-[12px] text-center py-1">
               Ratios Financieros
             </div>
@@ -197,7 +197,7 @@ const IndicadoresFinancieros = ({
         </div>
   
         {/* GRÁFICOS */}
-        <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-4 border border-primary p-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-4 border border-primary p-3 print:break-inside-avoid">
   
           {/* Ventas Totales */}
           <div>
