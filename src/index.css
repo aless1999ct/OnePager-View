@@ -140,15 +140,13 @@
   }
 
   .one-pager {
-    position: static;
-    width: 210mm;
-    min-height: 297mm;   /* 👈 CLAVE */
-    height: auto;        /* 👈 CLAVE */
-    overflow: visible;   /* 👈 CLAVE */
-    margin: 0 auto;
-    background: white;
+  position: static;
+  width: 210mm;
+  height: 297mm;     /* 👈 fija A4 exacto */
+  overflow: hidden;  /* 👈 evita que se desborde */
+  margin: 0 auto;
+  background: white;
   }
-
   /* Saltos de página automáticos */
   .page-break {
     page-break-before: always;
@@ -164,5 +162,17 @@
     break-inside: avoid;
     page-break-inside: avoid;
   }
+
+  @page {
+  size: A4;
+  margin: 8mm;  /* margen pequeño controlado */
+}
+
+body {
+  zoom: 0.92;   /* 👈 ajusta escala */
+}
+
+    
+
   
 }
