@@ -1,4 +1,4 @@
-  import {
+import {
   BarChart,
   Bar,
   PieChart,
@@ -9,6 +9,9 @@
   Tooltip,
   CartesianGrid,
   ResponsiveContainer,
+  LineChart,
+  Line,
+  Legend,
 } from "recharts";
 
 const AnexosSection = () => {
