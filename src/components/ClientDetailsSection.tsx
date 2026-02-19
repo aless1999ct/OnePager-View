@@ -84,7 +84,7 @@ const ClientDetailsSection = ({
         {/* =========================
             RESUMEN
         ========================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 print:grid-cols-3 gap-3 items-stretch pdf-block">
+        <div className="grid grid-cols-1 lg:grid-cols-2 print:grid-cols-2 gap-3 items-stretch pdf-block">
 
           <div className="border border-primary flex flex-col pdf-block">
             <div className="header-banner text-[11px] text-center py-0.5">
@@ -95,14 +95,7 @@ const ClientDetailsSection = ({
             </div>
           </div>
 
-          <div className="border border-primary flex flex-col pdf-block">
-            <div className="header-banner text-[11px] text-center py-0.5">
-              Políticas Comerciales
-            </div>
-            <div className="data-cell text-[11px] px-2 py-2 text-center flex-1 flex items-center justify-center leading-snug">
-              {politicasComerciales}
-            </div>
-          </div>
+         
 
           <div className="border border-primary flex flex-col pdf-block">
             <div className="header-banner text-[11px] text-center py-0.5">
@@ -154,9 +147,9 @@ const ClientDetailsSection = ({
             <table className="w-full text-[11px]">
               <thead>
                 <tr>
-                  <th className="data-label py-0.5">Sujeto de Crédito</th>
+                  <th className="data-label py-0.5">Ultimo Crédito</th>
                   <th className="data-label py-0.5">Producto</th>
-                  <th className="data-label py-0.5">Monto a Deber</th>
+                  <th className="data-label py-0.5">SALDO / CAPITAL</th>
                   <th className="data-label py-0.5">Cuotas por Pagar</th>
                   <th className="data-label py-0.5">Prom. Días Atraso</th>
                   <th className="data-label py-0.5">Status</th>
