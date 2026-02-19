@@ -108,24 +108,24 @@ const IndicadoresFinancieros = ({
   const rtActualizadoAl = "10/2025";
 
   return (
-    <div className="bg-card border border-primary rounded-md shadow mt-4 pdf-block">
-
-      <div className="border-b border-primary px-3 py-1.5 pdf-block">
+    <div className="bg-card border border-primary rounded-md shadow mt-4">
+  
+      <div className="border-b border-primary px-3 py-1.5">
         <span className="text-primary font-bold text-[16px]">
           Indicadores Financieros
         </span>
       </div>
-
+  
       <div className="p-3 space-y-4">
-
-        <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_2.6fr] print:grid-cols-2 gap-4 pdf-block">
-
+  
+        <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_2.6fr] print:grid-cols-2 gap-4">
+  
           {/* CEM */}
           <div className="border border-primary pdf-block">
             <div className="header-banner text-[12px] text-center py-1">
               Capacidad de Endeudamiento Máximo
             </div>
-
+  
             <div className="p-2">
               <table className="w-full text-[11px] border-collapse">
                 <thead>
@@ -147,19 +147,19 @@ const IndicadoresFinancieros = ({
                   ))}
                 </tbody>
               </table>
-
+  
               <div className="text-[11px] text-center mt-2 font-medium">
                 CUOTA ES {percent}% DEL CEM
               </div>
             </div>
           </div>
-
+  
           {/* RATIOS */}
           <div className="border border-primary pdf-block">
             <div className="header-banner text-[12px] text-center py-1">
               Ratios Financieros
             </div>
-
+  
             <table className="w-full text-[11px]">
               <thead>
                 <tr>
@@ -189,22 +189,22 @@ const IndicadoresFinancieros = ({
                 )}
               </tbody>
             </table>
-
+  
             <div className="text-[10px] text-muted-foreground px-2 py-1">
               Evaluación Anterior: {evaluacionAnterior}
             </div>
           </div>
         </div>
-
+  
         {/* GRÁFICOS */}
-        <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-4 border border-primary p-3 pdf-block">
-
+        <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-4 border border-primary p-3">
+  
           {/* Ventas Totales */}
-          <div className="pdf-block">
+          <div>
             <div className="header-banner text-[12px] text-center mb-1">
               Ventas Totales
             </div>
-
+  
             <ResponsiveContainer width="100%" height={170}>
               <BarChart data={annualSalesData}>
                 <CartesianGrid strokeDasharray="3 3" />
@@ -223,18 +223,18 @@ const IndicadoresFinancieros = ({
                 <Bar dataKey="proyeccion" stackId="a" fill="#0836a6" />
               </BarChart>
             </ResponsiveContainer>
-
+  
             <div className="text-[10px] text-muted-foreground mt-1 text-center">
               RT actualizado al: {rtActualizadoAl}
             </div>
           </div>
-
+  
           {/* Ventas Declaradas */}
-          <div className="pdf-block">
+          <div>
             <div className="header-banner text-[12px] text-center mb-1">
               Ventas Declaradas - 2025
             </div>
-
+  
             <ResponsiveContainer width="100%" height={170}>
               <LineChart data={ventasMensuales2025}>
                 <CartesianGrid strokeDasharray="3 3" />
@@ -245,11 +245,12 @@ const IndicadoresFinancieros = ({
               </LineChart>
             </ResponsiveContainer>
           </div>
-
+  
         </div>
       </div>
     </div>
   );
+  
 };
 
 export default IndicadoresFinancieros;
