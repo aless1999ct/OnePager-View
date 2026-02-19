@@ -12,7 +12,7 @@ const DataField = ({ label, value, className = "" }: DataFieldProps) => (
       className="
         bg-[#28af60]
         text-white
-        text-[11px]
+        text-[10px]
         uppercase
         tracking-wide
         text-center
@@ -20,9 +20,9 @@ const DataField = ({ label, value, className = "" }: DataFieldProps) => (
         flex
         items-center
         justify-center
-        min-h-[28px]
+        min-h-[22px]
         leading-tight
-        print:min-h-[24px]
+        print:min-h-[20px]
       "
     >
       {label}
@@ -33,16 +33,16 @@ const DataField = ({ label, value, className = "" }: DataFieldProps) => (
       className="
         bg-white
         text-black
-        text-sm
+        text-[12px]
         font-medium
         text-center
         px-1
         flex
         items-center
         justify-center
-        min-h-[42px]
+        min-h-[32px]
         leading-tight
-        print:min-h-[36px]
+        print:min-h-[28px]
       "
     >
       {value}
@@ -82,65 +82,64 @@ interface CompanyDataCardProps {
 
 const CompanyDataCard = ({ data }: CompanyDataCardProps) => {
   return (
-    <div className="bg-card border-2 border-primary rounded-lg shadow-lg overflow-hidden pdf-block">
+    <div className="bg-card border border-primary rounded-md shadow pdf-block">
 
       {/* HEADER */}
-      <div className="border-b-2 border-primary px-4 py-2 pdf-block">
-        <div className="flex flex-wrap items-center justify-between gap-6">
+      <div className="border-b border-primary px-3 py-1.5 pdf-block">
+        <div className="flex flex-wrap items-center justify-between gap-4">
 
           {/* Empresa */}
           <div>
-            <div className="text-lg font-bold">
+            <div className="text-[16px] font-bold leading-tight">
               {data.nombreEmpresa}
             </div>
-            <div className="text-xs text-muted-foreground">
+            <div className="text-[10px] text-muted-foreground">
               RUC: {data.rec}
             </div>
           </div>
+
           {/* Cliente / Flujo / Canal */}
-          <div className="flex gap-8 items-center">
-          
+          <div className="flex gap-6 items-center">
+
             <div className="text-center">
-              <div className="text-[11px] text-muted-foreground uppercase tracking-wide">
+              <div className="text-[10px] text-muted-foreground uppercase tracking-wide">
                 Cliente
               </div>
-              <div className="text-lg font-bold leading-tight">
+              <div className="text-[16px] font-bold leading-tight">
                 Bank
               </div>
             </div>
-          
+
             <div className="text-center">
-              <div className="text-[11px] text-muted-foreground uppercase tracking-wide">
+              <div className="text-[10px] text-muted-foreground uppercase tracking-wide">
                 Flujo
               </div>
-              <div className="text-lg font-bold leading-tight">
+              <div className="text-[16px] font-bold leading-tight">
                 {data.flujoEva}
               </div>
             </div>
-          
+
             <div className="text-center">
-              <div className="text-[11px] text-muted-foreground uppercase tracking-wide">
+              <div className="text-[10px] text-muted-foreground uppercase tracking-wide">
                 Canal
               </div>
-              <div className="text-lg font-bold leading-tight">
+              <div className="text-[16px] font-bold leading-tight">
                 {data.canal}
               </div>
             </div>
-          
+
           </div>
 
-          
         </div>
       </div>
 
       {/* BODY */}
-      <div className="p-4 space-y-3 text-xs">
+      <div className="p-3 space-y-2 text-[11px]">
 
         {/* ================= FILA 1 ================= */}
         <div className="grid grid-cols-12 print:grid-cols-12 gap-0 pdf-block">
           <DataField label="Ubicación" value={data.ubicacion} className="col-span-2" />
           <DataField label="Giro" value={data.giro} className="col-span-4" />
-          {/*<DataField label="Sub Giro" value={data.subGiro} className="col-span-2" />*/}
           <DataField label="Inicio" value={data.inicio} className="col-span-2" />
           <DataField label="IBK Desde" value={data.ibkDesde} className="col-span-2" />
           <DataField label="Score" value={data.score} className="col-span-2" />
