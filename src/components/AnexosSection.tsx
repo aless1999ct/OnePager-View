@@ -1,7 +1,6 @@
 const AnexosSection = () => {
   return (
-    <div className="bg-card border border-primary rounded-md shadow mt-8 pdf-block">
-
+    <div className="bg-card border border-primary rounded-md shadow mt-8 pdf-block print:break-before-page">
       {/* HEADER GRANDE */}
       <div className="border-b border-primary px-3 py-2">
         <h1 className="text-primary font-bold text-[18px] text-center">
