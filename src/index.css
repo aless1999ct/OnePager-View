@@ -142,8 +142,8 @@
   .one-pager {
   position: static;
   width: 210mm;
-  height: 297mm;     /* 👈 fija A4 exacto */
-  overflow: visible;
+  
+
   margin: 0 auto;
   background: white;
   }
@@ -165,7 +165,7 @@
 
   @page {
   size: A4;
-  margin: 6mm;  /* margen pequeño controlado */
+  margin: 10mm;  /* margen pequeño controlado */
 }
 
 body {
