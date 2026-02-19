@@ -52,7 +52,7 @@ const Semaforo = ({ estado }: { estado: "verde" | "ambar" | "rojo" }) => {
       ? "bg-yellow-400"
       : "bg-red-500";
 
-  return <span className={`w-6 h-6 rounded-full ${color}`} />;
+  return <span className={`w-4 h-4 rounded-full ${color}`} />;
 };
 
 const calcularSemaforo = (ratio: string): "verde" | "ambar" | "rojo" => {
@@ -77,65 +77,59 @@ const ClientDetailsSection = ({
     accionistas.map((a) => a.puesto || "")
   );
 
-  const semaforoEstado = creditos.length
-    ? calcularSemaforo(creditos[0].ratio24)
-    : "verde";
-
   return (
-    <div className="bg-card border-2 border-primary rounded-lg shadow-lg mt-6 overflow-hidden pdf-block">
-      <div className="p-4 space-y-8">
+    <div className="bg-card border border-primary rounded-md shadow mt-4 pdf-block">
+      <div className="p-3 space-y-4">
 
         {/* =========================
             RESUMEN
         ========================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 print:grid-cols-3 gap-6 items-stretch pdf-block">
+        <div className="grid grid-cols-1 lg:grid-cols-3 print:grid-cols-3 gap-3 items-stretch pdf-block">
 
-          <div className="border-2 border-primary flex flex-col pdf-block">
-            <div className="header-banner text-xs text-center">
+          <div className="border border-primary flex flex-col pdf-block">
+            <div className="header-banner text-[11px] text-center py-0.5">
               Perfil del Cliente
             </div>
-            <div className="data-cell text-xs px-4 py-4 text-center flex-1 flex items-center justify-center">
+            <div className="data-cell text-[11px] px-2 py-2 text-center flex-1 flex items-center justify-center leading-snug">
               {perfilCliente}
             </div>
           </div>
 
-          <div className="border-2 border-primary flex flex-col pdf-block">
-            <div className="header-banner text-xs text-center">
+          <div className="border border-primary flex flex-col pdf-block">
+            <div className="header-banner text-[11px] text-center py-0.5">
               Políticas Comerciales
             </div>
-            <div className="data-cell text-xs px-4 py-4 text-center flex-1 flex items-center justify-center">
+            <div className="data-cell text-[11px] px-2 py-2 text-center flex-1 flex items-center justify-center leading-snug">
               {politicasComerciales}
             </div>
           </div>
 
-          <div className="border-2 border-primary flex flex-col pdf-block">
-            <div className="header-banner text-xs text-center">
+          <div className="border border-primary flex flex-col pdf-block">
+            <div className="header-banner text-[11px] text-center py-0.5">
               Transaccionalidad
             </div>
 
-            <table className="w-full text-xs table-fixed border-t border-primary">
+            <table className="w-full text-[11px] table-fixed border-t border-primary">
               <thead>
                 <tr>
-                  <th className="data-label text-center">Flujo IziPay</th>
-                  <th className="data-label text-center">Venta</th>
-                  <th className="data-label text-center">Ratio</th>
-                  <th className="data-label text-center">
-                    Pasivo Promedio
-                  </th>
+                  <th className="data-label py-0.5">Flujo IziPay</th>
+                  <th className="data-label py-0.5">Venta</th>
+                  <th className="data-label py-0.5">Ratio</th>
+                  <th className="data-label py-0.5">Pasivo Promedio</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="data-cell text-center">
+                  <td className="data-cell text-center py-0.5">
                     {transaccionalidad.flujo}
                   </td>
-                  <td className="data-cell text-center">
+                  <td className="data-cell text-center py-0.5">
                     {transaccionalidad.venta}
                   </td>
-                  <td className="data-cell text-center">
+                  <td className="data-cell text-center py-0.5">
                     {transaccionalidad.ratio}
                   </td>
-                  <td className="data-cell text-center px-3">
+                  <td className="data-cell text-center py-0.5">
                     {transaccionalidad.pasivoPromedio}
                   </td>
                 </tr>
@@ -143,57 +137,52 @@ const ClientDetailsSection = ({
             </table>
           </div>
         </div>
-         {/* =========================
+
+        {/* =========================
              CRÉDITOS ANTERIORES
-         ========================= */}
-         <div className="pdf-block">
-         
-           <div className="border-2 border-primary border-b-0">
-             <div className="header-banner text-sm flex items-center justify-center px-3">
-               <span className="font-bold">
-                 Créditos Anteriores
-               </span>
-             </div>
-           </div>
-         
-           {/* TABLA */}
-           <div className="overflow-x-auto print:overflow-visible border-2 border-primary border-t-0 pdf-block">
+        ========================= */}
+        <div className="pdf-block">
+          <div className="border border-primary border-b-0">
+            <div className="header-banner text-[12px] flex items-center justify-center py-1">
+              <span className="font-semibold">
+                Créditos Anteriores
+              </span>
+            </div>
+          </div>
 
-
-         
-         <table className="w-full text-xs">
+          <div className="overflow-x-auto print:overflow-visible border border-primary border-t-0 pdf-block">
+            <table className="w-full text-[11px]">
               <thead>
                 <tr>
-                  <th className="data-label">Sujeto de Crédito</th>
-                  <th className="data-label">Producto</th>
-                  <th className="data-label">Monto a Deber</th>
-                  <th className="data-label">Cuotas por Pagar</th>
-                  <th className="data-label">Prom. Días Atraso</th>
-                  <th className="data-label">Status</th>
+                  <th className="data-label py-0.5">Sujeto de Crédito</th>
+                  <th className="data-label py-0.5">Producto</th>
+                  <th className="data-label py-0.5">Monto a Deber</th>
+                  <th className="data-label py-0.5">Cuotas por Pagar</th>
+                  <th className="data-label py-0.5">Prom. Días Atraso</th>
+                  <th className="data-label py-0.5">Status</th>
                 </tr>
               </thead>
               <tbody>
                 {creditos.map((credito, index) => (
                   <tr key={index}>
-                    <td className="data-cell text-center">
+                    <td className="data-cell text-center py-0.5">
                       {credito.sujetoCredito}
                     </td>
-                    <td className="data-cell text-center">
+                    <td className="data-cell text-center py-0.5">
                       {credito.producto}
                     </td>
-                    <td className="data-cell text-center">
+                    <td className="data-cell text-center py-0.5">
                       {credito.montoOriginal} / {credito.saldoActual}
                     </td>
-                    <td className="data-cell text-center">
+                    <td className="data-cell text-center py-0.5">
                       {credito.plazoInicial} / {credito.ratio24}
                     </td>
-                    <td className="data-cell text-center">
+                    <td className="data-cell text-center py-0.5">
                       {credito.promedioDiasAtraso}
                     </td>
-                    <td className="data-cell text-center flex justify-center">
-                       <Semaforo estado={calcularSemaforo(credito.ratio24)} />
-                     </td>
-
+                    <td className="data-cell text-center py-0.5 flex justify-center">
+                      <Semaforo estado={calcularSemaforo(credito.ratio24)} />
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -205,35 +194,35 @@ const ClientDetailsSection = ({
             RELACIONADOS
         ========================= */}
         <div className="pdf-block">
-          <div className="header-banner text-sm mb-2">
+          <div className="header-banner text-[12px] mb-1 py-1">
             Relacionados Bancarizados
           </div>
 
-          <div className="overflow-x-auto print:overflow-visible border-2 border-primary pdf-block">
-            <table className="w-full text-xs">
+          <div className="overflow-x-auto print:overflow-visible border border-primary pdf-block">
+            <table className="w-full text-[11px]">
               <thead>
                 <tr>
-                  <th className="data-label">Nombre</th>
-                  <th className="data-label">DNI</th>
-                  <th className="data-label">Clas.</th>
-                  <th className="data-label">Edad</th>
-                  <th className="data-label">Participación %</th>
-                  <th className="data-label">Cargo</th>
-                  <th className="data-label">Deuda SBS</th>
-                  <th className="data-label">Máx. Deuda</th>
+                  <th className="data-label py-0.5">Nombre</th>
+                  <th className="data-label py-0.5">DNI</th>
+                  <th className="data-label py-0.5">Clas.</th>
+                  <th className="data-label py-0.5">Edad</th>
+                  <th className="data-label py-0.5">Participación %</th>
+                  <th className="data-label py-0.5">Cargo</th>
+                  <th className="data-label py-0.5">Deuda SBS</th>
+                  <th className="data-label py-0.5">Máx. Deuda</th>
                 </tr>
               </thead>
               <tbody>
                 {accionistas.map((a, i) => (
                   <tr key={i}>
-                    <td className="data-cell text-center">{a.nombre}</td>
-                    <td className="data-cell text-center">{a.dni}</td>
-                    <td className="data-cell text-center">{a.clasificacion}</td>
-                    <td className="data-cell text-center">{a.edad}</td>
-                    <td className="data-cell text-center">{a.participacion}</td>
-                    <td className="data-cell text-center">
+                    <td className="data-cell text-center py-0.5">{a.nombre}</td>
+                    <td className="data-cell text-center py-0.5">{a.dni}</td>
+                    <td className="data-cell text-center py-0.5">{a.clasificacion}</td>
+                    <td className="data-cell text-center py-0.5">{a.edad}</td>
+                    <td className="data-cell text-center py-0.5">{a.participacion}</td>
+                    <td className="data-cell text-center py-0.5">
                       <input
-                        className="w-full border px-1 py-0.5 text-xs print:border-0 print:bg-transparent"
+                        className="w-full border px-1 py-0.5 text-[11px] print:border-0 print:bg-transparent"
                         value={puestos[i]}
                         onChange={(e) => {
                           const copy = [...puestos];
@@ -242,8 +231,8 @@ const ClientDetailsSection = ({
                         }}
                       />
                     </td>
-                    <td className="data-cell text-center">{a.deudaSBS}</td>
-                    <td className="data-cell text-center">{a.maximaDeuda}</td>
+                    <td className="data-cell text-center py-0.5">{a.deudaSBS}</td>
+                    <td className="data-cell text-center py-0.5">{a.maximaDeuda}</td>
                   </tr>
                 ))}
               </tbody>
