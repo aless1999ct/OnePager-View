@@ -120,6 +120,101 @@ const AnexosSection = () => {
           </table>
         </div>
 
+        {/* ================= GRUPO ECONÓMICO ================= */}
+        <div className="space-y-3">
+
+          {/* Título simple (NO h2) */}
+          <div className="text-primary font-semibold text-[13px]">
+            Grupo Económico
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+            {/* TABLA PRINCIPAL */}
+            <div className="md:col-span-2 border border-primary">
+              <table className="w-full text-[11px]">
+                <thead>
+                  <tr>
+                    <th className="data-label py-1 text-left">
+                      La Primerísima SRL
+                    </th>
+                    <th className="data-label py-1 text-center" colSpan={3}>
+                      Deuda RCC
+                    </th>
+                    <th className="data-label py-1 text-center">
+                      Cuota (log vpc)
+                    </th>
+                  </tr>
+                  <tr>
+                    <th className="data-label py-1"></th>
+                    <th className="data-label py-1 text-center">Comercial</th>
+                    <th className="data-label py-1 text-center">Consumo</th>
+                    <th className="data-label py-1 text-center">Total</th>
+                    <th className="data-label py-1 text-center"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="data-cell py-1">Diego Primera (RRLL)</td>
+                    <td className="data-cell py-1 text-right">790,000</td>
+                    <td className="data-cell py-1 text-right">1,000,000</td>
+                    <td className="data-cell py-1 text-right">1,790,000</td>
+                    <td className="data-cell py-1 text-right">165,833</td>
+                  </tr>
+                  <tr>
+                    <td className="data-cell py-1">
+                      Joaquin Primera (acc 80%)
+                    </td>
+                    <td className="data-cell py-1 text-right">350,000</td>
+                    <td className="data-cell py-1 text-right">50,000</td>
+                    <td className="data-cell py-1 text-right">400,000</td>
+                    <td className="data-cell py-1 text-right">34,167</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            {/* TABLA CLASIFICACIÓN */}
+            <div className="border border-primary">
+              <div className="header-banner text-[12px] py-1 text-center">
+                Clasificación
+              </div>
+
+              <table className="w-full text-[11px]">
+                <tbody>
+                  <tr>
+                    <td className="data-cell py-1">Dic 25</td>
+                    <td className="data-cell py-1 text-center">
+                      CPP 80% NOR 20%
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="data-cell py-1">Nov 25</td>
+                    <td className="data-cell py-1 text-center">NOR 100%</td>
+                  </tr>
+                  <tr>
+                    <td className="data-cell py-1">Oct 25</td>
+                    <td className="data-cell py-1 text-center">NOR 100%</td>
+                  </tr>
+                  <tr>
+                    <td className="data-cell py-1">Sep 25</td>
+                    <td className="data-cell py-1 text-center">NOR 100%</td>
+                  </tr>
+                  <tr>
+                    <td className="data-cell py-1">Ago 25</td>
+                    <td className="data-cell py-1 text-center">NOR 100%</td>
+                  </tr>
+                  <tr>
+                    <td className="data-cell py-1">Jul 25</td>
+                    <td className="data-cell py-1 text-center">NOR 100%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </div>
   );
