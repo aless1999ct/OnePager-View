@@ -143,7 +143,7 @@
   position: static;
   width: 210mm;
   height: 297mm;     /* 👈 fija A4 exacto */
-  overflow: hidden;  /* 👈 evita que se desborde */
+  overflow: visible;
   margin: 0 auto;
   background: white;
   }
@@ -165,11 +165,11 @@
 
   @page {
   size: A4;
-  margin: 8mm;  /* margen pequeño controlado */
+  margin: 6mm;  /* margen pequeño controlado */
 }
 
 body {
-  zoom: 0.92;   /* 👈 ajusta escala */
+  zoom: 0.86;   /* 👈 ajusta escala */
 }
 
     
