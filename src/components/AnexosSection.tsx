@@ -215,6 +215,42 @@ const AnexosSection = () => {
           </div>
         </div>
 
+                {/* ================= CRÉDITOS ANTERIORES IBK ================= */}
+        <h2 className="text-primary font-semibold text-[14px]">
+          Créditos Anteriores IBK
+        </h2>
+
+        <div className="border border-primary">
+          <table className="w-full text-[11px]">
+            <thead>
+              <tr>
+                <th className="data-label py-1 text-center">Producto</th>
+                <th className="data-label py-1 text-center">
+                  Saldo / Capital
+                </th>
+                <th className="data-label py-1 text-center">
+                  Plazo / Ratio
+                </th>
+                <th className="data-label py-1 text-center">
+                  Días Atraso
+                </th>
+                <th className="data-label py-1 text-center">
+                  Status
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="data-cell py-1 text-center"></td>
+                <td className="data-cell py-1 text-center"></td>
+                <td className="data-cell py-1 text-center"></td>
+                <td className="data-cell py-1 text-center"></td>
+                <td className="data-cell py-1 text-center"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
       </div>
     </div>
   );
