@@ -96,7 +96,7 @@ const IndicadoresFinancieros = ({
   const cuotaNum = Number(cuota);
   const percent = cem === 0 ? 0 : Math.round((cuotaNum / cem) * 100);
   const  cemAnterior = 11199; // simulado 8% menor (ajústalo si quieres)
-  const variacion = "9%";
+  const variacion = "9";
 
   const liquidezFiltrada = indicadores.liquidez.filter(
     i => i.nombre !== "Ciclo Operativo"
