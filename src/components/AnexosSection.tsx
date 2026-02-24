@@ -14,6 +14,7 @@ import {
   Legend,
 } from "recharts";
 
+
 const AnexosSection = () => {
 
 
@@ -53,6 +54,13 @@ const AnexosSection = () => {
     { mes: "Noviembre", ibk: 85, otros: 85 },
     { mes: "Diciembre", ibk: 50, otros: 75 },
   ];
+
+  import { useState } from "react";
+
+ const [excepcion, setExcepcion] = useState("Firma del Cónyuge");
+ const [comentario, setComentario] = useState("");
+ const [resolucion, setResolucion] = useState("Aprobado");
+
   
   return (
     <div className="bg-card border border-primary rounded-md shadow mt-8 pdf-block print:break-before-page">
@@ -67,28 +75,56 @@ const AnexosSection = () => {
       <div className="p-4 space-y-6">
 
         {/* ================= EXCEPCIONES ================= */}
-        <h2 className="text-primary font-semibold text-[14px]">
-          Excepciones
-        </h2>
-
         <div className="border border-primary">
           <table className="w-full text-[11px]">
             <thead>
               <tr>
                 <th className="data-label py-1 text-left">
-                  Tipo de Excepcione
+                  Excepción
                 </th>
                 <th className="data-label py-1 text-left">
-                  Comentario de ejecutivo de Negocio
+                  Comentario EN (detalle ejecutivo)
+                </th>
+                <th className="data-label py-1 text-center">
+                  Resolución
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr>
+                {/* EXCEPCIÓN */}
                 <td className="data-cell py-1">
-                  Venta con FI &gt; a lo Permitido
+                  <input
+                    type="text"
+                    value={excepcion}
+                    onChange={(e) => setExcepcion(e.target.value)}
+                    className="w-full bg-transparent outline-none"
+                  />
                 </td>
-                <td className="data-cell py-1"></td>
+        
+                {/* COMENTARIO */}
+                <td className="data-cell py-1">
+                  <textarea
+                    value={comentario}
+                    onChange={(e) => setComentario(e.target.value)}
+                    rows={2}
+                    className="w-full bg-transparent outline-none resize-none"
+                    placeholder="Detalle técnico de la excepción..."
+                  />
+                </td>
+        
+                {/* RESOLUCIÓN */}
+                <td className="data-cell py-1 text-center">
+                  <select
+                    value={resolucion}
+                    onChange={(e) => setResolucion(e.target.value)}
+                    className="bg-transparent outline-none"
+                  >
+                    <option value="Aprobado">Aprobado</option>
+                    <option value="Denegado">Denegado</option>
+                    <option value="Observado">Observado</option>
+                  </select>
+                </td>
               </tr>
             </tbody>
           </table>
