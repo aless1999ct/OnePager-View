@@ -150,7 +150,7 @@ const ClientDetailsSection = ({
                   <th className="data-label py-0.5">Ultimo Crédito</th>
                   <th className="data-label py-0.5">Producto</th>
                   <th className="data-label py-0.5">SALDO / CAPITAL</th>
-                  <th className="data-label py-0.5">Cuotas por Pagar</th>
+                  <th className="data-label py-0.5">Cuotas / Cuotas Pagadas</th>
                   <th className="data-label py-0.5">Prom. Días Atraso</th>
                   <th className="data-label py-0.5">Status</th>
                 </tr>
