@@ -56,6 +56,10 @@ const AnexosSection = () => {
     { mes: "Diciembre", ibk: 50, otros: 75 },
   ];
 
+  const saldoCuentasData = [
+  { mes: "Enero", saldo: 125000 },
+  { mes: "Febrero", saldo: 98000 },
+  ];
   
 
  const [excepcion, setExcepcion] = useState("Firma del Cónyuge");
@@ -545,43 +549,68 @@ const AnexosSection = () => {
         </div>
 
         {/* ================= FLUJO IZIPAY ================= */}
+
         <h2 className="text-primary font-semibold text-[14px]">
           Flujo izipay
         </h2>
         
-        <div className="border border-primary p-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border border-primary p-4">
         
-          <div className="text-[12px] font-semibold text-center mb-3">
-            Flujo Izipay Ultimos 12 meses
+          {/* ================= LINE CHART IZIPAY ================= */}
+          <div>
+            <div className="text-[12px] font-semibold text-center mb-3">
+              Flujo Izipay Últimos 12 meses
+            </div>
+        
+            <ResponsiveContainer width="100%" height={260}>
+              <LineChart data={flujoIzipayData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="mes" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+        
+                <Line
+                  type="monotone"
+                  dataKey="ibk"
+                  stroke="#2563eb"
+                  strokeWidth={3}
+                  dot={{ r: 4 }}
+                  name="IBK"
+                />
+        
+                <Line
+                  type="monotone"
+                  dataKey="otros"
+                  stroke="#ea580c"
+                  strokeWidth={3}
+                  dot={{ r: 4 }}
+                  name="Otros Bancos"
+                />
+              </LineChart>
+            </ResponsiveContainer>
           </div>
         
-          <ResponsiveContainer width="100%" height={260}>
-            <LineChart data={flujoIzipayData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="mes" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
+          {/* ================= NUEVO GRÁFICO SALDO ================= */}
+          <div>
+            <div className="text-[12px] font-semibold text-center mb-3">
+              Saldo cuentas corrientes
+            </div>
         
-              <Line
-                type="monotone"
-                dataKey="ibk"
-                stroke="#2563eb"
-                strokeWidth={3}
-                dot={{ r: 4 }}
-                name="IBK"
-              />
-        
-              <Line
-                type="monotone"
-                dataKey="otros"
-                stroke="#ea580c"
-                strokeWidth={3}
-                dot={{ r: 4 }}
-                name="Otros Bancos"
-              />
-            </LineChart>
-          </ResponsiveContainer>
+            <ResponsiveContainer width="100%" height={260}>
+              <BarChart data={saldoCuentasData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="mes" />
+                <YAxis />
+                <Tooltip />
+                <Bar
+                  dataKey="saldo"
+                  fill="#16a34a"   // verde estilo one pager
+                  radius={[6, 6, 0, 0]}
+                />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
         
         </div>
 
