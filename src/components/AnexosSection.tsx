@@ -169,55 +169,48 @@ const AnexosSection = () => {
           </table>
         </div>
 
-       {/* ================= VARIACIÓN RIESGO TOTAL ================= */}
+       {/* ================= VARIACIONES ================= */}
         <div className="border border-primary mt-4">
-          
-          {/* Header */}
-          <div className="px-3 py-2 font-semibold text-[12px] border-b border-primary">
-            Variación del Riesgo Total SBS/Microf.
-          </div>
         
           <table className="w-full text-[11px]">
             <thead>
               <tr>
-                <th className="data-label py-1 text-left"></th>
-                <th className="data-label py-1 text-center">Antes</th>
-                <th className="data-label py-1 text-center">21/01/2026</th>
-                <th className="data-label py-1 text-center">Variación</th>
+                <th className="data-label py-1 text-center">
+                  Var. Último Mes
+                </th>
+                <th className="data-label py-1 text-center">
+                  Var. Último Trimestre
+                </th>
+                <th className="data-label py-1 text-center">
+                  Var. Último Semestre
+                </th>
+                <th className="data-label py-1 text-center">
+                  Var. Último Año
+                </th>
               </tr>
             </thead>
+        
             <tbody>
               <tr>
-                <td className="data-cell py-1">Último Mes</td>
-                <td className="data-cell py-1 text-center">240.63</td>
-                <td className="data-cell py-1 text-center">240.63</td>
-                <td className="data-cell py-1 text-center">0.00</td>
-              </tr>
+                <td className="data-cell py-1 text-center text-green-600 font-semibold">
+                  20%
+                </td>
         
-              <tr>
-                <td className="data-cell py-1">Último Trimestre</td>
-                <td className="data-cell py-1 text-center">240.63</td>
-                <td className="data-cell py-1 text-center">240.63</td>
-                <td className="data-cell py-1 text-center">0.00</td>
-              </tr>
+                <td className="data-cell py-1 text-center text-red-600 font-semibold">
+                  -35%
+                </td>
         
-              <tr>
-                <td className="data-cell py-1">Último Semestre</td>
-                <td className="data-cell py-1 text-center">240.63</td>
-                <td className="data-cell py-1 text-center">240.63</td>
-                <td className="data-cell py-1 text-center">0.00</td>
-              </tr>
+                <td className="data-cell py-1 text-center text-green-600 font-semibold">
+                  5%
+                </td>
         
-              <tr>
-                <td className="data-cell py-1 font-semibold">Último Año</td>
-                <td className="data-cell py-1 text-center">11,498.81</td>
-                <td className="data-cell py-1 text-center">240.63</td>
-                <td className="data-cell py-1 text-center bg-yellow-300 font-semibold">
-                  -11,258.18
+                <td className="data-cell py-1 text-center text-green-600 font-semibold">
+                  16%
                 </td>
               </tr>
             </tbody>
           </table>
+        
         </div>
 
         {/* ================= GRUPO ECONÓMICO ================= */}
