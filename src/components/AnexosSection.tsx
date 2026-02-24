@@ -56,11 +56,15 @@ const AnexosSection = () => {
     { mes: "Diciembre", ibk: 50, otros: 75 },
   ];
 
-  const saldoCuentasData = [
-  { mes: "Enero", saldo: 125000 },
-  { mes: "Febrero", saldo: 98000 },
+    const saldoCuentasData = [
+    { mes: "Enero", saldo: 125000 },
+    { mes: "Febrero", saldo: 98000 },
+    { mes: "Marzo", saldo: 143000 },
+    { mes: "Abril", saldo: 110000 },
+    { mes: "Mayo", saldo: 167000 },
+    { mes: "Junio", saldo: 152000 },
   ];
-  
+    
 
  const [excepcion, setExcepcion] = useState("Firma del Cónyuge");
  const [comentario, setComentario] = useState("");
@@ -596,16 +600,20 @@ const AnexosSection = () => {
             <div className="text-[12px] font-semibold text-center mb-3">
               Saldo cuentas corrientes
             </div>
-        
             <ResponsiveContainer width="100%" height={260}>
-              <BarChart data={saldoCuentasData}>
+              <BarChart 
+                data={saldoCuentasData}
+                barCategoryGap="35%"   // espacio entre categorías
+              >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="mes" />
                 <YAxis />
                 <Tooltip />
+            
                 <Bar
                   dataKey="saldo"
-                  fill="#16a34a"   // verde estilo one pager
+                  fill="#16a34a"
+                  barSize={28}          // 👈 controla grosor
                   radius={[6, 6, 0, 0]}
                 />
               </BarChart>
