@@ -76,6 +76,9 @@ const AnexosSection = () => {
       <div className="p-4 space-y-6">
 
         {/* ================= EXCEPCIONES ================= */}
+        <h2 className="text-primary font-semibold text-[14px]">
+          Excepciones
+        </h2>
         <div className="border border-primary">
           <table className="w-full text-[11px]">
             <thead>
@@ -135,22 +138,6 @@ const AnexosSection = () => {
         <h2 className="text-primary font-semibold text-[14px]">
           Relacionados / Comportamiento SBS
         </h2>
-
-        {/* Clasificación Cliente */}
-        <div className="border border-primary">
-          <table className="w-full text-[11px]">
-            <tbody>
-              <tr>
-                <td className="data-label py-1 w-1/2">
-                  Cliente se encuentra en clasificación:
-                </td>
-                <td className="data-cell py-1 text-center font-semibold">
-                  RX
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
 
         {/* Tabla Accionistas SBS */}
         <div className="border border-primary">
@@ -347,6 +334,22 @@ const AnexosSection = () => {
         <h2 className="text-primary font-semibold text-[14px]">
           Comportamiento en el SSFF - Titular
         </h2>
+
+        {/* Clasificación Cliente */}
+        <div className="border border-primary">
+          <table className="w-full text-[11px]">
+            <tbody>
+              <tr>
+                <td className="data-label py-1 w-1/2">
+                  Cliente se encuentra en clasificación:
+                </td>
+                <td className="data-cell py-1 text-center font-semibold">
+                  RX
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border border-primary p-4">
 
