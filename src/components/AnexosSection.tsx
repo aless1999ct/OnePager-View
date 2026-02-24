@@ -337,8 +337,8 @@ const AnexosSection = () => {
                 <XAxis dataKey="mes" />
                 <YAxis />
                 <Tooltip />
-                <Bar dataKey="vigente" fill="#2563eb" />
-                <Bar dataKey="vencido" fill="#dc2626" />
+                <Bar dataKey="vigente" stackId="a" fill="#2563eb" />
+                <Bar dataKey="vencido" stackId="a" fill="#dc2626" />
               </BarChart>
             </ResponsiveContainer>
           </div>
