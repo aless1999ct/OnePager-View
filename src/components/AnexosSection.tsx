@@ -14,6 +14,7 @@ import {
   Legend,
 } from "recharts";
 
+import { useState } from "react";
 
 const AnexosSection = () => {
 
@@ -55,7 +56,7 @@ const AnexosSection = () => {
     { mes: "Diciembre", ibk: 50, otros: 75 },
   ];
 
-  import { useState } from "react";
+  
 
  const [excepcion, setExcepcion] = useState("Firma del Cónyuge");
  const [comentario, setComentario] = useState("");
