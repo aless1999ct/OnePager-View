@@ -42,27 +42,27 @@ const AnexosSection = () => {
   ];
 
     const flujoIzipayData = [
-    { mes: "Enero", ibk: 100, otros: 50 },
-    { mes: "Febrero", ibk: 70, otros: 70 },
-    { mes: "Marzo", ibk: 50, otros: 30 },
-    { mes: "Abril", ibk: 80, otros: 30 },
-    { mes: "Mayo", ibk: 210, otros: 120 },
-    { mes: "Junio", ibk: 60, otros: 310 },
-    { mes: "Julio", ibk: 230, otros: 100 },
-    { mes: "Agosto", ibk: 80, otros: 60 },
-    { mes: "Septiembre", ibk: 20, otros: 45 },
-    { mes: "Octubre", ibk: 55, otros: 40 },
-    { mes: "Noviembre", ibk: 85, otros: 85 },
-    { mes: "Diciembre", ibk: 50, otros: 75 },
+    { mes: "Ene", ibk: 100, otros: 50 },
+    { mes: "Feb", ibk: 70, otros: 70 },
+    { mes: "Mar", ibk: 50, otros: 30 },
+    { mes: "Abr", ibk: 80, otros: 30 },
+    { mes: "May", ibk: 210, otros: 120 },
+    { mes: "Jun", ibk: 60, otros: 310 },
+    { mes: "Jul", ibk: 230, otros: 100 },
+    { mes: "Ago", ibk: 80, otros: 60 },
+    { mes: "Sep", ibk: 20, otros: 45 },
+    { mes: "Oct", ibk: 55, otros: 40 },
+    { mes: "Nov", ibk: 85, otros: 85 },
+    { mes: "Dic", ibk: 50, otros: 75 },
   ];
 
     const saldoCuentasData = [
-    { mes: "Enero", saldo: 125000 },
-    { mes: "Febrero", saldo: 98000 },
-    { mes: "Marzo", saldo: 143000 },
-    { mes: "Abril", saldo: 110000 },
-    { mes: "Mayo", saldo: 167000 },
-    { mes: "Junio", saldo: 152000 },
+    { mes: "Ene", saldo: 125000 },
+    { mes: "Feb", saldo: 98000 },
+    { mes: "Mar", saldo: 143000 },
+    { mes: "Abr", saldo: 110000 },
+    { mes: "May", saldo: 167000 },
+    { mes: "Jun", saldo: 152000 },
   ];
     
 
