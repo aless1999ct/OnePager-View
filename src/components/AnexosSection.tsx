@@ -169,31 +169,52 @@ const AnexosSection = () => {
           </table>
         </div>
 
-        {/* Relacionados Bancarios */}
-        <div className="border border-primary">
-          <div className="header-banner text-[12px] py-1 text-center">
-            Relacionados Bancarios
+       {/* ================= VARIACIÓN RIESGO TOTAL ================= */}
+        <div className="border border-primary mt-4">
+          
+          {/* Header */}
+          <div className="px-3 py-2 font-semibold text-[12px] border-b border-primary">
+            Variación del Riesgo Total SBS/Microf.
           </div>
-
+        
           <table className="w-full text-[11px]">
             <thead>
               <tr>
-                <th className="data-label py-1">Nombre</th>
-                <th className="data-label py-1">Tipo</th>
-                <th className="data-label py-1">Var Trimestral</th>
-                <th className="data-label py-1">Var Semestral</th>
-                <th className="data-label py-1">Var Anual</th>
-                <th className="data-label py-1">Clasificación</th>
+                <th className="data-label py-1 text-left"></th>
+                <th className="data-label py-1 text-center">Antes</th>
+                <th className="data-label py-1 text-center">21/01/2026</th>
+                <th className="data-label py-1 text-center">Variación</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td className="data-cell py-1"></td>
-                <td className="data-cell py-1"></td>
-                <td className="data-cell py-1"></td>
-                <td className="data-cell py-1"></td>
-                <td className="data-cell py-1"></td>
-                <td className="data-cell py-1"></td>
+                <td className="data-cell py-1">Último Mes</td>
+                <td className="data-cell py-1 text-center">240.63</td>
+                <td className="data-cell py-1 text-center">240.63</td>
+                <td className="data-cell py-1 text-center">0.00</td>
+              </tr>
+        
+              <tr>
+                <td className="data-cell py-1">Último Trimestre</td>
+                <td className="data-cell py-1 text-center">240.63</td>
+                <td className="data-cell py-1 text-center">240.63</td>
+                <td className="data-cell py-1 text-center">0.00</td>
+              </tr>
+        
+              <tr>
+                <td className="data-cell py-1">Último Semestre</td>
+                <td className="data-cell py-1 text-center">240.63</td>
+                <td className="data-cell py-1 text-center">240.63</td>
+                <td className="data-cell py-1 text-center">0.00</td>
+              </tr>
+        
+              <tr>
+                <td className="data-cell py-1 font-semibold">Último Año</td>
+                <td className="data-cell py-1 text-center">11,498.81</td>
+                <td className="data-cell py-1 text-center">240.63</td>
+                <td className="data-cell py-1 text-center bg-yellow-300 font-semibold">
+                  -11,258.18
+                </td>
               </tr>
             </tbody>
           </table>
