@@ -63,6 +63,12 @@ const AnexosSection = () => {
     { mes: "Abr", saldo: 110000 },
     { mes: "May", saldo: 167000 },
     { mes: "Jun", saldo: 152000 },
+    { mes: "Jul", saldo: 179890 },
+    { mes: "Ago", saldo: 156789 },
+    { mes: "Sep", saldo: 256789 },
+    { mes: "Oct", saldo: 456789 },
+    { mes: "Nov", saldo: 567899 },
+    { mes: "Dic", saldo: 1123456 },
   ];
     
 
