@@ -105,7 +105,7 @@ const ClientDetailsSection = ({
             <table className="w-full text-[11px] table-fixed border-t border-primary">
               <thead>
                 <tr>
-                  <th className="data-label py-0.5">Flujo IziPay</th>
+                  <th className="data-label py-0.5">Flujo IBK*</th>
                   <th className="data-label py-0.5">Venta</th>
                   <th className="data-label py-0.5">Ratio</th>
                   <th className="data-label py-0.5">Pasivo Promedio</th>
