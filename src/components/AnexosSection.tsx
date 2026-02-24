@@ -333,12 +333,14 @@ const AnexosSection = () => {
 
             <ResponsiveContainer width="100%" height={220}>
               <BarChart data={comportamientoData}>
-                <CartesianGrid strokeDasharray="3 3" />
+                <CartesianGrid stroke="#e5e7eb" strokeDasharray="3 3" />
                 <XAxis dataKey="mes" />
                 <YAxis />
                 <Tooltip />
-                <Bar dataKey="vigente" stackId="a" fill="#2563eb" />
-                <Bar dataKey="vencido" stackId="a" fill="#dc2626" />
+                <Legend />
+            
+                <Bar dataKey="vigente" stackId="a" fill="#2563eb" name="Vigente" />
+                <Bar dataKey="vencido" stackId="a" fill="#dc2626" name="Vencido" />
               </BarChart>
             </ResponsiveContainer>
           </div>
