@@ -169,49 +169,7 @@ const AnexosSection = () => {
           </table>
         </div>
 
-       {/* ================= VARIACIONES ================= */}
-        <div className="border border-primary mt-4">
-        
-          <table className="w-full text-[11px]">
-            <thead>
-              <tr>
-                <th className="data-label py-1 text-center">
-                  Var. Último Mes
-                </th>
-                <th className="data-label py-1 text-center">
-                  Var. Último Trimestre
-                </th>
-                <th className="data-label py-1 text-center">
-                  Var. Último Semestre
-                </th>
-                <th className="data-label py-1 text-center">
-                  Var. Último Año
-                </th>
-              </tr>
-            </thead>
-        
-            <tbody>
-              <tr>
-                <td className="data-cell py-1 text-center text-green-600 font-semibold">
-                  20%
-                </td>
-        
-                <td className="data-cell py-1 text-center text-red-600 font-semibold">
-                  -35%
-                </td>
-        
-                <td className="data-cell py-1 text-center text-green-600 font-semibold">
-                  5%
-                </td>
-        
-                <td className="data-cell py-1 text-center text-green-600 font-semibold">
-                  16%
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        
-        </div>
+      
 
         {/* ================= GRUPO ECONÓMICO ================= */}
         <div className="space-y-3">
@@ -409,6 +367,50 @@ const AnexosSection = () => {
             </ResponsiveContainer>
           </div>
 
+        </div>
+
+         {/* ================= VARIACIONES ================= */}
+        <div className="border border-primary mt-4">
+        
+          <table className="w-full text-[11px]">
+            <thead>
+              <tr>
+                <th className="data-label py-1 text-center">
+                  Var. Último Mes
+                </th>
+                <th className="data-label py-1 text-center">
+                  Var. Último Trimestre
+                </th>
+                <th className="data-label py-1 text-center">
+                  Var. Último Semestre
+                </th>
+                <th className="data-label py-1 text-center">
+                  Var. Último Año
+                </th>
+              </tr>
+            </thead>
+        
+            <tbody>
+              <tr>
+                <td className="data-cell py-1 text-center text-green-600 font-semibold">
+                  20%
+                </td>
+        
+                <td className="data-cell py-1 text-center text-red-600 font-semibold">
+                  -35%
+                </td>
+        
+                <td className="data-cell py-1 text-center text-green-600 font-semibold">
+                  5%
+                </td>
+        
+                <td className="data-cell py-1 text-center text-green-600 font-semibold">
+                  16%
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        
         </div>
 
         {/* ================= FLUJO IZIPAY ================= */}
