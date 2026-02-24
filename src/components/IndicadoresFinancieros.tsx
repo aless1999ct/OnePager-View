@@ -95,8 +95,8 @@ const IndicadoresFinancieros = ({
   const cem = Number(cemMensual);
   const cuotaNum = Number(cuota);
   const percent = cem === 0 ? 0 : Math.round((cuotaNum / cem) * 100);
-  const cemAnterior = Math.round(cem * 0.92); // simulado 8% menor (ajústalo si quieres)
-  const variacion = cemAnterior === 0 ? 0 : Math.round(((cem - cemAnterior) / cemAnterior) * 100);
+  const  cemAnterior = 11199; // simulado 8% menor (ajústalo si quieres)
+  const variacion = "9%";
 
   const liquidezFiltrada = indicadores.liquidez.filter(
     i => i.nombre !== "Ciclo Operativo"
@@ -166,7 +166,7 @@ const IndicadoresFinancieros = ({
                     <tr>
                       <td className="data-cell text-left font-medium">CEM Anterior</td>
                       <td className="data-cell text-center">
-                        {Math.round(cemAnterior / 1000)} K
+                        {cemAnterior.toLocaleString()}
                       </td>
                       <td className="data-cell text-center">
                         {variacion > 0 ? `(+${variacion}%)` : `(${variacion}%)`}
