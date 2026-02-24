@@ -368,43 +368,7 @@ const AnexosSection = () => {
               </table>
             </div>
 
-            {/* TABLA CLASIFICACIÓN */}
-            <div className="border border-primary">
-              <div className="header-banner text-[12px] py-1 text-center">
-                Clasificación
-              </div>
-
-              <table className="w-full text-[11px]">
-                <tbody>
-                  <tr>
-                    <td className="data-cell py-1">Dic 25</td>
-                    <td className="data-cell py-1 text-center">
-                      CPP 80% NOR 20%
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="data-cell py-1">Nov 25</td>
-                    <td className="data-cell py-1 text-center">NOR 100%</td>
-                  </tr>
-                  <tr>
-                    <td className="data-cell py-1">Oct 25</td>
-                    <td className="data-cell py-1 text-center">NOR 100%</td>
-                  </tr>
-                  <tr>
-                    <td className="data-cell py-1">Sep 25</td>
-                    <td className="data-cell py-1 text-center">NOR 100%</td>
-                  </tr>
-                  <tr>
-                    <td className="data-cell py-1">Ago 25</td>
-                    <td className="data-cell py-1 text-center">NOR 100%</td>
-                  </tr>
-                  <tr>
-                    <td className="data-cell py-1">Jul 25</td>
-                    <td className="data-cell py-1 text-center">NOR 100%</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+           
 
           </div>
         </div>
@@ -465,6 +429,44 @@ const AnexosSection = () => {
             </tbody>
           </table>
         </div>
+
+         {/* TABLA CLASIFICACIÓN */}
+            <div className="border border-primary">
+              <div className="header-banner text-[12px] py-1 text-center">
+                Clasificación
+              </div>
+
+              <table className="w-full text-[11px]">
+                <tbody>
+                  <tr>
+                    <td className="data-cell py-1">Dic 25</td>
+                    <td className="data-cell py-1 text-center">
+                      CPP 80% NOR 20%
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="data-cell py-1">Nov 25</td>
+                    <td className="data-cell py-1 text-center">NOR 100%</td>
+                  </tr>
+                  <tr>
+                    <td className="data-cell py-1">Oct 25</td>
+                    <td className="data-cell py-1 text-center">NOR 100%</td>
+                  </tr>
+                  <tr>
+                    <td className="data-cell py-1">Sep 25</td>
+                    <td className="data-cell py-1 text-center">NOR 100%</td>
+                  </tr>
+                  <tr>
+                    <td className="data-cell py-1">Ago 25</td>
+                    <td className="data-cell py-1 text-center">NOR 100%</td>
+                  </tr>
+                  <tr>
+                    <td className="data-cell py-1">Jul 25</td>
+                    <td className="data-cell py-1 text-center">NOR 100%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border border-primary p-4">
 
