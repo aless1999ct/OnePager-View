@@ -169,6 +169,135 @@ const AnexosSection = () => {
           </table>
         </div>
 
+        {/* ================= GASTO FINANCIERO - EXTENDIDO ================= */}
+        <div className="border border-primary mt-4">
+        
+          {/* Header verde */}
+          <div className="bg-green-200 font-semibold text-[12px] text-center py-2 border-b border-primary">
+            Gasto Financiero - Extendido
+          </div>
+        
+          <table className="w-full text-[11px]">
+            <thead>
+              <tr className="bg-green-100">
+                <th className="data-label py-1 text-left">Miembro del G.E.</th>
+                <th className="data-label py-1 text-center">Banco</th>
+                <th className="data-label py-1 text-center">Decremento Cuotas</th>
+                <th className="data-label py-1 text-center">T. Deuda</th>
+              </tr>
+            </thead>
+        
+            <tbody>
+              {/* AUTOPARTES */}
+              <tr>
+                <td className="data-cell py-1 font-semibold">
+                  AUTOPARTES E IMPORTACIONES CHANCAFE
+                </td>
+                <td className="data-cell py-1 text-center">IBK</td>
+                <td className="data-cell py-1 text-right text-blue-600 font-semibold">
+                  3,686.83
+                </td>
+                <td className="data-cell py-1 text-center text-green-700 font-semibold">
+                  Neg
+                </td>
+              </tr>
+        
+              <tr>
+                <td className="data-cell py-1"></td>
+                <td className="data-cell py-1 text-center">Mibanco</td>
+                <td className="data-cell py-1 text-right text-blue-600 font-semibold">
+                  2,394.90
+                </td>
+                <td className="data-cell py-1 text-center text-green-700 font-semibold">
+                  Neg
+                </td>
+              </tr>
+        
+              <tr>
+                <td className="data-cell py-1"></td>
+                <td className="data-cell py-1 text-center">Caja Cusco</td>
+                <td className="data-cell py-1 text-right text-blue-600 font-semibold">
+                  2,027.61
+                </td>
+                <td className="data-cell py-1 text-center text-green-700 font-semibold">
+                  Neg
+                </td>
+              </tr>
+        
+              {/* CHANCAFE QUEVEDO */}
+              <tr>
+                <td className="data-cell py-1 font-semibold">
+                  CHANCAFE QUEVEDO CARLOS MANUEL
+                </td>
+                <td className="data-cell py-1 text-center">Financ Uno</td>
+                <td className="data-cell py-1 text-right text-blue-600 font-semibold">
+                  647.515
+                </td>
+                <td className="data-cell py-1 text-center text-purple-700 font-semibold">
+                  Con
+                </td>
+              </tr>
+        
+              <tr>
+                <td className="data-cell py-1"></td>
+                <td className="data-cell py-1 text-center">IBK</td>
+                <td className="data-cell py-1 text-right text-blue-600 font-semibold">
+                  822.643
+                </td>
+                <td className="data-cell py-1 text-center text-purple-700 font-semibold">
+                  Con
+                </td>
+              </tr>
+        
+              {/* AGUINAGA */}
+              <tr>
+                <td className="data-cell py-1 font-semibold">
+                  AGUINAGA PISCOYA, JUANITA PATRICIA
+                </td>
+                <td className="data-cell py-1 text-center">Falabella</td>
+                <td className="data-cell py-1 text-right text-blue-600 font-semibold">
+                  467.33
+                </td>
+                <td className="data-cell py-1 text-center text-purple-700 font-semibold">
+                  Con
+                </td>
+              </tr>
+        
+              <tr>
+                <td className="data-cell py-1"></td>
+                <td className="data-cell py-1 text-center">IBK</td>
+                <td className="data-cell py-1 text-right text-blue-600 font-semibold">
+                  56.20
+                </td>
+                <td className="data-cell py-1 text-center text-purple-700 font-semibold">
+                  Con
+                </td>
+              </tr>
+        
+              {/* Totales */}
+              <tr className="bg-gray-100 font-semibold">
+                <td className="data-cell py-1 text-right" colSpan={2}>
+                  Decremento Consumo
+                </td>
+                <td className="data-cell py-1 text-right">
+                  1,993.68
+                </td>
+                <td></td>
+              </tr>
+        
+              <tr className="bg-gray-100 font-semibold">
+                <td className="data-cell py-1 text-right" colSpan={2}>
+                  Decremento Negocio
+                </td>
+                <td className="data-cell py-1 text-right">
+                  8,109.34
+                </td>
+                <td></td>
+              </tr>
+        
+            </tbody>
+          </table>
+        </div>
       
 
         {/* ================= GRUPO ECONÓMICO ================= */}
