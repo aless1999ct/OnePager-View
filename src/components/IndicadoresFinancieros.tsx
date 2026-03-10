@@ -23,6 +23,13 @@ interface IndicadorData {
 interface IndicadoresFinancierosProps {
   cemMensual: string;
   cuota: string;
+   data: {
+    nombreEmpresa: string;
+    rec: string;
+    flujoEva: string;
+    canal: string;
+  };
+
   indicadores: {
     actividad: IndicadorData[];
     rentabilidad: IndicadorData[];
