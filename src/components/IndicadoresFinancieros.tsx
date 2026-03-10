@@ -113,60 +113,7 @@ const IndicadoresFinancieros = ({
   return (
     <div className="bg-card border-2 border-primary rounded-lg shadow-lg overflow-hidden">
 
-      {/* HEADER */}
-      <div className="border-b-2 border-primary px-4 py-2">
-        <div className="flex flex-wrap items-center justify-between gap-6">
-
-          {/* Empresa */}
-          <div>
-            <div className="text-lg font-bold">
-              {data.nombreEmpresa}
-            </div>
-            <div className="text-xs text-muted-foreground">
-              RUC: {data.rec}
-            </div>
-          </div>
-
-          {/* Cliente / Flujo / Canal */}
-          <div className="flex gap-6">
-
-            <div className="text-center">
-              <div className="text-[11px] text-muted-foreground uppercase">
-                Cliente
-              </div>
-              <div className="text-sm font-medium">
-                Bank
-              </div>
-            </div>
-
-            <div className="text-center">
-              <div className="text-[11px] text-muted-foreground uppercase">
-                Flujo
-              </div>
-              <div className="text-sm font-medium">
-                {data.flujoEva}
-              </div>
-            </div>
-
-            <div className="text-center">
-              <div className="text-[11px] text-muted-foreground uppercase">
-                Canal
-              </div>
-              <div className="text-sm font-medium">
-                {data.canal}
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    <div className="bg-card border border-primary rounded-md shadow mt-4">
-  
-      <div className="border-b border-primary px-3 py-1.5">
-        <span className="text-primary font-bold text-[16px]">
-          Indicadores Financieros
-        </span>
-      </div>
+      
   
       <div className="p-3 space-y-4">
   
