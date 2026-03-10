@@ -112,55 +112,54 @@ const IndicadoresFinancieros = ({
 
   return (
 
+    <div className="bg-card border border-primary rounded-md shadow">
+
     {/* HEADER */}
-<div className="border-b border-primary px-3 py-1.5 pdf-block">
-  <div className="flex flex-wrap items-center justify-between gap-4">
+    <div className="border-b border-primary px-3 py-1.5 pdf-block">
+      <div className="flex flex-wrap items-center justify-between gap-4">
 
-    {/* Empresa */}
-    <div>
-      <div className="text-[16px] font-bold leading-tight">
-        {data.nombreEmpresa}
-      </div>
-      <div className="text-[10px] text-muted-foreground">
-        RUC: {data.rec}
+        <div>
+          <div className="text-[16px] font-bold leading-tight">
+            {data.nombreEmpresa}
+          </div>
+          <div className="text-[10px] text-muted-foreground">
+            RUC: {data.rec}
+          </div>
+        </div>
+
+        <div className="flex gap-6 items-center">
+
+          <div className="text-center">
+            <div className="text-[10px] text-muted-foreground uppercase">
+              Cliente
+            </div>
+            <div className="text-[16px] font-bold">
+              Bank
+            </div>
+          </div>
+
+          <div className="text-center">
+            <div className="text-[10px] text-muted-foreground uppercase">
+              Flujo
+            </div>
+            <div className="text-[16px] font-bold">
+              {data.flujoEva}
+            </div>
+          </div>
+
+          <div className="text-center">
+            <div className="text-[10px] text-muted-foreground uppercase">
+              Canal
+            </div>
+            <div className="text-[16px] font-bold">
+              {data.canal}
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
-
-    {/* Cliente / Flujo / Canal */}
-    <div className="flex gap-6 items-center">
-
-      <div className="text-center">
-        <div className="text-[10px] text-muted-foreground uppercase tracking-wide">
-          Cliente
-        </div>
-        <div className="text-[16px] font-bold leading-tight">
-          Bank
-        </div>
-      </div>
-
-      <div className="text-center">
-        <div className="text-[10px] text-muted-foreground uppercase tracking-wide">
-          Flujo
-        </div>
-        <div className="text-[16px] font-bold leading-tight">
-          {data.flujoEva}
-        </div>
-      </div>
-
-      <div className="text-center">
-        <div className="text-[10px] text-muted-foreground uppercase tracking-wide">
-          Canal
-        </div>
-        <div className="text-[16px] font-bold leading-tight">
-          {data.canal}
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-    <div className="bg-card border-2 border-primary rounded-lg shadow-lg overflow-hidden">
-
+    
       
   
       <div className="p-3 space-y-4">
