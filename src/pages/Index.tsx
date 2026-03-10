@@ -189,6 +189,7 @@ const Index = () => {
             />
 
             <IndicadoresFinancieros
+              data={sampleData}
               cemMensual={20000}
               cuota={15000}
               indicadores={indicadoresData}
