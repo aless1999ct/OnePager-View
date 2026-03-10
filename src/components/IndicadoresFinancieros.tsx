@@ -61,6 +61,7 @@ const cemDetalle = [
 const IndicadoresFinancieros = ({
   cemMensual,
   cuota,
+  data,
   indicadores,
 }: IndicadoresFinancierosProps) => {
 
